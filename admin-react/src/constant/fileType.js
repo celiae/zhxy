@@ -1,0 +1,15 @@
+export const fileTypes = [
+  "image/apng",
+  "image/bmp",
+  "image/gif",
+  "image/jpeg",
+  "image/pjpeg",
+  "image/png",
+  "image/svg+xml",
+  "image/tiff",
+  "image/webp",
+  "image/x-icon",
+  "video/mp4",
+  "video/webm",
+  "video/ogg",
+];

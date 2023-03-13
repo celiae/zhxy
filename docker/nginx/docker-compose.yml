@@ -1,0 +1,11 @@
+services:
+
+  zhxy:
+    image: zhxy-nginx
+    volumes:
+    - ./uploads:/srv
+    ports:
+    - "30060:80"
+    environment:
+    - NGINX_HOST=foobar.com
+    - NGINX_PORT=80

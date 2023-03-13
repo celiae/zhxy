@@ -1,0 +1,11 @@
+export const LANDING = "/";
+export const SIGN_UP = "/signup";
+export const SIGN_IN = "/signin";
+export const STUDENT = "/student";
+export const TEACHER = "/teacher";
+export const LESSON = "/lesson";
+export const CLASSES = "/classes";
+export const LAB = "/lab";
+export const DEPARTMENT = "/department";
+export const CHART = "/chart";
+export const PERSONAL = "/personal";
