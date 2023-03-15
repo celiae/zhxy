@@ -6,7 +6,7 @@ import { labList } from "../../server/lab";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { teacherGroupJobTitle } from "../../server/teacher";
-import SimpleBar from "../../components/chart/SimpleBar";
+import ChartBar from "../../components/chart/ChartBar";
 import { departmentList } from "../../server/department";
 
 export default function ChartList() {
@@ -57,7 +57,7 @@ export default function ChartList() {
           <Card>
             <CardHeader title="实验室产出项目" />
             <CardContent>
-              <SimpleBar data={labSucNumChart} dataKey={"value"} />
+              <ChartBar data={labSucNumChart} dataKey={"value"} />
             </CardContent>
           </Card>
         </Grid>
@@ -73,7 +73,7 @@ export default function ChartList() {
           <Card>
             <CardHeader title="部门资金预算" />
             <CardContent>
-              <SimpleBar data={departmentBudgetChar} dataKey={"value"} />
+              <ChartBar data={departmentBudgetChar} dataKey={"value"} />
             </CardContent>
           </Card>
         </Grid>

@@ -1,19 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CssBaseline,
-  FormControl,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { CardContent, CardHeader, Grid, TextField } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,11 +9,12 @@ import {
   setUsername,
 } from "../../store/loginSlice";
 import signin from "../../server/signin";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import SimpleAlert from "../../components/feedback/SimpleAlert";
-import CenterBox from "../../layout/CenterBox";
 import LightBlue from "../../components/shadowbox/LightBlue";
 import Outter from "../../components/login/Outter";
+import RouteButton from "../../components/button/RouteButton";
+import SubmitButton from "../../components/button/SubmitButton";
+import PasswordInput from "../../components/form/PasswordInput";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -38,12 +24,7 @@ export default function Signin() {
     type: "info",
     msg: "",
   });
-  const [showPassword, setShowPassword] = React.useState(false);
   const loginInfo = useSelector(selectLoginInfo);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
   React.useEffect(() => {
     if (
       loginInfo.login === true &&
@@ -57,89 +38,55 @@ export default function Signin() {
       dispatch(setSystem(""));
     }
   });
-  const [loginForm, setLoginForm] = React.useState({
-    username: "",
-    password: "",
-  });
-  const handleClick = async () => {
-    const res = await signin(loginForm);
+  const [i_username, setIUsername] = React.useState("");
+  const [i_password, setIPassword] = React.useState("");
+  const login = async () => {
+    const res = await signin({
+      username: i_username,
+      password: i_password,
+    });
     if (res.status === 200) {
-      navigate(`/${loginForm.username}`);
+      navigate(`/${i_username}`);
       dispatch(setLogin(true));
-      dispatch(setUsername(loginForm.username));
+      dispatch(setUsername(i_username));
       dispatch(setSystem("zhxy"));
       setAlert({ open: true, type: "success", msg: "登录成功" });
     } else if (res.status === 400) {
       setAlert({ open: true, type: "error", msg: "登录失败" });
     }
   };
-  const toSignUp = () => {
-    navigate("/signup");
-  };
   return (
     <Outter>
       <LightBlue>
-        <Card>
-          <CardHeader subheader="请登录进入系统" />
-          <CardContent>
-            <Grid width={400} container spacing={2}>
-              <SimpleAlert alert={alert} setAlert={setAlert} />
-              <Grid item xs={12}>
-                <TextField
-                  value={loginForm.username}
-                  onChange={(e) => {
-                    setLoginForm({
-                      ...loginForm,
-                      username: e.target.value,
-                    });
-                  }}
-                  label="用户名"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl
-                  fullWidth
-                  variant="outlined"
-                  value={loginForm.password}
-                  onChange={(e) => {
-                    setLoginForm({
-                      ...loginForm,
-                      password: e.target.value,
-                    });
-                  }}
-                >
-                  <InputLabel>密码</InputLabel>
-                  <OutlinedInput
-                    type={showPassword ? "text" : "password"}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    label="密码"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={4}>
-                <Button onClick={handleClick} variant="contained">
-                  登录
-                </Button>
-              </Grid>
-              <Grid item xs={5}>
-                <Button onClick={toSignUp} variant="outlined">
-                  注册
-                </Button>
-              </Grid>
+        <CardHeader subheader="请登录进入系统" />
+        <CardContent>
+          <Grid width={400} container spacing={2}>
+            <SimpleAlert alert={alert} setAlert={setAlert} />
+            <Grid item xs={12}>
+              <TextField
+                value={i_username}
+                onChange={(e) => {
+                  setIUsername(e.target.value);
+                }}
+                label="用户名"
+                fullWidth
+              />
             </Grid>
-          </CardContent>
-        </Card>
+            <Grid item xs={12}>
+              <PasswordInput
+                label={"密码"}
+                password={i_password}
+                setPassword={setIPassword}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <SubmitButton msg={"登录"} event={login} />
+            </Grid>
+            <Grid item xs={5}>
+              <RouteButton msg="注册" path="/signup" />
+            </Grid>
+          </Grid>
+        </CardContent>
       </LightBlue>
     </Outter>
   );

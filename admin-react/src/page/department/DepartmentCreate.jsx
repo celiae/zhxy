@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DepartmentForm from "../../components/form/DepartmentForm";
+import DepartmentForm from "./DepartmentForm";
 import { randomDepartment } from "../../lib/random/department";
 import { departmentCreateOne } from "../../server/department";
 import {

@@ -22,7 +22,6 @@ import LessonUpdate from "./page/lesson/LessonUpdate";
 import Signin from "./page/login/Signin";
 import Signup from "./page/login/Signup";
 import PersonalDetail from "./page/personal/PersonalDetail";
-import PersonalUpdate from "./page/personal/PersonalUpdate";
 import ScoreCreate from "./page/score/ScoreCreate";
 import ScoreDetail from "./page/score/ScoreDetail";
 import ScoreList from "./page/score/ScoreList";
@@ -266,15 +265,6 @@ const initailRouter = createBrowserRouter([
               {
                 index: true,
                 element: <PersonalDetail />,
-              },
-              {
-                path: ":id",
-                children: [
-                  {
-                    path: "update",
-                    element: <PersonalUpdate />,
-                  },
-                ],
               },
             ],
           },

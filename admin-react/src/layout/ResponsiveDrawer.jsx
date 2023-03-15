@@ -26,7 +26,6 @@ import {
 } from "react-icons/fa";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrUserManager } from "react-icons/gr";
 import { ImLab } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,11 +90,6 @@ function ResponsiveDrawer(props) {
       href: `/${user.username}${ROUTE.PERSONAL}`,
       icon: <BsPersonCircle />,
     },
-    {
-      name: "用户界面",
-      href: `#`,
-      icon: <GrUserManager />,
-    },
   ];
   const drawer = (
     <Box>
@@ -122,11 +116,6 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary={nav.name} />
               </ListItemButton>
             </ListItem>
-            {index === 6 && (
-              <Box mt={2} mb={2}>
-                <Divider />
-              </Box>
-            )}
           </Box>
         ))}
       </List>

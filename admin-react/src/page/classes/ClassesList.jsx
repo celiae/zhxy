@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import ClassesTable from "../../components/table/ClassesTable";
+import ClassesTable from "./ClassesTable";
 import { classesList, studentNumInclasses } from "../../server/classes";
 
 export default function ClassesList() {

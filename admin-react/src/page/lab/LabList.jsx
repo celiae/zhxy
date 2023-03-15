@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import { labList } from "../../server/lab";
-import LabTable from "../../components/table/LabTable";
+import LabTable from "./LabTable";
+import RouteButton from "../../components/button/RouteButton";
 
 export default function LabList() {
   const { data, status } = useQuery("labList", labList);
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("create");
-  };
   const [rows, setRows] = useState(data);
   useEffect(() => {
     setRows(data);
@@ -20,7 +16,7 @@ export default function LabList() {
   return (
     <Box>
       <LabTable data={rows} setData={setRows} />
-      <Button onClick={handleClick} variant="contained" color="secondary">添加</Button>
+      <RouteButton color={"secondary"} msg="添加" path={"create"} />
     </Box>
   );
 }

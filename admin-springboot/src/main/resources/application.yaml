@@ -4,7 +4,7 @@ spring:
     open-in-view: true
     properties.hibernate.enable_lazy_load_no_trans: true
   datasource:
-    url: jdbc:mysql://localhost:3306/zhxy
+    url: jdbc:mysql://172.17.0.2:3306/zhxy
     username: root
     password: z
     driver-class-name: com.mysql.cj.jdbc.Driver

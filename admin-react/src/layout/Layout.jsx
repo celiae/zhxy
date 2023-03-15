@@ -12,7 +12,6 @@ export default function Layout() {
       <Box
         sx={{
           minHeight: "100vh",
-          background: "linear-gradient(-125deg,#212121 30rem,white 30rem)",
         }}
       >
         <ResponsiveDrawer>

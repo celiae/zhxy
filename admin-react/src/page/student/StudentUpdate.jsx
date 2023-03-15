@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import { studentOne, studentUpdateOne } from "../../server/student";
-import StudentForm from "../../components/form/StudentForm";
+import StudentForm from "./StudentForm";
 import Grid from "@mui/material/Grid";
 import { Button, Stack } from "@mui/material";
 import {
@@ -15,6 +15,7 @@ import {
   studentMediaDeleteByStudentId,
 } from "../../server/studentmedia";
 import Media from "../../components/form/Media";
+import RouteButton from "../../components/button/RouteButton";
 export default function StudentUpdate() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -25,9 +26,6 @@ export default function StudentUpdate() {
   const [brief, setBrief] = useState(studentBrief.data);
   const [detail, setDetail] = React.useState(studentDetail.data);
   const [media, setMedia] = React.useState([]);
-  const handleBack = () => {
-    navigate(-1);
-  };
   let formData = new FormData();
   const handleSubmit = async () => {
     //?学生概要信息
@@ -41,7 +39,7 @@ export default function StudentUpdate() {
     });
     formData.append("studentId", id);
     studentMediaCreateOne(formData);
-    handleBack();
+    navigate(-1);
   };
   if (studentBrief.status === "loading" || studentDetail.status === "loading")
     return <Loading />;
@@ -49,9 +47,7 @@ export default function StudentUpdate() {
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Stack direction={"row"} spacing={2}>
-          <Button onClick={handleBack} variant="outlined" color="primary">
-            返回
-          </Button>
+          <RouteButton msg={"返回"} path={-1} />
           <Button onClick={handleSubmit} variant="contained" color="primary">
             提交
           </Button>

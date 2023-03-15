@@ -47,46 +47,40 @@ export default function PersonalDetail() {
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <ShadowBox>
-          <Card>
-            <CardContent>
-              <Stack direction={"row"} spacing={4} mb={3}>
-                <Avatar src={loginInfo.avatar} />
-                <Typography fontSize={"larger"}>
-                  {loginInfo.lastLogin}
-                </Typography>
-                <Button onClick={logout} color="error" variant="contained">
-                  退出登录
-                </Button>
-              </Stack>
-              <Stack spacing={2} direction="row">
-                <Typography variant="h6" color="initial">
-                  管理员
-                </Typography>
-                <Typography variant="h5" color="primary">
-                  {loginInfo.username}
-                </Typography>
-                <Typography variant="h5" color="initial">
-                  下午好
-                </Typography>
-                <Typography variant="h5" color="initial">
-                  <EmojiPeopleIcon color="secondary" fontSize="large" />
-                </Typography>
-              </Stack>
-              <Stack spacing={2} direction="row">
-                <Typography variant="h6" color="initial">
-                  您已在线
-                </Typography>
-                <Typography variant="h5" color="warning">
-                  17
-                </Typography>
-                <Typography variant="h6" color="initial">
-                  小时
-                </Typography>
-              </Stack>
-            </CardContent>
-          </Card>
-        </ShadowBox>
+        <CardContent>
+          <Stack direction={"row"} spacing={4} mb={3}>
+            <Avatar src={loginInfo.avatar} />
+            <Typography fontSize={"larger"}>{loginInfo.lastLogin}</Typography>
+            <Button onClick={logout} color="error" variant="contained">
+              退出登录
+            </Button>
+          </Stack>
+          <Stack spacing={2} direction="row">
+            <Typography variant="h6" color="initial">
+              管理员
+            </Typography>
+            <Typography variant="h5" color="primary">
+              {loginInfo.username}
+            </Typography>
+            <Typography variant="h5" color="initial">
+              下午好
+            </Typography>
+            <Typography variant="h5" color="initial">
+              <EmojiPeopleIcon color="secondary" fontSize="large" />
+            </Typography>
+          </Stack>
+          <Stack spacing={2} direction="row">
+            <Typography variant="h6" color="initial">
+              您已在线
+            </Typography>
+            <Typography variant="h5" color="warning">
+              17
+            </Typography>
+            <Typography variant="h6" color="initial">
+              小时
+            </Typography>
+          </Stack>
+        </CardContent>
       </Grid>
 
       <Grid item xs={12} md={8}>

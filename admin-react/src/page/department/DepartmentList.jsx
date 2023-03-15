@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import DepartmentTable from "../../components/table/DepartmentTable";
+import DepartmentTable from "./DepartmentTable";
 import { departmentList } from "../../server/department";
 
 export default function DepartmentList() {

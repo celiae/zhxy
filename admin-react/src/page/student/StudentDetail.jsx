@@ -11,7 +11,7 @@ import {
 import { Stack } from "@mui/system";
 import React from "react";
 import { useQuery } from "react-query";
-import StudentRadar from "../../components/chart/StudentRadar";
+import StudentRadar from "./StudentRadar";
 import Loading from "../../components/progress/Loading";
 import { studentDelete, studentOne } from "../../server/student";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,6 +24,7 @@ import {
   studentMediaDeleteByStudentId,
   studentOneByStudentId,
 } from "../../server/studentmedia";
+import TitleValue from "../../components/box/TitleValue";
 export default function StudentDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -104,14 +105,10 @@ export default function StudentDetail() {
                 )}
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">性别</Typography>
-                <Typography variant="h6">
-                  {studentDetail.data.gender}
-                </Typography>
+                <TitleValue title={"性别"} value={studentDetail.data.gender} />
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">电话</Typography>
-                <Typography variant="h6">{studentDetail.data.phone}</Typography>
+                <TitleValue title={"电话"} value={studentDetail.data.phone} />
               </Grid>
             </Grid>
           </CardContent>
@@ -123,40 +120,31 @@ export default function StudentDetail() {
           <CardContent>
             <Grid container spacing={2}>
               <Grid item xs={4}>
-                <Typography variant="caption">年龄</Typography>
-                <Typography variant="h6">{age}</Typography>
+                <TitleValue title={"年龄"} value={age} />
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">出生日期</Typography>
-                <Typography variant="h6">
-                  {studentDetail.data.birthDate}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={4}>
-                <Typography variant="caption">年级</Typography>
-                <Typography variant="h6">{studentDetail.data.grade}</Typography>
+                <TitleValue
+                  title={"出生日期"}
+                  value={studentDetail.data.birthDate}
+                />
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">最近登录时间</Typography>
-                <Typography variant="h6">
-                  {studentBrief.data.lastLogin}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={4}>
-                <Typography variant="caption">邮箱</Typography>
-                <Typography variant="h6">{studentDetail.data.email}</Typography>
+                <TitleValue title={"年级"} value={studentDetail.data.grade} />
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">微信</Typography>
-                <Typography variant="h6">
-                  {studentDetail.data.wechat}
-                </Typography>
+                <TitleValue
+                  title={"最近登录时间"}
+                  value={studentDetail.data.lastLogin}
+                />
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="caption">QQ</Typography>
-                <Typography variant="h6"> {studentDetail.data.qq}</Typography>
+                <TitleValue title={"邮箱"} value={studentDetail.data.email} />
+              </Grid>
+              <Grid item xs={4}>
+                <TitleValue title={"微信"} value={studentDetail.data.wechat} />
+              </Grid>
+              <Grid item xs={4}>
+                <TitleValue title={"QQ"} value={studentDetail.data.qq} />
               </Grid>
               <Grid item xs={4}>
                 <Typography variant="caption">参与实验室</Typography>

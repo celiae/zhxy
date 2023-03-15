@@ -6,8 +6,8 @@ import { teacherEntryDate, teacherNumber } from "../../server/teacher";
 import { Grid, Typography } from "@mui/material";
 import { labNumber } from "../../server/lab";
 import { departmentNumber } from "../../server/department";
-import HomeData from "../../components/card/HomeData";
-import SimpleArea from "../../components/chart/SimpleArea";
+import HomeData from "./HomeData";
+import ChartArea from "../../components/chart/ChartArea";
 export default function Home() {
   const studentNum = useQuery("studentNumber", studentNumber);
   const teacherNum = useQuery("teacherNumber", teacherNumber);
@@ -33,7 +33,7 @@ export default function Home() {
   });
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
+      <Grid item xs={6} md={4} lg={3}>
         <HomeData>
           <Typography color={"secondary"} variant="body1">
             学生总数
@@ -41,7 +41,7 @@ export default function Home() {
           <Typography variant="h1">{studentNum.data}</Typography>
         </HomeData>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={6} md={4} lg={3}>
         <HomeData>
           <Typography color={"secondary"} variant="body1">
             部门总数
@@ -49,7 +49,7 @@ export default function Home() {
           <Typography variant="h1">{departmentNum.data}</Typography>
         </HomeData>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={6} md={4} lg={3}>
         <HomeData>
           <Typography color={"secondary.dark"} variant="body1">
             拥有座实验室
@@ -57,7 +57,7 @@ export default function Home() {
           <Typography variant="h1">{labNum.data}</Typography>
         </HomeData>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={6} md={4} lg={3}>
         <HomeData>
           <Typography color={"secondary.dark"} variant="body1">
             教师在职数
@@ -69,7 +69,7 @@ export default function Home() {
         <Typography color={"secondary.dark"} variant="body1">
           教师入职时薪资与奖金
         </Typography>
-        <SimpleArea data={teacherEntryChart} />
+        <ChartArea data={teacherEntryChart} />
       </Grid>
     </Grid>
   );

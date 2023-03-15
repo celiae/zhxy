@@ -1,7 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ClassesForm from "../../components/form/ClassesForm";
+import ClassesForm from "./ClassesForm";
 import { randomClasses } from "../../lib/random/classes";
 import { classesCreateOne } from "../../server/classes";
 import { getDateTime } from "../../util/useDate";

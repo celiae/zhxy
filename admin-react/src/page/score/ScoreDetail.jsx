@@ -1,41 +1,19 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Link,
-  Typography,
-} from "@mui/material";
-import { Stack } from "@mui/system";
+import { Stack, Card, CardContent, CardHeader, Grid } from "@mui/material";
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { useSearchParams } from "react-router-dom";
 import { scoreGetNameByIds } from "../../server/score";
+import RouteButton from "../../components/button/RouteButton";
+import TitleValue from "../../components/box/TitleValue";
+import DeleteButton from "../../components/button/DeleteButton";
 export default function ScoreDetail() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const studentId = searchParams.get("studentId");
   const lessonId = searchParams.get("lessonId");
   const score = useQuery(["scoreGetNameByIds", studentId, lessonId], () =>
     scoreGetNameByIds(studentId, lessonId)
   );
-  const handleClick = () => {
-    navigate(`../update?studentId=${studentId}&lessonId=${lessonId}`);
-  };
-  const handleBack = () => {
-    navigate(-1);
-  };
-  const toStudent = (studentId) => {
-    const initialPath = location.pathname.split("/").slice(0, -2).join("/");
-    navigate(`${initialPath}/student/detail/${studentId}`);
-  };
-  const handleDelete = async () => {
-    handleBack();
-  };
   if (score.status === "loading") return <Loading />;
   return (
     <Grid container spacing={3}>
@@ -45,31 +23,23 @@ export default function ScoreDetail() {
           <CardContent>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Button onClick={handleBack} variant="contained">
-                  返回成绩表
-                </Button>
+                <RouteButton msg={"返回成绩表"} path={-1} />
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="caption">课程</Typography>
-                <Typography variant="h4">{score.data.lesson.name}</Typography>
-                <Typography variant="caption">学生</Typography>
-                <Typography variant="h4">{`${score.data.student.firstname} ${score.data.student.lastname}`}</Typography>
-                <Typography variant="caption">成绩</Typography>
-                <Typography variant="h4">{score.data.score}</Typography>
+                <TitleValue title="课程" value={score.data.lesson.name} />
+                <TitleValue
+                  title="学生"
+                  value={`${score.data.student.firstname} ${score.data.student.lastname}`}
+                />
+                <TitleValue title="成绩" value={score.data.score} />
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={3} direction={"row"}>
-                  <Button onClick={handleClick} variant="outlined">
-                    <BorderColorIcon />
-                    更改
-                  </Button>
-                  <Button
-                    onClick={handleDelete}
-                    variant="contained"
-                    color="error"
-                  >
-                    删除
-                  </Button>
+                  <RouteButton
+                    msg={"更改"}
+                    path={`../update?studentId=${studentId}&lessonId=${lessonId}`}
+                  />
+                  {/* <DeleteButton id={id} /> */}
                 </Stack>
               </Grid>
             </Grid>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import DepartmentForm from "../../components/form/DepartmentForm";
+import DepartmentForm from "./DepartmentForm";
 import { departmentDetail, departmentUpdateOne } from "../../server/department";
 import { getDateTime } from "../../util/useDate";
 export default function DepartmentUpdate() {

@@ -1,4 +1,4 @@
-const API = "http://localhost:8081";
+const API = "http://localhost:30041";
 export const API_ADMIN = `${API}/admin`;
 export const API_STUDENT = `${API}/student`;
 export const API_STUDENTDETAIL = `${API}/studentdetail`;

@@ -14,6 +14,8 @@ import {
 import { Stack } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import RouteButton from "../../components/button/RouteButton";
+import SubmitButton from "../../components/button/SubmitButton";
 import SimpleAlert from "../../components/feedback/SimpleAlert";
 import Outter from "../../components/login/Outter";
 import { API_ADMIN } from "../../constant/api";
@@ -69,12 +71,7 @@ export default function Signup() {
           <Grid container width={400} spacing={3}>
             <Grid item xs={12}>
               <Stack spacing={3} direction="row">
-                <Button onClick={back}>返回</Button>
-                {toLogin && (
-                  <Button onClick={back} variant="outlined">
-                    去登录
-                  </Button>
-                )}
+                <RouteButton path={-1} msg={toLogin ? "去登录" : "返回"} />
               </Stack>
             </Grid>
             <Grid item xs={12}>
@@ -125,9 +122,7 @@ export default function Signup() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button onClick={signup} variant="contained">
-                注册
-              </Button>
+              <SubmitButton event={signup} msg="注册" />
             </Grid>
           </Grid>
         </CardContent>

@@ -1,33 +1,23 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardContent, Grid, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 import Media from "../../components/form/Media";
-import StudentForm from "../../components/form/StudentForm";
+import StudentForm from "./StudentForm";
 import { studentCreateOne } from "../../server/student";
 import { studentDetailCreateOne } from "../../server/studentdetail";
 import { studentMediaCreateOne } from "../../server/studentmedia";
 import getUUID from "../../util/useUUID";
 import { randomStudent } from "../../lib/random/student";
 import { randomStudentDetail } from "../../lib/random/studentDetail";
+import RouteButton from "../../components/button/RouteButton";
 
 export default function StudentCreate() {
   const navigate = useNavigate();
-
   const [student, setStudent] = React.useState(randomStudent);
   const [studentDetail, setStudentDetail] = React.useState(randomStudentDetail);
   const [media, setMedia] = React.useState([]);
   const student_uuid = getUUID();
-  const handleBack = () => {
-    navigate(-1);
-  };
   let formData = new FormData();
   const handleSubmit = async () => {
     media.forEach((m) => {
@@ -37,22 +27,15 @@ export default function StudentCreate() {
     await studentCreateOne(student, student_uuid);
     await studentDetailCreateOne(studentDetail, student_uuid);
     await studentMediaCreateOne(formData);
-    handleBack();
+    navigate(-1);
   };
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Card>
           <CardContent>
-            <Stack
-              direction={"row"}
-              spacing={2}
-              justifyContent="center"
-              alignItems={"center"}
-            >
-              <Button onClick={handleBack} variant="outlined" color="primary">
-                返回
-              </Button>
+            <Stack direction={"row"} spacing={2}>
+              <RouteButton msg={"返回"} path={-1} />
               <Button
                 onClick={handleSubmit}
                 variant="contained"
@@ -60,9 +43,6 @@ export default function StudentCreate() {
               >
                 提交
               </Button>
-              <Typography variant="h5" color={"primary"}>
-                添加学生
-              </Typography>
             </Stack>
           </CardContent>
         </Card>

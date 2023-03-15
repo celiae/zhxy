@@ -14,12 +14,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { teacherDelete, teacherOne } from "../../server/teacher";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
   teacherDetailDelete,
   teacherOneDetail,
 } from "../../server/teacherdetail";
-import TeacherRadar from "../../components/chart/TeacherRadar";
+import TeacherRadar from "./TeacherRadar";
+import TitleValue from "../../components/box/TitleValue";
+import RouteButton from "../../components/button/RouteButton";
 
 export default function TeacherDetail() {
   const navigate = useNavigate();
@@ -28,9 +29,6 @@ export default function TeacherDetail() {
   const teacherDetail = useQuery(["teacherOneDetail", id], () =>
     teacherOneDetail(id)
   );
-  const handleClick = () => {
-    navigate("update");
-  };
   const handleDelete = async () => {
     await teacherDetailDelete(id);
     await teacherDelete(id);
@@ -52,52 +50,43 @@ export default function TeacherDetail() {
           </CardContent>
         </Card>
       </Grid>
+      <Grid item xs={12}>
+        <Stack direction={"row"} spacing={2}>
+          <RouteButton msg={"更改"} path={"update"} />
+          <Button onClick={handleDelete} variant="contained" color="error">
+            删除
+          </Button>
+        </Stack>
+      </Grid>
       <Grid item>
         <Card>
           <CardContent>
             <Grid container spacing={2}>
               <Grid item>
-                <Typography variant="caption">性别</Typography>
-                <Typography variant="h6">
-                  {teacherDetail.data.gender}
-                </Typography>
+                <TitleValue title={"性别"} value={teacherDetail.data.gender} />
               </Grid>
               <Grid item>
-                <Typography variant="caption">职称</Typography>
-                <Typography variant="h6">
-                  {teacherBrief.data.jobTitle}
-                </Typography>
+                <TitleValue title={"职称"} value={teacherBrief.data.jobTitle} />
               </Grid>
               {teacherBrief.data.department && (
                 <Grid item>
-                  <Typography variant="caption">所属部门</Typography>
-                  <Typography variant="h6">
-                    {teacherBrief.data.department.name || "未参加"}
-                  </Typography>
+                  <TitleValue
+                    title={"所属部门"}
+                    value={teacherBrief.data.department.name || "未参加"}
+                  />
                 </Grid>
               )}
               {teacherBrief.data.lab && (
                 <Grid item>
-                  <Typography variant="caption">参与实验室</Typography>
-                  <Typography variant="h6">
-                    {teacherBrief.data.lab.name || "未参加"}
-                  </Typography>
+                  <TitleValue
+                    title={"参与实验室"}
+                    value={teacherBrief.data.lab.name || "未参加"}
+                  />
                 </Grid>
               )}
             </Grid>
           </CardContent>
         </Card>
-      </Grid>
-      <Grid item xs={12}>
-        <Stack direction={"row"} spacing={2}>
-          <Button onClick={handleClick} variant="outlined">
-            <BorderColorIcon />
-            更改
-          </Button>
-          <Button onClick={handleDelete} variant="contained" color="error">
-            删除
-          </Button>
-        </Stack>
       </Grid>
       <Grid item xs={12}>
         <Card>
@@ -116,36 +105,28 @@ export default function TeacherDetail() {
           <CardContent>
             <Grid container spacing={2}>
               <Grid item>
-                <Typography variant="caption">出生日期</Typography>
-                <Typography variant="h6">
-                  {teacherDetail.data.birthDate}
-                </Typography>
+                <TitleValue
+                  title={"出生日期"}
+                  value={teacherDetail.data.birthDate}
+                />
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
-                <Typography variant="caption">入职日期</Typography>
-                <Typography variant="h6">
-                  {teacherDetail.data.entryDate}
-                </Typography>
+                <TitleValue
+                  title={"入职日期"}
+                  value={teacherDetail.data.entryDate}
+                />
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
-                <Typography variant="caption">邮件</Typography>
-                <Typography variant="h6">{teacherDetail.data.email}</Typography>
+                <TitleValue title={"邮件"} value={teacherDetail.data.email} />
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
-                <Typography variant="caption">电话</Typography>
-                <Typography variant="h6">{teacherDetail.data.phone}</Typography>
+                <TitleValue title={"电话"} value={teacherDetail.data.phone} />
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
-                <Typography variant="caption">薪水</Typography>
-                <Typography variant="h6">
-                  {teacherDetail.data.salary}
-                </Typography>
+                <TitleValue title={"薪水"} value={teacherDetail.data.salary} />
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
-                <Typography variant="caption">奖金</Typography>
-                <Typography variant="h6">
-                  {teacherDetail.data.reward}
-                </Typography>
+                <TitleValue title={"奖金"} value={teacherDetail.data.reward} />
               </Grid>
             </Grid>
           </CardContent>
