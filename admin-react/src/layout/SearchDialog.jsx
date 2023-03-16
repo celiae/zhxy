@@ -11,14 +11,16 @@ import {
   List,
   ListItem,
   Box,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 export default function SearchDialog() {
   const [open, setOpen] = React.useState(false);
-
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -28,7 +30,7 @@ export default function SearchDialog() {
       <IconButton color="inherit" variant="outlined" onClick={handleClickOpen}>
         <SearchIcon />
       </IconButton>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
         <DialogTitle>搜索</DialogTitle>
         <DialogContent>
           <TextField

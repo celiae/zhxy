@@ -24,7 +24,7 @@ import { BsEyeFill } from "react-icons/bs";
 import Loading from "../../components/progress/Loading";
 import { departmentDelete } from "../../api/department";
 
-const title = "班级管理";
+const title = "班级";
 
 export default function ClassesTable({ data, setData }) {
   const [order, setOrder] = React.useState("asc");
@@ -119,6 +119,8 @@ export default function ClassesTable({ data, setData }) {
           title={title}
           formDialog={formDialog}
           setFormDialog={setFormDialog}
+          dense={dense}
+          handleChangeDense={handleChangeDense}
         />
         <TableContainer>
           <Table
@@ -204,10 +206,6 @@ export default function ClassesTable({ data, setData }) {
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="紧密显示"
-      />
     </Box>
   );
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hbsm.zhxy.classes.Classes;
+
 @Service
 public class StudentService {
   @Autowired
@@ -20,6 +22,10 @@ public class StudentService {
 
   Student getStudentById(String id) {
     return repository.findById(id).orElseThrow(() -> new StudentNotFoundException());
+  }
+
+  List<Student> getStudentsByClasses(Classes classes) {
+    return repository.findByClasses(classes);
   }
 
   Student createStudent(Student newStudent) {

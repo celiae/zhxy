@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "./layout/ErrorPage";
+import ErrorPage from "./error/ErrorPage";
 import Layout from "./layout/Layout";
 import ChartList from "./page/chart/ChartList";
 import ClassesCreate from "./page/classes/ClassesCreate";
@@ -26,6 +26,7 @@ import ScoreCreate from "./page/score/ScoreCreate";
 import ScoreDetail from "./page/score/ScoreDetail";
 import ScoreList from "./page/score/ScoreList";
 import ScoreUpdate from "./page/score/ScoreUpdate";
+import Settings from "./page/setting/Settings";
 import StudentCreate from "./page/student/StudentCreate";
 import StudentDetail from "./page/student/StudentDetail";
 import StudentList from "./page/student/StudentList";
@@ -240,23 +241,6 @@ const initailRouter = createBrowserRouter([
                 index: true,
                 element: <ChartList />,
               },
-              // {
-              //   path: "create",
-              //   element: <ChartCreate />,
-              // },
-              // {
-              //   path: ":id",
-              //   children: [
-              //     {
-              //       index: true,
-              //       element: <ChartDetail />,
-              //     },
-              //     {
-              //       path: "update",
-              //       element: <ChartUpdate />,
-              //     },
-              //   ],
-              // },
             ],
           },
           {
@@ -265,6 +249,15 @@ const initailRouter = createBrowserRouter([
               {
                 index: true,
                 element: <PersonalDetail />,
+              },
+            ],
+          },
+          {
+            path: "setting",
+            children: [
+              {
+                index: true,
+                element: <Settings />,
               },
             ],
           },

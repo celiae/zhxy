@@ -89,7 +89,7 @@ export default function StudentDetail() {
         </Card>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Card sx={{ bgcolor: "#bbdefb" }}>
+        <Card>
           <CardHeader title="概要" subheader="" />
           <CardContent>
             <Grid container spacing={2}>

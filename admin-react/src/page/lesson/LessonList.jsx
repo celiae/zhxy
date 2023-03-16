@@ -15,7 +15,6 @@ export default function LessonList() {
   return (
     <Box>
       <LessonTable data={rows} setData={setRows} />
-      <RouteButton color={"secondary"} msg="添加" path={"create"} />
     </Box>
   );
 }

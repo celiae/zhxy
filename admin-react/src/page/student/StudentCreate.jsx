@@ -1,7 +1,6 @@
 import { Button, Card, CardContent, Grid, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ShadowBox from "../../components/shadowbox/ShadowBox";
 import Media from "../../components/form/Media";
 import StudentForm from "./StudentForm";
 import { studentCreateOne } from "../../api/student";
@@ -32,33 +31,20 @@ export default function StudentCreate() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Card>
-          <CardContent>
-            <Stack direction={"row"} spacing={2}>
-              <RouteButton msg={"返回"} path={-1} />
-              <Button
-                onClick={handleSubmit}
-                variant="contained"
-                color="primary"
-              >
-                提交
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          提交
+        </Button>
       </Grid>
       <Grid item>
-        <ShadowBox>
-          <Stack spacing={2}>
-            <StudentForm
-              student={student}
-              setStudent={setStudent}
-              studentDetail={studentDetail}
-              setStudentDetail={setStudentDetail}
-            />
-            <Media media={media} setMedia={setMedia} />
-          </Stack>
-        </ShadowBox>
+        <Stack spacing={2}>
+          <StudentForm
+            student={student}
+            setStudent={setStudent}
+            studentDetail={studentDetail}
+            setStudentDetail={setStudentDetail}
+          />
+          <Media media={media} setMedia={setMedia} />
+        </Stack>
       </Grid>
     </Grid>
   );

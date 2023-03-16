@@ -7,26 +7,21 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import TranslateIcon from "@mui/icons-material/Translate";
 
-export default function IconPopover({ title, icon, menu }) {
+export default function BarTrans() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
-  const handleClick = (path) => {
-    navigate(path, { replace: true });
-    handleCloseMenu();
-  };
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title={title}>
+      <Tooltip title={"切换语言"}>
         <IconButton color="inherit" onClick={handleOpenMenu}>
-          {icon}
+          <TranslateIcon />
         </IconButton>
       </Tooltip>
       <Menu
@@ -45,16 +40,12 @@ export default function IconPopover({ title, icon, menu }) {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        {menu.map((item, index) => (
-          <MenuItem
-            key={index}
-            onClick={() => {
-              handleClick(item.href);
-            }}
-          >
-            <Typography textAlign="center">{item.name}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem>
+          <Typography textAlign="center">中文</Typography>
+        </MenuItem>
+        <MenuItem>
+          <Typography textAlign="center">English</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

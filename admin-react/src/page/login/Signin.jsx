@@ -38,8 +38,8 @@ export default function Signin() {
       dispatch(setSystem(""));
     }
   });
-  const [i_username, setIUsername] = React.useState("");
-  const [i_password, setIPassword] = React.useState("");
+  const [i_username, setIUsername] = React.useState("celiae");
+  const [i_password, setIPassword] = React.useState("z");
   const login = async () => {
     const res = await signin({
       username: i_username,

@@ -24,7 +24,7 @@ import Loading from "../../components/progress/Loading";
 import { lessonDelete } from "../../api/lesson";
 import RouteButton from "../../components/button/RouteButton";
 
-const title = "课程管理";
+const title = "课程";
 
 export default function LessonTable({ data, setData }) {
   const [order, setOrder] = React.useState("asc");
@@ -120,6 +120,8 @@ export default function LessonTable({ data, setData }) {
           title={title}
           formDialog={formDialog}
           setFormDialog={setFormDialog}
+          dense={dense}
+          handleChangeDense={handleChangeDense}
         />
         <TableContainer>
           <Table
@@ -205,10 +207,6 @@ export default function LessonTable({ data, setData }) {
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="紧密显示"
-      />
     </Box>
   );
 }

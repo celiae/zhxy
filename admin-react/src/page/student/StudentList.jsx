@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import StudentTable from "./StudentTable";
 import { studentList } from "../../api/student";
-import RouteButton from "../../components/button/RouteButton";
 
 export default function StudentList() {
   const { data, status } = useQuery("studentList", studentList);
@@ -16,7 +15,6 @@ export default function StudentList() {
   return (
     <Box>
       <StudentTable data={rows} setData={setRows} />
-      <RouteButton color={"secondary"} msg="添加" path={"create"} />
     </Box>
   );
 }

@@ -1,4 +1,3 @@
-
 import { API_STUDENT } from "../constant/api";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");

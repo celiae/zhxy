@@ -9,7 +9,6 @@ import {
   teacherOneDetail,
   teacherDetailUpdateOne,
 } from "../../api/teacherdetail";
-import ShadowBox from "../../components/shadowbox/ShadowBox";
 import RouteButton from "../../components/button/RouteButton";
 export default function TeacherUpdate() {
   const { id } = useParams();
@@ -38,14 +37,12 @@ export default function TeacherUpdate() {
         </Stack>
       </Grid>
       <Grid item>
-        <ShadowBox>
-          <TeacherForm
-            teacherBrief={brief}
-            setTeacherBrief={setBrief}
-            teacherDetail={Detail}
-            setTeacherDetail={setDetail}
-          />
-        </ShadowBox>
+        <TeacherForm
+          teacherBrief={brief}
+          setTeacherBrief={setBrief}
+          teacherDetail={Detail}
+          setTeacherDetail={setDetail}
+        />
       </Grid>
     </Grid>
   );

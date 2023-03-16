@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   IconButton,
   Menu,
@@ -7,26 +8,23 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
-export default function IconPopover({ title, icon, menu }) {
+export default function BarNotice() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
-  const handleClick = (path) => {
-    navigate(path, { replace: true });
-    handleCloseMenu();
-  };
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title={title}>
+      <Tooltip title={"通知"}>
         <IconButton color="inherit" onClick={handleOpenMenu}>
-          {icon}
+          <Badge badgeContent={17} color="error">
+            <NotificationsActiveIcon />
+          </Badge>
         </IconButton>
       </Tooltip>
       <Menu
@@ -45,16 +43,12 @@ export default function IconPopover({ title, icon, menu }) {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        {menu.map((item, index) => (
-          <MenuItem
-            key={index}
-            onClick={() => {
-              handleClick(item.href);
-            }}
-          >
-            <Typography textAlign="center">{item.name}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem>
+          <Typography textAlign="center">arstars</Typography>
+        </MenuItem>
+        <MenuItem>
+          <Typography textAlign="center">arsasrt</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

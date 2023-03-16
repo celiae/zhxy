@@ -1,5 +1,5 @@
 import { SiGoogleclassroom, SiHomebridge } from "react-icons/si";
-import { BsTable, BsPersonCircle } from "react-icons/bs";
+import { BsTable } from "react-icons/bs";
 import {
   FaUserGraduate,
   FaChalkboardTeacher,

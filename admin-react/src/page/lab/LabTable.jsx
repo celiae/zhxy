@@ -23,7 +23,7 @@ import { labDelete } from "../../api/lab";
 import Loading from "../../components/progress/Loading";
 import RouteButton from "../../components/button/RouteButton";
 
-const title = "实验室管理";
+const title = "实验室";
 
 export default function LabTable({ data, setData }) {
   const [order, setOrder] = React.useState("asc");
@@ -118,6 +118,8 @@ export default function LabTable({ data, setData }) {
           title={title}
           formDialog={formDialog}
           setFormDialog={setFormDialog}
+          dense={dense}
+          handleChangeDense={handleChangeDense}
         />
         <TableContainer>
           <Table
@@ -210,10 +212,6 @@ export default function LabTable({ data, setData }) {
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="紧密显示"
-      />
     </Box>
   );
 }

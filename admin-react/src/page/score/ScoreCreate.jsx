@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import ShadowBox from "../../components/shadowbox/ShadowBox";
 import ScoreForm from "./ScoreForm";
 import { SCORE } from "../../constant/initial";
 import { scoreCreateOne } from "../../api/score";
@@ -14,9 +13,7 @@ export default function ScoreCreate() {
         <RSButton submitData={form} handleSubmit={scoreCreateOne} />
       </Grid>
       <Grid item>
-        <ShadowBox>
-          <ScoreForm form={form} setForm={setForm} />
-        </ShadowBox>
+        <ScoreForm form={form} setForm={setForm} />
       </Grid>
     </Grid>
   );

@@ -4,7 +4,6 @@ import { teacherCreateOne } from "../../api/teacher";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
-import ShadowBox from "../../components/shadowbox/ShadowBox";
 import { teacherDetailCreateOne } from "../../api/teacherdetail";
 import getUUID from "../../util/useUUID";
 import { randomTeacher } from "../../lib/random/teacher";
@@ -31,14 +30,12 @@ export default function TeacherCreate() {
         </Stack>
       </Grid>
       <Grid item>
-        <ShadowBox>
-          <TeacherForm
-            teacherBrief={teacherBrief}
-            setTeacherBrief={setTeacherBrief}
-            teacherDetail={teacherDetail}
-            setTeacherDetail={setTeacherDetail}
-          />
-        </ShadowBox>
+        <TeacherForm
+          teacherBrief={teacherBrief}
+          setTeacherBrief={setTeacherBrief}
+          teacherDetail={teacherDetail}
+          setTeacherDetail={setTeacherDetail}
+        />
       </Grid>
     </Grid>
   );

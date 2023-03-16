@@ -8,28 +8,26 @@ import {
   IconButton,
   Toolbar,
   Grid,
-  Badge,
   Stack,
-  Avatar,
+  Tooltip,
 } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { selectLoginInfo } from "../store/loginSlice";
 import HideOnScroll from "./HideOnScoll";
 import getAllNav from "./nav";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import EmailIcon from "@mui/icons-material/Email";
-import TranslateIcon from "@mui/icons-material/Translate";
 import Sidebar from "./Sidebar";
-import IconPopover from "../components/pop/IconPopover";
 import SearchDialog from "./SearchDialog";
-const settings = ["个人中心", "退出登录"];
-const translation = ["中文", "English"];
-const noticification = ["中文", "English"];
-const mail = ["中文", "English"];
+import BarAvatar from "./BarAvatar";
+import BarTrans from "./BarTrans";
+import BarNotice from "./BarNotice";
+import BarMail from "./BarMail";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 function ResponsiveDrawer(props) {
   const { window, children } = props;
+  const navigate = useNavigate();
   const user = useSelector(selectLoginInfo);
   const allNav = getAllNav(user);
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -38,7 +36,6 @@ function ResponsiveDrawer(props) {
   };
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -67,38 +64,24 @@ function ResponsiveDrawer(props) {
                 >
                   <GiHamburgerMenu />
                 </IconButton>
+                <Tooltip title="返回">
+                  <IconButton
+                    color="inherit"
+                    onClick={() => {
+                      navigate(-1);
+                    }}
+                  >
+                    <ArrowBackIosNewIcon />
+                  </IconButton>
+                </Tooltip>
               </Grid>
               <Grid item>
                 <Stack direction={"row"} alignItems="center" spacing={1}>
                   <SearchDialog />
-                  <IconPopover
-                    title="邮箱"
-                    icon={
-                      <Badge badgeContent={7} color="error">
-                        <EmailIcon />
-                      </Badge>
-                    }
-                    menu={mail}
-                  />
-                  <IconPopover
-                    title="通知"
-                    icon={
-                      <Badge badgeContent={17} color="error">
-                        <NotificationsActiveIcon />
-                      </Badge>
-                    }
-                    menu={noticification}
-                  />
-                  <IconPopover
-                    title="切换语言"
-                    icon={<TranslateIcon />}
-                    menu={translation}
-                  />
-                  <IconPopover
-                    title="打开设置"
-                    icon={<Avatar alt="Remy Sharp" />}
-                    menu={settings}
-                  />
+                  <BarMail />
+                  <BarNotice />
+                  <BarTrans />
+                  <BarAvatar />
                 </Stack>
               </Grid>
             </Grid>

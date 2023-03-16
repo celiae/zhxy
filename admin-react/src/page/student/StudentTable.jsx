@@ -27,7 +27,7 @@ import { studentDetailDelete } from "../../api/studentdetail";
 import { studentMediaDeleteByStudentId } from "../../api/studentmedia";
 import RouteButton from "../../components/button/RouteButton";
 
-const title = "学生管理";
+const title = "学生";
 
 export default function StudentTable({ data, setData }) {
   const [order, setOrder] = React.useState("asc");
@@ -46,7 +46,6 @@ export default function StudentTable({ data, setData }) {
     buttonMsg: "确定",
   });
   const user = useSelector(selectLoginInfo);
-  const navigate = useNavigate();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -125,6 +124,8 @@ export default function StudentTable({ data, setData }) {
           title={title}
           formDialog={formDialog}
           setFormDialog={setFormDialog}
+          dense={dense}
+          handleChangeDense={handleChangeDense}
         />
         <TableContainer>
           <Table
@@ -215,10 +216,6 @@ export default function StudentTable({ data, setData }) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="紧密显示"
-      />
     </Box>
   );
 }

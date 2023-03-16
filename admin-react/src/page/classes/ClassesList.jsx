@@ -20,9 +20,6 @@ export default function ClassesList() {
   return (
     <Box>
       <ClassesTable data={rows} setData={setRows} />
-      <Button onClick={handleClick} variant="contained" color="secondary">
-        添加
-      </Button>
     </Box>
   );
 }

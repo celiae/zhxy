@@ -15,17 +15,16 @@ import {
   studentMediaDeleteByStudentId,
 } from "../../api/studentmedia";
 import Media from "../../components/form/Media";
-import RouteButton from "../../components/button/RouteButton";
 export default function StudentUpdate() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [brief, setBrief] = useState(null);
+  const [detail, setDetail] = React.useState(null);
+  const [media, setMedia] = React.useState([]);
   const studentBrief = useQuery(["studentOne", id], () => studentOne(id));
   const studentDetail = useQuery(["studentOneDetail", id], () =>
     studentOneDetail(id)
   );
-  const [brief, setBrief] = useState(studentBrief.data);
-  const [detail, setDetail] = React.useState(studentDetail.data);
-  const [media, setMedia] = React.useState([]);
   let formData = new FormData();
   const handleSubmit = async () => {
     //?学生概要信息
@@ -41,17 +40,23 @@ export default function StudentUpdate() {
     studentMediaCreateOne(formData);
     navigate(-1);
   };
-  if (studentBrief.status === "loading" || studentDetail.status === "loading")
+  React.useEffect(() => {
+    setBrief(studentBrief.data);
+    setDetail(studentDetail.data);
+  }, []);
+  if (
+    !brief ||
+    !detail ||
+    studentBrief.status === "loading" ||
+    studentDetail.status === "loading"
+  )
     return <Loading />;
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Stack direction={"row"} spacing={2}>
-          <RouteButton msg={"返回"} path={-1} />
-          <Button onClick={handleSubmit} variant="contained" color="primary">
-            提交
-          </Button>
-        </Stack>
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          提交
+        </Button>
       </Grid>
       <Grid item>
         <Stack spacing={2}>

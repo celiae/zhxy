@@ -24,7 +24,7 @@ import { teacherDelete } from "../../api/teacher";
 import Loading from "../../components/progress/Loading";
 import RouteButton from "../../components/button/RouteButton";
 
-const title = "教师管理";
+const title = "教师";
 
 export default function TeacherTable({ data, setData }) {
   const rows = data;
@@ -43,7 +43,6 @@ export default function TeacherTable({ data, setData }) {
     msg: "确定要删除所有教师吗",
     buttonMsg: "确定",
   });
-  const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
 
   const handleRequestSort = (event, property) => {
@@ -121,6 +120,8 @@ export default function TeacherTable({ data, setData }) {
           title={title}
           formDialog={formDialog}
           setFormDialog={setFormDialog}
+          dense={dense}
+          handleChangeDense={handleChangeDense}
         />
         <TableContainer>
           <Table
@@ -211,10 +212,6 @@ export default function TeacherTable({ data, setData }) {
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="紧密显示"
-      />
     </Box>
   );
 }

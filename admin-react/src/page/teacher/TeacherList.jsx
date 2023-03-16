@@ -20,7 +20,6 @@ export default function TeacherList() {
   return (
     <Box>
       <TeacherTable data={rows} setData={setRows} />
-      <RouteButton color={"secondary"} msg="添加" path={"create"} />
     </Box>
   );
 }
