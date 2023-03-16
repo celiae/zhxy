@@ -2,7 +2,7 @@ import { Box, Button, Card, CardContent, CardHeader } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CenterBox from "./CenterBox";
+import CenterBox from "../components/box/CenterBox";
 
 export default function ErrorPage() {
   const navigate = useNavigate();

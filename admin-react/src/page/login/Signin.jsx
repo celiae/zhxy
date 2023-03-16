@@ -8,7 +8,7 @@ import {
   setSystem,
   setUsername,
 } from "../../store/loginSlice";
-import signin from "../../server/signin";
+import signin from "../../api/signin";
 import SimpleAlert from "../../components/feedback/SimpleAlert";
 import LightBlue from "../../components/shadowbox/LightBlue";
 import Outter from "../../components/login/Outter";

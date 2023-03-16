@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import ClassesForm from "./ClassesForm";
-import { classesDetail, classesUpdateOne } from "../../server/classes";
+import { classesDetail, classesUpdateOne } from "../../api/classes";
 export default function ClassesUpdate() {
   const { id } = useParams();
   const { data, status } = useQuery(["classesDetail", id], () =>

@@ -16,58 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
-    private StudentRepository repository;
+    private StudentService studentService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return studentService.totalStudent();
     }
 
     @GetMapping("/all")
     List<Student> all() {
-        return repository.findAll();
+        return studentService.allStudent();
     }
 
     @GetMapping("/detail/{id}")
     Student detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new StudentNotFoundException());
+        return studentService.getStudentById(id);
     }
 
     @PostMapping("/createOne")
     Student createOne(@RequestBody Student newStudent) {
-        repository.save(newStudent);
-        return newStudent;
+        return studentService.createStudent(newStudent);
     }
 
     @PutMapping("/update/{id}")
     Student update(@RequestBody Student newStudent, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Student -> {
-                    Student.setLab(newStudent.getLab());
-                    Student.setLessonList(newStudent.getLessonList());
-                    Student.setAvatar(newStudent.getAvatar());
-                    Student.setFirstname(newStudent.getFirstname());
-                    Student.setLastname(newStudent.getLastname());
-                    Student.setPassword(newStudent.getPassword());
-                    Student.setLastLogin(newStudent.getLastLogin());
-                    return repository.save(Student);
-                }).orElseGet(() -> {
-                    newStudent.setId(id);
-                    return repository.save(newStudent);
-                });
+        return studentService.updateStudent(newStudent, id);
     }
 
     @DeleteMapping("/delete/{id}")
     Student deleteOneStudent(@PathVariable String id) {
-        Student deletingStudent = detail(id);
-        repository.deleteById(id);
-        return deletingStudent;
+        return studentService.deleteStudentById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<Student> deleteAllStudent() {
-        List<Student> deletingAllStudent = all();
-        repository.deleteAll();
-        return deletingAllStudent;
+        return studentService.deleteAllStudent();
     }
 }

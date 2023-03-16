@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import DepartmentForm from "./DepartmentForm";
-import { departmentDetail, departmentUpdateOne } from "../../server/department";
+import { departmentDetail, departmentUpdateOne } from "../../api/department";
 import { getDateTime } from "../../util/useDate";
 export default function DepartmentUpdate() {
   const { id } = useParams();

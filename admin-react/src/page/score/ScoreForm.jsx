@@ -2,8 +2,8 @@ import React from "react";
 import { Grid, TextField, Autocomplete, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { lessonList } from "../../server/lesson";
-import { studentList } from "../../server/student";
+import { lessonList } from "../../api/lesson";
+import { studentList } from "../../api/student";
 export default function ScoreForm({ form, setForm }) {
   const [value_teacher, setValueTeacher] = React.useState(null);
   const [value_student, setValueStudent] = React.useState(null);

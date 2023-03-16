@@ -1,7 +1,7 @@
 import { Button, CircularProgress, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CenterBox from "../../layout/CenterBox";
+import CenterBox from "../box/CenterBox";
 
 export default function Loading() {
   const navigate = useNavigate();

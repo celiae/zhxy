@@ -16,55 +16,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/classes")
 public class ClassesController {
     @Autowired
-    private ClassesRepository repository;
+    private ClassesService classesService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return classesService.totalClasses();
     }
 
     @GetMapping("/all")
     List<Classes> all() {
-        return repository.findAll();
+        return classesService.allClasses();
     }
 
     @GetMapping("/detail/{id}")
     Classes detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new ClassesNotFoundException());
+        return classesService.getClassesById(id);
     }
 
     @PostMapping("/createOne")
     Classes createOne(@RequestBody Classes newDepartment) {
-        return repository.save(newDepartment);
+        return classesService.createClasses(newDepartment);
     }
 
     @PutMapping("/update/{id}")
     Classes update(@RequestBody Classes newDepartment, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Department -> {
-                    Department.setGrade(newDepartment.getGrade());
-                    Department.setSpeciality(newDepartment.getSpeciality());
-                    Department.setName(newDepartment.getName());
-                    Department.setDescription(newDepartment.getDescription());
-                    return repository.save(Department);
-                }).orElseGet(() -> {
-                    newDepartment.setId(id);
-                    return repository.save(newDepartment);
-                });
+        return classesService.updateClasses(newDepartment, id);
     }
 
     @DeleteMapping("/delete/{id}")
     Classes deleteOneDepartment(@PathVariable String id) {
-        Classes deletingDepartment = detail(id);
-        repository.deleteById(id);
-        return deletingDepartment;
+        return classesService.deleteClassesById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<Classes> deleteAllDepartment() {
-        List<Classes> deletingAllDepartment = all();
-        repository.deleteAll();
-        return deletingAllDepartment;
+        return classesService.deleteAllClasses();
     }
 
 }

@@ -3,7 +3,7 @@ import React from "react";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 import ScoreForm from "./ScoreForm";
 import { SCORE } from "../../constant/initial";
-import { scoreCreateOne } from "../../server/score";
+import { scoreCreateOne } from "../../api/score";
 import RSButton from "../../components/button/RSButton";
 
 export default function ScoreCreate() {

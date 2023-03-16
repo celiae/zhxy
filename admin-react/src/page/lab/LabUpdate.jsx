@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import { labDetail, labUpdateOne } from "../../server/lab";
+import { labDetail, labUpdateOne } from "../../api/lab";
 import LabForm from "./LabForm";
 import { Grid } from "@mui/material";
 import RSButton from "../../components/button/RSButton";

@@ -1,6 +1,6 @@
-import { Box, CssBaseline, Typography } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import React from "react";
-import CenterBox from "../../layout/CenterBox";
+import CenterBox from "../box/CenterBox";
 
 export default function Outter({ children }) {
   return (

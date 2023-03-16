@@ -13,11 +13,8 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { teacherDelete, teacherOne } from "../../server/teacher";
-import {
-  teacherDetailDelete,
-  teacherOneDetail,
-} from "../../server/teacherdetail";
+import { teacherDelete, teacherOne } from "../../api/teacher";
+import { teacherDetailDelete, teacherOneDetail } from "../../api/teacherdetail";
 import TeacherRadar from "./TeacherRadar";
 import TitleValue from "../../components/box/TitleValue";
 import RouteButton from "../../components/button/RouteButton";

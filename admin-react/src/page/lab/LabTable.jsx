@@ -18,8 +18,8 @@ import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
 import CustomPagination from "../../components/table/CustomPagination";
-import { labHeadCells } from "../../constant/headCells";
-import { labDelete } from "../../server/lab";
+import { labHeadCells } from "../../constant/hc_lab";
+import { labDelete } from "../../api/lab";
 import Loading from "../../components/progress/Loading";
 import RouteButton from "../../components/button/RouteButton";
 

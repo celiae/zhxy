@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import DepartmentTable from "./DepartmentTable";
-import { departmentList } from "../../server/department";
+import { departmentList } from "../../api/department";
 
 export default function DepartmentList() {
   const { data, status } = useQuery("departmentList", departmentList);

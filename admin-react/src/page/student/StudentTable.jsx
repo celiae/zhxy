@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  Button,
   Box,
   Table,
   TableBody,
@@ -14,18 +13,18 @@ import {
   TableRow,
   Avatar,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EnhancedTableHead from "../../components/table/EnhancedTableHead";
 import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
-import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
-import { studentHeadCells } from "../../constant/headCells";
+import { studentHeadCells } from "../../constant/hc_student";
 import { selectLoginInfo } from "../../store/loginSlice";
 import { getComparator, stableSort } from "../../util/tableUtils";
-import { studentDelete } from "../../server/student";
+import { studentDelete } from "../../api/student";
 import Loading from "../../components/progress/Loading";
-import { studentDetailDelete } from "../../server/studentdetail";
-import { studentMediaDeleteByStudentId } from "../../server/studentmedia";
+import { studentDetailDelete } from "../../api/studentdetail";
+import { studentMediaDeleteByStudentId } from "../../api/studentmedia";
 import RouteButton from "../../components/button/RouteButton";
 
 const title = "学生管理";

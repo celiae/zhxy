@@ -16,57 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/department")
 public class DepartmentController {
     @Autowired
-    private DepartmentRepository repository;
+    private DepartmentService departmentService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAllExceptNoDepartment().size();
+    long number() {
+        return departmentService.totalDepartment();
     }
 
     @GetMapping("/all")
     List<Department> all() {
-        return repository.findAllExceptNoDepartment();
+        return departmentService.allDepartment();
     }
 
     @GetMapping("/detail/{id}")
     Department detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new DepartmentNotFoundException());
+        return departmentService.getDepartmentById(id);
     }
 
     @PostMapping("/createOne")
     Department createOne(@RequestBody Department newDepartment) {
-        return repository.save(newDepartment);
+        return departmentService.createDepartment(newDepartment);
     }
 
     @PutMapping("/update/{id}")
     Department update(@RequestBody Department newDepartment, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Department -> {
-                    Department.setName(newDepartment.getName());
-                    Department.setDescription(newDepartment.getDescription());
-                    Department.setManager(newDepartment.getManager());
-                    Department.setBudget(newDepartment.getBudget());
-                    Department.setDepartment(newDepartment.getDepartment());
-                    Department.setCreateTime(newDepartment.getCreateTime());
-                    Department.setModifyTime(newDepartment.getModifyTime());
-                    return repository.save(Department);
-                }).orElseGet(() -> {
-                    newDepartment.setId(id);
-                    return repository.save(newDepartment);
-                });
+        return departmentService.updateDepartment(newDepartment, id);
     }
 
     @DeleteMapping("/delete/{id}")
     Department deleteOneDepartment(@PathVariable String id) {
-        Department deletingDepartment = detail(id);
-        repository.deleteById(id);
-        return deletingDepartment;
+        return departmentService.deleteDepartmentById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<Department> deleteAllDepartment() {
-        List<Department> deletingAllDepartment = all();
-        repository.deleteAll();
-        return deletingAllDepartment;
+        return departmentService.deleteAllDepartment();
     }
 }

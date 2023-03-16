@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { labList } from "../../server/lab";
+import { labList } from "../../api/lab";
 import LabTable from "./LabTable";
 import RouteButton from "../../components/button/RouteButton";
 

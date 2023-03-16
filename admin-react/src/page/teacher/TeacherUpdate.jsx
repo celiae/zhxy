@@ -3,12 +3,12 @@ import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Stack, Grid } from "@mui/material";
 import Loading from "../../components/progress/Loading";
-import { teacherOne, teacherUpdateOne } from "../../server/teacher";
+import { teacherOne, teacherUpdateOne } from "../../api/teacher";
 import TeacherForm from "./TeacherForm";
 import {
   teacherOneDetail,
   teacherDetailUpdateOne,
-} from "../../server/teacherdetail";
+} from "../../api/teacherdetail";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 import RouteButton from "../../components/button/RouteButton";
 export default function TeacherUpdate() {

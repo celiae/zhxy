@@ -12,7 +12,7 @@ import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { departmentDelete, departmentDetail } from "../../server/department";
+import { departmentDelete, departmentDetail } from "../../api/department";
 export default function DepartmentDetail() {
   const navigate = useNavigate();
   const location = useLocation();

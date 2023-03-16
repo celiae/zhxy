@@ -1,7 +1,7 @@
 import React from "react";
 import LessonForm from "./LessonForm";
 import { lesson } from "../../constant/initial";
-import { lessonCreateOne } from "../../server/lesson";
+import { lessonCreateOne } from "../../api/lesson";
 import { Grid } from "@mui/material";
 import RSButton from "../../components/button/RSButton";
 

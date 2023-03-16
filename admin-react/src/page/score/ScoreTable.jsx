@@ -12,17 +12,15 @@ import {
   Switch,
   TableRow,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { getComparator, stableSort } from "../../util/tableUtils";
 import EnhancedTableHead from "../../components/table/EnhancedTableHead";
 import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
 import CustomPagination from "../../components/table/CustomPagination";
-import { scoreHeadCells } from "../../constant/headCells";
-import { BsEyeFill } from "react-icons/bs";
+import { scoreHeadCells } from "../../constant/hc_score";
 import Loading from "../../components/progress/Loading";
-import { departmentDelete } from "../../server/department";
+import { departmentDelete } from "../../api/department";
 import RouteButton from "../../components/button/RouteButton";
 
 const title = "成绩管理";
@@ -43,7 +41,6 @@ export default function ScoreTable({ data, setData }) {
     msg: "确定要删除选中部门吗",
     buttonMsg: "确定",
   });
-  const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
 
   const handleRequestSort = (event, property) => {

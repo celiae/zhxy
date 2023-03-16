@@ -4,7 +4,7 @@ import TeacherTable from "./TeacherTable";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import { teacherList } from "../../server/teacher";
+import { teacherList } from "../../api/teacher";
 import RouteButton from "../../components/button/RouteButton";
 export default function TeacherList() {
   const { data, status } = useQuery("teacherList", teacherList);

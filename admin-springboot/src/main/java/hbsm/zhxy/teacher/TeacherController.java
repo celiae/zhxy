@@ -17,74 +17,55 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/teacher")
 public class TeacherController {
     @Autowired
-    private TeacherRepository repository;
+    private TeacherService teacherService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return teacherService.totalTeacher();
     }
 
     @GetMapping("/all")
     List<Teacher> all() {
-        return repository.findAll();
+        return teacherService.allTeacher();
     }
 
     @GetMapping("/detail/{id}")
     Teacher detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new TeacherNotFoundException());
+        return teacherService.getTeacherById(id);
     }
 
     @GetMapping("/getNameById")
     String getNameById(@RequestParam("id") String id) {
-        Teacher teacher = repository.findById(id).orElseThrow(() -> new TeacherNotFoundException());
-        String fullName = teacher.getFirstname().concat(teacher.getLastname());
-        return fullName;
+        return teacherService.getFullnameById(id);
     }
 
     @GetMapping("/groupJobTitle")
     List<Object[]> groupJobTitle() {
-        return repository.jobTitleGroup();
+        return teacherService.getGroupJobTitle();
     }
 
     @GetMapping("/teacherEntry")
     List<Object[]> teacherEntry() {
-        return repository.teacherEntryDateAsc();
+        return teacherService.getTeacherEntry();
     }
 
     @PostMapping("/createOne")
     Teacher createOne(@RequestBody Teacher newTeacher) {
-        return repository.save(newTeacher);
+        return teacherService.createTeacher(newTeacher);
     }
 
     @PutMapping("/update/{id}")
     Teacher update(@RequestBody Teacher newTeacher, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Teacher -> {
-                    Teacher.setLab(newTeacher.getLab());
-                    Teacher.setDepartment(newTeacher.getDepartment());
-                    Teacher.setAvatar(newTeacher.getAvatar());
-                    Teacher.setFirstname(newTeacher.getFirstname());
-                    Teacher.setLastname(newTeacher.getLastname());
-                    Teacher.setPassword(newTeacher.getPassword());
-                    Teacher.setJobTitle(newTeacher.getJobTitle());
-                    return repository.save(Teacher);
-                }).orElseGet(() -> {
-                    newTeacher.setId(id);
-                    return repository.save(newTeacher);
-                });
+        return teacherService.updateTeacher(newTeacher, id);
     }
 
     @DeleteMapping("/delete/{id}")
     Teacher deleteOneTeacher(@PathVariable String id) {
-        Teacher deletingTeacher = detail(id);
-        repository.deleteById(id);
-        return deletingTeacher;
+        return teacherService.deleteTeacherById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<Teacher> deleteAllTeacher() {
-        List<Teacher> deletingAllTeacher = all();
-        repository.deleteAll();
-        return deletingAllTeacher;
+        return teacherService.deleteAllTeacher();
     }
 }

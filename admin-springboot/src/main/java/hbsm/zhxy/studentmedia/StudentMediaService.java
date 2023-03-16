@@ -11,19 +11,56 @@ import org.springframework.web.multipart.MultipartFile;
 
 import hbsm.zhxy.file.FileService;
 import hbsm.zhxy.student.Student;
+import hbsm.zhxy.student.StudentRepository;
 
 @Service
 public class StudentMediaService {
-  protected final String location = "../docker/nginx/uploads";
-  private final Path rootLocation;
-  private final StudentMediaRepository studentMediaRepository;
-  private final FileService fileService;
-
+  private final Path rootLocation = Paths.get("../docker/nginx/uploads");
   @Autowired
-  public StudentMediaService(StudentMediaRepository mediaRepository, FileService fileService) {
-    this.rootLocation = Paths.get(location);
-    this.studentMediaRepository = mediaRepository;
-    this.fileService = fileService;
+  private StudentRepository studentRepository;
+  @Autowired
+  private StudentMediaRepository studentMediaRepository;
+  @Autowired
+  private FileService fileService;
+
+  public long totalStudentMedia() {
+    return studentMediaRepository.count();
+  }
+
+  public List<StudentMedia> allStudentMedia() {
+    return studentMediaRepository.findAll();
+  }
+
+  public StudentMedia getStudentMediaById(String id) {
+    return studentMediaRepository.findById(id).orElseThrow(() -> new StudentMediaNotFoundException());
+  }
+
+  public List<StudentMedia> getMediaByStudentId(String studentId) {
+    return studentMediaRepository.findStudentMediaByStudentId(studentId)
+        .orElseThrow(() -> new StudentMediaNotFoundException());
+  }
+
+  public StudentMedia createStudentMedia(StudentMedia newStudentDetail) {
+    return studentMediaRepository.save(newStudentDetail);
+  }
+
+  public void uploadMedia(MultipartFile[] file, String studentId) {
+    Student student = studentRepository.findById(studentId).orElse(null);
+    saveMediaWithStudent(file, student);
+  }
+
+  public StudentMedia updateStudentMedia(StudentMedia newStudentDetail, String id) {
+    return studentMediaRepository.findById(id)
+        .map(StudentDetail -> {
+          StudentDetail.setStudent(newStudentDetail.getStudent());
+          StudentDetail.setFilename(newStudentDetail.getFilename());
+          StudentDetail.setPath(newStudentDetail.getPath());
+          StudentDetail.setType(newStudentDetail.getType());
+          return studentMediaRepository.save(StudentDetail);
+        }).orElseGet(() -> {
+          newStudentDetail.setId(id);
+          return studentMediaRepository.save(newStudentDetail);
+        });
   }
 
   public void saveMediaWithStudent(MultipartFile[] files, Student student) {
@@ -52,20 +89,22 @@ public class StudentMediaService {
     }
   }
 
-  public void deleteFileByStudentId(String studentId) {
+  public void deleteByStudentId(String studentId) {
     List<StudentMedia> deletingAllMedia = studentMediaRepository.findStudentMediaByStudentId(studentId)
         .orElseThrow(() -> new StudentMediaNotFoundException());
     for (int i = 0; i < deletingAllMedia.size(); i++) {
       String path = deletingAllMedia.get(i).getPath();
       fileService.deleteFileByPath(path);
     }
+    studentMediaRepository.deleteAllByStudentId(studentId);
   }
 
-  public void deleteOneFile(String id) {
+  public void deleteFileById(String id) {
     StudentMedia deletingMedia = studentMediaRepository.findById(id)
         .orElseThrow(() -> new StudentMediaNotFoundException());
     String path = deletingMedia.getPath();
     fileService.deleteFileByPath(path);
+    studentMediaRepository.deleteById(id);
   }
 
   public void deleteAllFile() {
@@ -74,5 +113,6 @@ public class StudentMediaService {
       String path = deletingAllMedia.get(i).getPath();
       fileService.deleteFileByPath(path);
     }
+    studentMediaRepository.deleteAll();
   }
 }

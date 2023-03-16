@@ -1,11 +1,11 @@
 import React from "react";
 import TeacherForm from "./TeacherForm";
-import { teacherCreateOne } from "../../server/teacher";
+import { teacherCreateOne } from "../../api/teacher";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
-import { teacherDetailCreateOne } from "../../server/teacherdetail";
+import { teacherDetailCreateOne } from "../../api/teacherdetail";
 import getUUID from "../../util/useUUID";
 import { randomTeacher } from "../../lib/random/teacher";
 import { randomTeacherDetail } from "../../lib/random/teacherDetail";

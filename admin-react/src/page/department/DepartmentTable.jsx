@@ -19,10 +19,10 @@ import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
 import CustomPagination from "../../components/table/CustomPagination";
-import { departmentHeadCells, labHeadCells } from "../../constant/headCells";
+import { departmentHeadCells } from "../../constant/hc_department";
 import { BsEyeFill } from "react-icons/bs";
 import Loading from "../../components/progress/Loading";
-import { departmentDelete } from "../../server/department";
+import { departmentDelete } from "../../api/department";
 
 const title = "部门管理";
 

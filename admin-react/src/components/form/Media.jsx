@@ -3,7 +3,7 @@ import React from "react";
 import { fileTypes } from "../../constant/fileType";
 import { MdPermMedia } from "react-icons/md";
 import { FaWindowClose } from "react-icons/fa";
-import { studentMediaCreateOne } from "../../server/studentmedia";
+import { studentMediaCreateOne } from "../../api/studentmedia";
 
 export default function Media({ media, setMedia }) {
   function validFileType(file) {

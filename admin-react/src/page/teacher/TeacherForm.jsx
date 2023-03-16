@@ -1,9 +1,9 @@
 import React from "react";
 import { Autocomplete, Avatar, Grid, TextField } from "@mui/material";
 import { useQuery } from "react-query";
-import { labList } from "../../server/lab";
+import { labList } from "../../api/lab";
 import Loading from "../../components/progress/Loading";
-import { departmentList } from "../../server/department";
+import { departmentList } from "../../api/department";
 
 export default function TeacherForm({
   teacherBrief,

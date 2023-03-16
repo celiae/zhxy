@@ -14,7 +14,7 @@ import { selectLoginInfo, setLogin, setLogout } from "../../store/loginSlice";
 import { useNavigate } from "react-router-dom";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 import PasswordInput from "../../components/form/PasswordInput";
-import changePassword from "../../server/admin";
+import changePassword from "../../api/admin";
 import SimpleAlert from "../../components/feedback/SimpleAlert";
 export default function PersonalDetail() {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import DepartmentForm from "./DepartmentForm";
 import { randomDepartment } from "../../lib/random/department";
-import { departmentCreateOne } from "../../server/department";
+import { departmentCreateOne } from "../../api/department";
 import {
   Button,
   Card,

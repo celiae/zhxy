@@ -3,7 +3,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { useParams } from "react-router-dom";
-import { lessonDelete, lessonDetail } from "../../server/lesson";
+import { lessonDelete, lessonDetail } from "../../api/lesson";
 import TitleValue from "../../components/box/TitleValue";
 import RouteButton from "../../components/button/RouteButton";
 import DeleteButton from "../../components/button/DeleteButton";

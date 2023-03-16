@@ -16,52 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/lesson")
 public class LessonController {
     @Autowired
-    private LessonRepository repository;
+    private LessonService lessonService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return lessonService.totalLesson();
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     List<Lesson> all() {
-        return repository.findAll();
+        return lessonService.allLesson();
     }
 
     @GetMapping("/detail/{id}")
     Lesson detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new LessonNotFoundException());
+        return lessonService.getLessonById(id);
     }
 
     @PostMapping("/createOne")
     Lesson createOne(@RequestBody Lesson newLesson) {
-        return repository.save(newLesson);
+        return lessonService.createLesson(newLesson);
     }
 
     @PutMapping("/update/{id}")
     Lesson update(@RequestBody Lesson newLesson, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Lesson -> {
-                    Lesson.setName(newLesson.getName());
-                    Lesson.setTeacher(newLesson.getTeacher());
-                    return repository.save(Lesson);
-                }).orElseGet(() -> {
-                    newLesson.setId(id);
-                    return repository.save(newLesson);
-                });
+        return lessonService.updateLesson(newLesson, id);
     }
 
     @DeleteMapping("/delete/{id}")
     Lesson deleteOneLesson(@PathVariable String id) {
-        Lesson deletingLesson = detail(id);
-        repository.deleteById(id);
-        return deletingLesson;
+        return lessonService.deleteLessonById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<Lesson> deleteAllLesson() {
-        List<Lesson> deletingAllLesson = all();
-        repository.deleteAll();
-        return deletingAllLesson;
+        return lessonService.deleteAllLesson();
     }
 }

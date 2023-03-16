@@ -1,11 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { studentNumber } from "../../server/student";
-import { teacherEntryDate, teacherNumber } from "../../server/teacher";
+import { studentNumber } from "../../api/student";
+import { teacherEntryDate, teacherNumber } from "../../api/teacher";
 import { Grid, Typography } from "@mui/material";
-import { labNumber } from "../../server/lab";
-import { departmentNumber } from "../../server/department";
+import { labNumber } from "../../api/lab";
+import { departmentNumber } from "../../api/department";
 import HomeData from "./HomeData";
 import ChartArea from "../../components/chart/ChartArea";
 export default function Home() {
@@ -35,40 +35,46 @@ export default function Home() {
     <Grid container spacing={2}>
       <Grid item xs={6} md={4} lg={3}>
         <HomeData>
-          <Typography color={"secondary"} variant="body1">
+          <Typography variant="body1" color={"info.light"}>
             学生总数
           </Typography>
-          <Typography variant="h1">{studentNum.data}</Typography>
+          <Typography variant="h1" color={"info.light"}>
+            {studentNum.data}
+          </Typography>
         </HomeData>
       </Grid>
       <Grid item xs={6} md={4} lg={3}>
         <HomeData>
-          <Typography color={"secondary"} variant="body1">
+          <Typography variant="body1" color={"info.dark"}>
             部门总数
           </Typography>
-          <Typography variant="h1">{departmentNum.data}</Typography>
+          <Typography variant="h1" color={"info.dark"}>
+            {departmentNum.data}
+          </Typography>
         </HomeData>
       </Grid>
       <Grid item xs={6} md={4} lg={3}>
         <HomeData>
-          <Typography color={"secondary.dark"} variant="body1">
+          <Typography color={"warning.dark"} variant="body1">
             拥有座实验室
           </Typography>
-          <Typography variant="h1">{labNum.data}</Typography>
+          <Typography variant="h1" color={"warning.dark"}>
+            {labNum.data}
+          </Typography>
         </HomeData>
       </Grid>
       <Grid item xs={6} md={4} lg={3}>
         <HomeData>
-          <Typography color={"secondary.dark"} variant="body1">
+          <Typography color={"warning.main"} variant="body1">
             教师在职数
           </Typography>
-          <Typography variant="h1">{teacherNum.data}</Typography>
+          <Typography variant="h1" color={"warning.main"}>
+            {teacherNum.data}
+          </Typography>
         </HomeData>
       </Grid>
       <Grid item xs={12}>
-        <Typography color={"secondary.dark"} variant="body1">
-          教师入职时薪资与奖金
-        </Typography>
+        <Typography variant="body1">教师入职时薪资与奖金</Typography>
         <ChartArea data={teacherEntryChart} />
       </Grid>
     </Grid>

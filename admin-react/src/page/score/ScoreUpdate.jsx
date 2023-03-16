@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import Grid from "@mui/material/Grid";
-import { scoreGetNameByIds, scoreUpdateOne } from "../../server/score";
+import { scoreGetNameByIds, scoreUpdateOne } from "../../api/score";
 import ScoreForm from "./ScoreForm";
 import RSButton from "../../components/button/RSButton";
 export default function ScoreUpdate() {

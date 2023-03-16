@@ -1,6 +1,6 @@
 import React from "react";
 import LabForm from "./LabForm";
-import { labCreateOne } from "../../server/lab";
+import { labCreateOne } from "../../api/lab";
 import { Grid } from "@mui/material";
 import { randomLab } from "../../lib/random/lab";
 import RSButton from "../../components/button/RSButton";

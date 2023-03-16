@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import ClassesTable from "./ClassesTable";
-import { classesList, studentNumInclasses } from "../../server/classes";
+import { classesList, studentNumInclasses } from "../../api/classes";
 
 export default function ClassesList() {
   const { data, status } = useQuery("classesList", classesList);

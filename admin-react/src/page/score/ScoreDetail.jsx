@@ -3,7 +3,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { useSearchParams } from "react-router-dom";
-import { scoreGetNameByIds } from "../../server/score";
+import { scoreGetNameByIds } from "../../api/score";
 import RouteButton from "../../components/button/RouteButton";
 import TitleValue from "../../components/box/TitleValue";
 import DeleteButton from "../../components/button/DeleteButton";

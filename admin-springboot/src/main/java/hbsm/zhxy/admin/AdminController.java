@@ -18,71 +18,60 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private AdminRepository repository;
-    @Autowired
-    private AdminService service;
+    private AdminService adminService;
 
     @GetMapping("number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return adminService.totalAdmin();
     }
 
     @GetMapping("all")
     List<Admin> all() {
-        return repository.findAll();
+        return adminService.allAdmin();
     }
 
     @GetMapping("detail/{id}")
     Admin detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new AdminNotFoundException());
+        return adminService.getAdminById(id);
     }
 
     @GetMapping("search")
     Admin search(@RequestParam("username") String username) {
-        return repository.findByUsername(username);
+        return adminService.getAdminByUsername(username);
     }
 
     @PostMapping("createOne")
-    ResponseEntity<Admin> createOne(@RequestBody Admin newAdmin) {
-        String token = "zhxy";
-        Admin admin = repository.findByUsername(newAdmin.getUsername());
-        if (admin != null) {
-            return ResponseEntity.badRequest().body(newAdmin);
-        }
-        if (!newAdmin.getPassword().equals(token)) {
-            return ResponseEntity.badRequest().body(newAdmin);
-        }
-        repository.save(newAdmin);
-        return ResponseEntity.ok().body(newAdmin);
+    Admin createOne(@RequestBody Admin newAdmin) {
+        return adminService.createAdmin(newAdmin);
     }
 
-    @PostMapping("login")
-    ResponseEntity<Admin> login(@RequestBody Admin loginAdmin) {
-        return service.login(loginAdmin);
+    @PostMapping("signin")
+    ResponseEntity<Admin> signin(@RequestBody Admin loginAdmin) {
+        if (adminService.signin(loginAdmin)) {
+            return ResponseEntity.ok().body(loginAdmin);
+        } else {
+            return ResponseEntity.badRequest().body(loginAdmin);
+        }
+    }
+
+    @PostMapping("signup")
+    ResponseEntity<Admin> signup(@RequestBody Admin signupAdmin) {
+        if (adminService.signup(signupAdmin)) {
+            return ResponseEntity.ok().body(signupAdmin);
+        } else {
+            return ResponseEntity.badRequest().body(signupAdmin);
+        }
     }
 
     @PutMapping("update/{id}")
     Admin update(@RequestBody Admin newAdmin, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Admin -> {
-                    Admin.setAvatar(newAdmin.getAvatar());
-                    Admin.setUsername(newAdmin.getUsername());
-                    Admin.setPassword(newAdmin.getPassword());
-                    Admin.setLastLogin(newAdmin.getLastLogin());
-                    return repository.save(Admin);
-                }).orElseGet(() -> {
-                    newAdmin.setId(id);
-                    return repository.save(newAdmin);
-                });
+        return adminService.updateAdmin(newAdmin, id);
     }
 
     @PutMapping("changepass/{username}")
     ResponseEntity<Admin> changePass(@RequestBody ChangePass changePass, @PathVariable String username) {
         Admin admin = search(username);
-        String oldPass = admin.getPassword();
-        if (changePass.getOldPass().equals(oldPass)) {
-            admin.setPassword(changePass.getNewPass());
-            repository.save(admin);
+        if (adminService.changePassword(changePass, username)) {
             return ResponseEntity.ok(admin);
         } else {
             return ResponseEntity.badRequest().body(admin);
@@ -91,15 +80,11 @@ public class AdminController {
 
     @DeleteMapping("delete/{id}")
     Admin deleteOneAdmin(@PathVariable String id) {
-        Admin deletingAdmin = detail(id);
-        repository.deleteById(id);
-        return deletingAdmin;
+        return adminService.deleteOneAdmin(id);
     }
 
     @DeleteMapping("deleteAll")
     List<Admin> deleteAllAdmin() {
-        List<Admin> deletingAllAdmin = all();
-        repository.deleteAll();
-        return deletingAllAdmin;
+        return adminService.deleteAllAdmin();
     }
 }

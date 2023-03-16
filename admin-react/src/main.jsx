@@ -3,29 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
-import { RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import initailRouter from "./Router";
 import store from "./store/reduxStore";
 const queryClient = new QueryClient();
 const theme = createTheme({
-  palette: {
-    secondary: { main: "#a1887f", dark: "#5d4037" },
-  },
-  typography: {
-    fontFamily: [
-      // "Ma Shan Zheng",
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-  },
+  palette: {},
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

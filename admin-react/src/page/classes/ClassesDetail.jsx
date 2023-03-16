@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { useNavigate, useParams } from "react-router-dom";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { classesDelete, classesDetail } from "../../server/classes";
+import { classesDelete, classesDetail } from "../../api/classes";
 export default function ClassesDetail() {
   const navigate = useNavigate();
   const { id } = useParams();

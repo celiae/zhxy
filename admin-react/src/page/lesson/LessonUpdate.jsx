@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import LessonForm from "./LessonForm";
-import { lessonDetail, lessonUpdateOne } from "../../server/lesson";
+import { lessonDetail, lessonUpdateOne } from "../../api/lesson";
 import RSButton from "../../components/button/RSButton";
 import { Grid } from "@mui/material";
 export default function LessonUpdate() {

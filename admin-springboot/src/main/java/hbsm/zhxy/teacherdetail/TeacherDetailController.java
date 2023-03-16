@@ -16,64 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/teacherdetail")
 public class TeacherDetailController {
     @Autowired
-    private TeacherDetailRepository repository;
+    private TeacherDetailService teacherDetailService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return teacherDetailService.totalTeacherDetail();
     }
 
     @GetMapping("/all")
     List<TeacherDetail> all() {
-        return repository.findAll();
+        return teacherDetailService.allTeacherDetail();
     }
 
     @GetMapping("/detail/{id}")
     TeacherDetail detail(@PathVariable String id) {
-        return repository.findById(id).orElseThrow(() -> new TeacherDetailNotFoundException());
+        return teacherDetailService.getTeacherDetailById(id);
     }
 
     @PostMapping("/createOne")
     TeacherDetail createOne(@RequestBody TeacherDetail newTeacher) {
-        return repository.save(newTeacher);
+        return teacherDetailService.createTeacherDetail(newTeacher);
     }
 
     @PutMapping("/update/{id}")
     TeacherDetail update(@RequestBody TeacherDetail newTeacher, @PathVariable String id) {
-        return repository.findById(id)
-                .map(Teacher -> {
-                    Teacher.setGender(newTeacher.getGender());
-                    Teacher.setEntryDate(newTeacher.getEntryDate());
-                    Teacher.setEmail(newTeacher.getEmail());
-                    Teacher.setPhone(newTeacher.getPhone());
-                    Teacher.setSalary(newTeacher.getSalary());
-                    Teacher.setReward(newTeacher.getReward());
-                    Teacher.setBirthDate(newTeacher.getBirthDate());
-                    Teacher.setTeachingQuality(newTeacher.getTeachingQuality());
-                    Teacher.setResearch(newTeacher.getResearch());
-                    Teacher.setPoliticalIdeology(newTeacher.getPoliticalIdeology());
-                    Teacher.setPractical(newTeacher.getPractical());
-                    Teacher.setDiscipline(newTeacher.getDiscipline());
-                    Teacher.setComment(newTeacher.getComment());
-                    Teacher.setDescription(newTeacher.getDescription());
-                    return repository.save(Teacher);
-                }).orElseGet(() -> {
-                    newTeacher.setId(id);
-                    return repository.save(newTeacher);
-                });
+        return teacherDetailService.updateTeacherDetail(newTeacher, id);
     }
 
     @DeleteMapping("/delete/{id}")
     TeacherDetail deleteOneTeacher(@PathVariable String id) {
-        TeacherDetail deletingTeacher = detail(id);
-        repository.deleteById(id);
-        return deletingTeacher;
+        return teacherDetailService.deleteTeacherDetailById(id);
     }
 
     @DeleteMapping("/deleteAll")
     List<TeacherDetail> deleteAllTeacher() {
-        List<TeacherDetail> deletingAllTeacher = all();
-        repository.deleteAll();
-        return deletingAllTeacher;
+        return teacherDetailService.deleteAllTeacherDetail();
     }
 }

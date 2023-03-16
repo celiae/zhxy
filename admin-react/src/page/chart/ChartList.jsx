@@ -2,12 +2,12 @@ import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import React from "react";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 import ChartPie from "../../components/chart/ChartPie";
-import { labList } from "../../server/lab";
+import { labList } from "../../api/lab";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import { teacherGroupJobTitle } from "../../server/teacher";
+import { teacherGroupJobTitle } from "../../api/teacher";
 import ChartBar from "../../components/chart/ChartBar";
-import { departmentList } from "../../server/department";
+import { departmentList } from "../../api/department";
 
 export default function ChartList() {
   const lab = useQuery("labList", labList);

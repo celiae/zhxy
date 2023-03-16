@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import StudentTable from "./StudentTable";
-import { studentList } from "../../server/student";
+import { studentList } from "../../api/student";
 import RouteButton from "../../components/button/RouteButton";
 
 export default function StudentList() {

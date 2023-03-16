@@ -14,89 +14,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import hbsm.zhxy.student.Student;
-import hbsm.zhxy.student.StudentRepository;
-
 @RestController
 @RequestMapping("/studentmedia")
 public class StudentMediaController {
-    protected final String location = "../docker/nginx/uploads";
     @Autowired
-    private StudentMediaRepository studentMediaRepository;
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private StudentMediaService service;
+    private StudentMediaService studentMediaService;
 
     @GetMapping("/number")
-    int number() {
-        return studentMediaRepository.findAll().size();
+    long number() {
+        return studentMediaService.totalStudentMedia();
     }
 
     @GetMapping("/all")
     List<StudentMedia> all() {
-        return studentMediaRepository.findAll();
+        return studentMediaService.allStudentMedia();
     }
 
     @GetMapping("/detail/{id}")
     StudentMedia detail(@PathVariable String id) {
-        return studentMediaRepository.findById(id).orElseThrow(() -> new StudentMediaNotFoundException());
+        return studentMediaService.getStudentMediaById(id);
     }
 
     @GetMapping("/search")
     List<StudentMedia> search(@RequestParam("studentId") String studentId) {
-        return studentMediaRepository.findStudentMediaByStudentId(studentId)
-                .orElseThrow(() -> new StudentMediaNotFoundException());
+        return studentMediaService.getMediaByStudentId(studentId);
     }
 
     @PostMapping("/createOne")
     StudentMedia createOne(@RequestBody StudentMedia newStudentDetail) {
-        return studentMediaRepository.save(newStudentDetail);
+        return studentMediaService.createStudentMedia(newStudentDetail);
     }
 
     @PostMapping("/upload")
-    int upload(@RequestParam("file") MultipartFile[] file,
+    void upload(@RequestParam("file") MultipartFile[] file,
             @RequestParam("studentId") String studentId) {
-        Student student = studentRepository.findById(studentId).orElse(null);
-        service.saveMediaWithStudent(file, student);
-        return studentMediaRepository.findAll().size();
+        studentMediaService.uploadMedia(file, studentId);
     }
 
     @PutMapping("/update/{id}")
     StudentMedia update(@RequestBody StudentMedia newStudentDetail, @PathVariable String id) {
-        return studentMediaRepository.findById(id)
-                .map(StudentDetail -> {
-                    StudentDetail.setStudent(newStudentDetail.getStudent());
-                    StudentDetail.setFilename(newStudentDetail.getFilename());
-                    StudentDetail.setPath(newStudentDetail.getPath());
-                    StudentDetail.setType(newStudentDetail.getType());
-                    return studentMediaRepository.save(StudentDetail);
-                }).orElseGet(() -> {
-                    newStudentDetail.setId(id);
-                    return studentMediaRepository.save(newStudentDetail);
-                });
+        return studentMediaService.updateStudentMedia(newStudentDetail, id);
     }
 
     @DeleteMapping("/delete/byStudentId/{studentId}")
-    int deleteByStudentId(@PathVariable String studentId) {
-        service.deleteFileByStudentId(studentId);
-        studentMediaRepository.deleteAllByStudentId(studentId);
-        return number();
+    void deleteByStudentId(@PathVariable String studentId) {
+        studentMediaService.deleteByStudentId(studentId);
     }
 
     @DeleteMapping("/delete/byId/{id}")
-    StudentMedia deleteOneStudent(@PathVariable String id) {
-        service.deleteOneFile(id);
-        StudentMedia deletingStudent = detail(id);
-        studentMediaRepository.deleteById(id);
-        return deletingStudent;
+    void deleteOneStudent(@PathVariable String id) {
+        studentMediaService.deleteFileById(id);
     }
 
     @DeleteMapping("/delete/all")
-    List<StudentMedia> deleteAllStudent() {
-        service.deleteAllFile();
-        List<StudentMedia> deletingAllStudent = all();
-        studentMediaRepository.deleteAll();
-        return deletingAllStudent;
+    void deleteAllStudent() {
+        studentMediaService.deleteAllFile();
     }
 }

@@ -10,7 +10,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { teacherList } from "../../server/teacher";
+import { teacherList } from "../../api/teacher";
 import Loading from "../../components/progress/Loading";
 import { useQuery } from "react-query";
 export default function LessonForm({ form, setForm }) {

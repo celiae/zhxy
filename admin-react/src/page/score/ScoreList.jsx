@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import ScoreTable from "./ScoreTable";
-import { scoreList } from "../../server/score";
+import { scoreList } from "../../api/score";
 import RouteButton from "../../components/button/RouteButton";
 
 export default function ScoreList() {

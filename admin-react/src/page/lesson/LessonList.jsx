@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import LessonTable from "./LessonTable";
-import { lessonList } from "../../server/lesson";
+import { lessonList } from "../../api/lesson";
 import RouteButton from "../../components/button/RouteButton";
 export default function LessonList() {
   const { data, status } = useQuery("lessonList", lessonList);

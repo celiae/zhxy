@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import { studentOne, studentUpdateOne } from "../../server/student";
+import { studentOne, studentUpdateOne } from "../../api/student";
 import StudentForm from "./StudentForm";
 import Grid from "@mui/material/Grid";
 import { Button, Stack } from "@mui/material";
 import {
   studentDetailUpdateOne,
   studentOneDetail,
-} from "../../server/studentdetail";
+} from "../../api/studentdetail";
 import {
   studentMediaCreateOne,
   studentMediaDeleteByStudentId,
-} from "../../server/studentmedia";
+} from "../../api/studentmedia";
 import Media from "../../components/form/Media";
 import RouteButton from "../../components/button/RouteButton";
 export default function StudentUpdate() {

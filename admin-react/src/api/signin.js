@@ -1,7 +1,7 @@
 import { API_ADMIN } from "../constant/api";
 
 export default async function signin(loginForm) {
-  const res = await fetch(`${API_ADMIN}/login`, {
+  const res = await fetch(`${API_ADMIN}/signin`, {
     headers: {
       "Content-Type": "application/json",
     },

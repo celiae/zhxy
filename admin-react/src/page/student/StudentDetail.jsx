@@ -13,17 +13,14 @@ import React from "react";
 import { useQuery } from "react-query";
 import StudentRadar from "./StudentRadar";
 import Loading from "../../components/progress/Loading";
-import { studentDelete, studentOne } from "../../server/student";
+import { studentDelete, studentOne } from "../../api/student";
 import { useNavigate, useParams } from "react-router-dom";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import {
-  studentDetailDelete,
-  studentOneDetail,
-} from "../../server/studentdetail";
+import { studentDetailDelete, studentOneDetail } from "../../api/studentdetail";
 import {
   studentMediaDeleteByStudentId,
   studentOneByStudentId,
-} from "../../server/studentmedia";
+} from "../../api/studentmedia";
 import TitleValue from "../../components/box/TitleValue";
 export default function StudentDetail() {
   const navigate = useNavigate();

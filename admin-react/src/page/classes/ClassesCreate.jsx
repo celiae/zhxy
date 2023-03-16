@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ClassesForm from "./ClassesForm";
 import { randomClasses } from "../../lib/random/classes";
-import { classesCreateOne } from "../../server/classes";
+import { classesCreateOne } from "../../api/classes";
 import { getDateTime } from "../../util/useDate";
 
 export default function ClassesCreate() {

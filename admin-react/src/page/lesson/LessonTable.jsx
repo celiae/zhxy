@@ -19,10 +19,9 @@ import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
 import CustomPagination from "../../components/table/CustomPagination";
-import { lessonHeadCells } from "../../constant/headCells";
-import { BsEyeFill } from "react-icons/bs";
+import { lessonHeadCells } from "../../constant/hc_lesson";
 import Loading from "../../components/progress/Loading";
-import { lessonDelete } from "../../server/lesson";
+import { lessonDelete } from "../../api/lesson";
 import RouteButton from "../../components/button/RouteButton";
 
 const title = "课程管理";

@@ -4,7 +4,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
-import { labDelete, labDetail } from "../../server/lab";
+import { labDelete, labDetail } from "../../api/lab";
 import TitleValue from "../../components/box/TitleValue";
 import RouteButton from "../../components/button/RouteButton";
 import DeleteButton from "../../components/button/DeleteButton";

@@ -16,50 +16,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/score")
 public class ScoreController {
     @Autowired
-    private ScoreRepository repository;
+    private ScoreService scoreService;
 
     @GetMapping("/number")
-    int number() {
-        return repository.findAll().size();
+    long number() {
+        return scoreService.totalScore();
     }
 
     @GetMapping("all")
     List<Score> all() {
-        return repository.findAll();
+        return scoreService.allScore();
     }
 
     @GetMapping("/search")
     Score detail(@RequestParam("studentId") String studentId, @RequestParam("lessonId") String lessonId) {
-        return repository.findByStudentIdAndLessonId(
-                studentId, lessonId);
+        return scoreService.getScoreById(studentId, lessonId);
     }
 
     @PostMapping("/createOne")
     Score createOne(@RequestBody Score newScore) {
-        return repository.save(newScore);
+        return scoreService.createScore(newScore);
     }
 
     @PutMapping("/update")
     Score update(@RequestBody Score newStudentLesson) {
-        Score studentLesson = detail(newStudentLesson.getStudent().getId(),
-                newStudentLesson.getLesson().getId());
-        studentLesson.setScore(newStudentLesson.getScore());
-        return repository.save(studentLesson);
+        return scoreService.updateScore(newStudentLesson);
     }
 
     @DeleteMapping("/delete")
     Score deleteOneLesson(@RequestParam("studentId") String studentId,
             @RequestParam("lessonId") String lessonId) {
-        Score studentLesson = detail(studentId, lessonId);
-        repository.deleteByStudentIdAndLessonId(studentId, lessonId);
-        return studentLesson;
-
+        return scoreService.deleteScoreById(studentId, lessonId);
     }
 
     @DeleteMapping("/deleteAll")
     List<Score> deleteAllLesson() {
-        List<Score> deletingAllLesson = all();
-        repository.deleteAll();
-        return deletingAllLesson;
+        return scoreService.deleteAllScore();
     }
 }

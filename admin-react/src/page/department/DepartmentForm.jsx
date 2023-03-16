@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, TextField, Button, Autocomplete } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { departmentList } from "../../server/department";
+import { departmentList } from "../../api/department";
 import Loading from "../../components/progress/Loading";
 import ShadowBox from "../../components/shadowbox/ShadowBox";
 export default function DepartmentForm({ form, setForm, submit }) {

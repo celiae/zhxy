@@ -19,8 +19,8 @@ import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import CustomPagination from "../../components/table/CustomPagination";
 import FormDialog from "../../components/feedback/FormDialog";
-import { teacherHeadCells } from "../../constant/headCells";
-import { teacherDelete } from "../../server/teacher";
+import { teacherHeadCells } from "../../constant/hc_teacher";
+import { teacherDelete } from "../../api/teacher";
 import Loading from "../../components/progress/Loading";
 import RouteButton from "../../components/button/RouteButton";
 
