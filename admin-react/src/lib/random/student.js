@@ -3,8 +3,6 @@ faker.setLocale("zh_CN");
 import { getDateTime } from "../../util/useDate";
 export function randomStudent() {
   return {
-    lab: { id: 0 },
-    classes: { id: 0 },
     avatar: faker.image.avatar(),
     firstname: faker.word.adjective(),
     lastname: faker.word.adjective(),

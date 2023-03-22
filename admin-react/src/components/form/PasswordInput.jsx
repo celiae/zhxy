@@ -15,16 +15,13 @@ export default function PasswordInput({ label, password, setPassword }) {
     event.preventDefault();
   };
   return (
-    <FormControl
-      fullWidth
-      variant="outlined"
-      value={password}
-      onChange={(e) => {
-        setPassword(e.target.value);
-      }}
-    >
+    <FormControl fullWidth variant="outlined">
       <InputLabel>{label}</InputLabel>
       <OutlinedInput
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
         type={showPassword ? "text" : "password"}
         endAdornment={
           <InputAdornment position="end">

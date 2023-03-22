@@ -3,11 +3,12 @@ import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
 import { studentNumber } from "../../api/student";
 import { teacherEntryDate, teacherNumber } from "../../api/teacher";
-import { Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { labNumber } from "../../api/lab";
 import { departmentNumber } from "../../api/department";
 import HomeData from "./HomeData";
 import ChartArea from "../../components/chart/ChartArea";
+import RouteButton from "../../components/button/RouteButton";
 export default function Home() {
   const studentNum = useQuery("studentNumber", studentNumber);
   const teacherNum = useQuery("teacherNumber", teacherNumber);
@@ -38,44 +39,39 @@ export default function Home() {
           <Typography variant="body1" color={"info.light"}>
             学生总数
           </Typography>
-          <Typography variant="h1" color={"info.light"}>
+          <Typography variant="h4" color={"info.light"}>
             {studentNum.data}
           </Typography>
-        </HomeData>
-      </Grid>
-      <Grid item xs={6} md={4} lg={3}>
-        <HomeData>
           <Typography variant="body1" color={"info.dark"}>
             部门总数
           </Typography>
-          <Typography variant="h1" color={"info.dark"}>
+          <Typography variant="h4" color={"info.dark"}>
             {departmentNum.data}
           </Typography>
-        </HomeData>
-      </Grid>
-      <Grid item xs={6} md={4} lg={3}>
-        <HomeData>
           <Typography color={"warning.dark"} variant="body1">
             拥有座实验室
           </Typography>
-          <Typography variant="h1" color={"warning.dark"}>
+          <Typography variant="h4" color={"warning.dark"}>
             {labNum.data}
           </Typography>
-        </HomeData>
-      </Grid>
-      <Grid item xs={6} md={4} lg={3}>
-        <HomeData>
           <Typography color={"warning.main"} variant="body1">
             教师在职数
           </Typography>
-          <Typography variant="h1" color={"warning.main"}>
+          <Typography variant="h4" color={"warning.main"}>
             {teacherNum.data}
           </Typography>
         </HomeData>
       </Grid>
+      <Grid item xs={6} md={4} lg={3}>
+        <RouteButton path={"table"} msg={"所有表"} />
+      </Grid>
       <Grid item xs={12}>
-        <Typography variant="body1">教师入职时薪资与奖金</Typography>
-        <ChartArea data={teacherEntryChart} />
+        <Card>
+          <CardContent sx={{ overflow: "auto" }}>
+            <Typography variant="body1">教师入职时薪资与奖金</Typography>
+            <ChartArea data={teacherEntryChart} />
+          </CardContent>
+        </Card>
       </Grid>
     </Grid>
   );

@@ -4,12 +4,15 @@ import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import { labDetail, labUpdateOne } from "../../api/lab";
 import LabForm from "./LabForm";
-import { Grid } from "@mui/material";
-import RSButton from "../../components/button/RSButton";
+import { Button, Grid } from "@mui/material";
 export default function LabUpdate() {
   const { id } = useParams();
   const { data, status } = useQuery(["labDetail", id], () => labDetail(id));
   const [form, setForm] = useState(null);
+  const handleSubmit = () => {
+    labUpdateOne(form);
+    navigate(-1, { replace: true });
+  };
   React.useEffect(() => {
     setForm(data);
   }, [data]);
@@ -17,7 +20,7 @@ export default function LabUpdate() {
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <RSButton submitData={form} handleSubmit={labUpdateOne} />
+        <Button onClick={handleSubmit}>提交</Button>
       </Grid>
       <Grid item>
         <LabForm form={form} setForm={setForm} />

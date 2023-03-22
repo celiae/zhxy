@@ -9,9 +9,9 @@ import jakarta.persistence.Embeddable;
 public class StudentLessonKey implements Serializable {
 
   @Column(name = "student_id")
-  String studentId;
+  Long studentId;
 
   @Column(name = "lesson_id")
-  String lessonId;
+  Long lessonId;
 
 }

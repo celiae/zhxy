@@ -7,14 +7,14 @@ import {
   setLogin,
   setSystem,
   setUsername,
-} from "../../store/loginSlice";
-import signin from "../../api/signin";
-import SimpleAlert from "../../components/feedback/SimpleAlert";
-import LightBlue from "../../components/shadowbox/LightBlue";
-import Outter from "../../components/login/Outter";
-import RouteButton from "../../components/button/RouteButton";
-import SubmitButton from "../../components/button/SubmitButton";
-import PasswordInput from "../../components/form/PasswordInput";
+} from "../store/loginSlice";
+import signin from "../api/signin";
+import SimpleAlert from "../components/feedback/SimpleAlert";
+import LightBlue from "../components/shadowbox/LightBlue";
+import Outter from "../components/login/Outter";
+import RouteButton from "../components/button/RouteButton";
+import SubmitButton from "../components/button/SubmitButton";
+import PasswordInput from "../components/form/PasswordInput";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function Signin() {
     }
   });
   const [i_username, setIUsername] = React.useState("celiae");
-  const [i_password, setIPassword] = React.useState("z");
+  const [i_password, setIPassword] = React.useState("zhxy");
   const login = async () => {
     const res = await signin({
       username: i_username,

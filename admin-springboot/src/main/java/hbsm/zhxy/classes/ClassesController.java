@@ -29,7 +29,7 @@ public class ClassesController {
     }
 
     @GetMapping("/detail/{id}")
-    Classes detail(@PathVariable String id) {
+    Classes detail(@PathVariable Long id) {
         return classesService.getClassesById(id);
     }
 
@@ -39,12 +39,12 @@ public class ClassesController {
     }
 
     @PutMapping("/update/{id}")
-    Classes update(@RequestBody Classes newDepartment, @PathVariable String id) {
+    Classes update(@RequestBody Classes newDepartment, @PathVariable Long id) {
         return classesService.updateClasses(newDepartment, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    Classes deleteOneDepartment(@PathVariable String id) {
+    Classes deleteOneDepartment(@PathVariable Long id) {
         return classesService.deleteClassesById(id);
     }
 

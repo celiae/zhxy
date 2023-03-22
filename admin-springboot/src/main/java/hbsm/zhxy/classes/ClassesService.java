@@ -18,7 +18,7 @@ public class ClassesService {
     return repository.findAll();
   }
 
-  Classes getClassesById(String id) {
+  Classes getClassesById(Long id) {
     return repository.findById(id).orElseThrow(() -> new ClassesNotFoundException());
   }
 
@@ -26,7 +26,7 @@ public class ClassesService {
     return repository.save(newClasses);
   }
 
-  Classes updateClasses(Classes newClasses, String id) {
+  Classes updateClasses(Classes newClasses, Long id) {
     return repository.findById(id)
         .map(Classes -> {
           Classes.setGrade(newClasses.getGrade());
@@ -40,7 +40,7 @@ public class ClassesService {
         });
   }
 
-  Classes deleteClassesById(String id) {
+  Classes deleteClassesById(Long id) {
     Classes deletingClasses = getClassesById(id);
     repository.deleteById(id);
     return deletingClasses;

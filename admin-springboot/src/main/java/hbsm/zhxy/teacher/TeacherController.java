@@ -30,12 +30,12 @@ public class TeacherController {
     }
 
     @GetMapping("/detail/{id}")
-    Teacher detail(@PathVariable String id) {
+    Teacher detail(@PathVariable Long id) {
         return teacherService.getTeacherById(id);
     }
 
     @GetMapping("/getNameById")
-    String getNameById(@RequestParam("id") String id) {
+    String getNameById(@RequestParam("id") Long id) {
         return teacherService.getFullnameById(id);
     }
 
@@ -55,12 +55,12 @@ public class TeacherController {
     }
 
     @PutMapping("/update/{id}")
-    Teacher update(@RequestBody Teacher newTeacher, @PathVariable String id) {
+    Teacher update(@RequestBody Teacher newTeacher, @PathVariable Long id) {
         return teacherService.updateTeacher(newTeacher, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    Teacher deleteOneTeacher(@PathVariable String id) {
+    Teacher deleteOneTeacher(@PathVariable Long id) {
         return teacherService.deleteTeacherById(id);
     }
 

@@ -1,5 +1,4 @@
 import { API_LESSON } from "../constant/api";
-import getUUID from "../util/useUUID";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
 export async function lessonList() {
@@ -11,13 +10,10 @@ export async function lessonDetail(id) {
   return res.json();
 }
 export async function lessonCreateOne(data) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = getUUID();
   const res = await fetch(`${API_LESSON}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

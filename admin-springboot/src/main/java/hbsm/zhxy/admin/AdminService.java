@@ -18,7 +18,7 @@ public class AdminService {
         return repository.findAll();
     }
 
-    public Admin getAdminById(String id) {
+    public Admin getAdminById(Long id) {
         return repository.findById(id).orElseThrow(() -> new AdminNotFoundException());
     }
 
@@ -54,7 +54,7 @@ public class AdminService {
         return true;
     }
 
-    public Admin updateAdmin(Admin newAdmin, String id) {
+    public Admin updateAdmin(Admin newAdmin, Long id) {
         return repository.findById(id)
                 .map(Admin -> {
                     Admin.setAvatar(newAdmin.getAvatar());
@@ -79,7 +79,7 @@ public class AdminService {
         return false;
     }
 
-    Admin deleteOneAdmin(String id) {
+    Admin deleteOneAdmin(Long id) {
         Admin deletingAdmin = getAdminById(id);
         repository.deleteById(id);
         return deletingAdmin;

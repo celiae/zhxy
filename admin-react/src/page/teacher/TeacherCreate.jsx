@@ -23,7 +23,6 @@ export default function TeacherCreate() {
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Stack spacing={2} direction="row">
-          <RouteButton msg={"返回"} path={-1} />
           <Button onClick={handleSubmit} variant="contained" color="primary">
             提交
           </Button>

@@ -15,28 +15,6 @@ export default function LabForm({ form, setForm }) {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField
-          value={form.failedNum}
-          onChange={(e) => {
-            setForm({ ...form, failedNum: e.target.value });
-          }}
-          label="失败项目数"
-          size="small"
-          type={"number"}
-        />
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
-        <TextField
-          value={form.successNum}
-          onChange={(e) => {
-            setForm({ ...form, successNum: e.target.value });
-          }}
-          label="成功项目数"
-          size="small"
-          type={"number"}
-        />
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
-        <TextField
           value={form.deviceCondition}
           onChange={(e) => {
             setForm({ ...form, deviceCondition: e.target.value });

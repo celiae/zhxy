@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hbsm.zhxy.classes.Classes;
+import hbsm.zhxy.studentdetail.StudentDetailService;
 
 @Service
 public class StudentService {
   @Autowired
   private StudentRepository repository;
+
+  @Autowired
+  private StudentDetailService studentDetailService;
 
   long totalStudent() {
     return repository.count();
@@ -20,19 +24,25 @@ public class StudentService {
     return repository.findAll();
   }
 
-  Student getStudentById(String id) {
+  Student getStudentById(Long id) {
     return repository.findById(id).orElseThrow(() -> new StudentNotFoundException());
   }
 
+  List<Student> getStudentByName(String firstname, String lastname) {
+    return repository.findByFirstnameAndLastname(firstname, lastname).orElseThrow(() -> new StudentNotFoundException());
+  }
+
   List<Student> getStudentsByClasses(Classes classes) {
-    return repository.findByClasses(classes);
+    return repository.findByClasses(classes).orElseThrow(() -> new StudentNotFoundException());
   }
 
   Student createStudent(Student newStudent) {
-    return repository.save(newStudent);
+    repository.save(newStudent);
+    repository.flush();
+    return newStudent;
   }
 
-  Student updateStudent(Student newStudent, String id) {
+  Student updateStudent(Student newStudent, Long id) {
     return repository.findById(id)
         .map(Student -> {
           Student.setLab(newStudent.getLab());
@@ -49,14 +59,16 @@ public class StudentService {
         });
   }
 
-  Student deleteStudentById(String id) {
+  Student deleteStudentById(Long id) {
     Student deletingStudent = getStudentById(id);
+    studentDetailService.deleteStudentDetailById(id);
     repository.deleteById(id);
     return deletingStudent;
   }
 
   List<Student> deleteAllStudent() {
     List<Student> deletingAllStudent = allStudent();
+    studentDetailService.deleteAllStudentDetail();
     repository.deleteAll();
     return deletingAllStudent;
   }

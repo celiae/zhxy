@@ -29,7 +29,7 @@ public class ScoreController {
     }
 
     @GetMapping("/search")
-    Score detail(@RequestParam("studentId") String studentId, @RequestParam("lessonId") String lessonId) {
+    Score detail(@RequestParam("studentId") Long studentId, @RequestParam("lessonId") Long lessonId) {
         return scoreService.getScoreById(studentId, lessonId);
     }
 
@@ -44,8 +44,8 @@ public class ScoreController {
     }
 
     @DeleteMapping("/delete")
-    Score deleteOneLesson(@RequestParam("studentId") String studentId,
-            @RequestParam("lessonId") String lessonId) {
+    Score deleteOneLesson(@RequestParam("studentId") Long studentId,
+            @RequestParam("lessonId") Long lessonId) {
         return scoreService.deleteScoreById(studentId, lessonId);
     }
 

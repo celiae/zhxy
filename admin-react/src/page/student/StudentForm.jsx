@@ -1,10 +1,26 @@
 import React from "react";
-import { Grid, TextField, Avatar, Autocomplete, Box } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Avatar,
+  Autocomplete,
+  Box,
+  Slider,
+  Typography,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
 import { labList } from "../../api/lab";
 import Loading from "../../components/progress/Loading";
 import { useQuery } from "react-query";
 import { classesList } from "../../api/classes";
-
+import { LocalizationProvider, zhCN } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 export default function StudentForm({
   student,
   setStudent,
@@ -59,14 +75,19 @@ export default function StudentForm({
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <FormControl
           value={studentDetail.gender}
           onChange={(e) => {
             setStudentDetail({ ...studentDetail, gender: e.target.value });
           }}
-          label="性别"
-          size="small"
-        />
+        >
+          <FormLabel>性别</FormLabel>
+          <RadioGroup row>
+            <FormControlLabel value="男" control={<Radio />} label="男" />
+            <FormControlLabel value="女" control={<Radio />} label="女" />
+            <FormControlLabel value="其他" control={<Radio />} label="其他" />
+          </RadioGroup>
+        </FormControl>
       </Grid>
       <Grid item xs={12}>
         <Autocomplete
@@ -108,14 +129,24 @@ export default function StudentForm({
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
-          value={studentDetail.birthDate}
-          onChange={(e) => {
-            setStudentDetail({ ...studentDetail, birthDate: e.target.value });
-          }}
-          label="出生日期"
-          size="small"
-        />
+        <LocalizationProvider
+          dateAdapter={AdapterDayjs}
+          localeText={
+            zhCN.components.MuiLocalizationProvider.defaultProps.localeText
+          }
+        >
+          <DatePicker
+            value={dayjs(studentDetail.birthDate)}
+            onChange={(newValue) => {
+              console.log(dayjs(studentDetail.birthDate).format());
+              setStudentDetail({
+                ...studentDetail,
+                birthDate: newValue,
+              });
+            }}
+            label="出生日期"
+          />
+        </LocalizationProvider>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField
@@ -214,29 +245,28 @@ export default function StudentForm({
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>学习 {studentDetail.studyNum}</Typography>
+        <Slider
           value={studentDetail.studyNum}
           onChange={(e) => {
             setStudentDetail({ ...studentDetail, studyNum: e.target.value });
           }}
-          label="学习"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>运动 {studentDetail.sportNum}</Typography>
+        <Slider
           value={studentDetail.sportNum}
           onChange={(e) => {
             setStudentDetail({ ...studentDetail, sportNum: e.target.value });
           }}
-          label="运动"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>沟通 {studentDetail.communicationNum}</Typography>
+        <Slider
           value={studentDetail.communicationNum}
           onChange={(e) => {
             setStudentDetail({
@@ -244,13 +274,12 @@ export default function StudentForm({
               communicationNum: e.target.value,
             });
           }}
-          label="沟通"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>竞赛 {studentDetail.competitionNum}</Typography>
+        <Slider
           value={studentDetail.competitionNum}
           onChange={(e) => {
             setStudentDetail({
@@ -258,31 +287,33 @@ export default function StudentForm({
               competitionNum: e.target.value,
             });
           }}
-          label="竞赛"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>证书 {studentDetail.licenseNum}</Typography>
+        <Slider
           value={studentDetail.licenseNum}
           onChange={(e) => {
-            setStudentDetail({ ...studentDetail, licenseNum: e.target.value });
+            setStudentDetail({
+              ...studentDetail,
+              licenseNum: e.target.value,
+            });
           }}
-          label="证书"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>动手 {studentDetail.handsNum}</Typography>
+        <Slider
           value={studentDetail.handsNum}
           onChange={(e) => {
-            setStudentDetail({ ...studentDetail, handsNum: e.target.value });
+            setStudentDetail({
+              ...studentDetail,
+              handsNum: e.target.value,
+            });
           }}
-          label="动手"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12}>

@@ -4,14 +4,17 @@ import { useParams } from "react-router-dom";
 import Loading from "../../components/progress/Loading";
 import LessonForm from "./LessonForm";
 import { lessonDetail, lessonUpdateOne } from "../../api/lesson";
-import RSButton from "../../components/button/RSButton";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 export default function LessonUpdate() {
   const { id } = useParams();
   const { data, status } = useQuery(["lessonDetail", id], () =>
     lessonDetail(id)
   );
   const [form, setForm] = useState(null);
+  const handleSubmit = () => {
+    lessonUpdateOne(form);
+    navigate(-1, { replace: true });
+  };
   React.useEffect(() => {
     setForm(data);
   }, [data]);
@@ -19,7 +22,7 @@ export default function LessonUpdate() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <RSButton submitData={form} handleSubmit={lessonUpdateOne} />
+        <Button onClick={handleSubmit}>提交</Button>
       </Grid>
       <Grid item>
         <LessonForm form={form} setForm={setForm} />

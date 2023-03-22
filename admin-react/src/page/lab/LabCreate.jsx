@@ -1,16 +1,21 @@
 import React from "react";
 import LabForm from "./LabForm";
 import { labCreateOne } from "../../api/lab";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { randomLab } from "../../lib/random/lab";
-import RSButton from "../../components/button/RSButton";
 
 export default function LabCreate() {
   const [form, setForm] = React.useState(randomLab);
+  const handleSubmit = () => {
+    labCreateOne(form);
+    navigate(-1, { replace: true });
+  };
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <RSButton submitData={form} handleSubmit={labCreateOne} />
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          提交
+        </Button>
       </Grid>
       <Grid item>
         <LabForm form={form} setForm={setForm} />

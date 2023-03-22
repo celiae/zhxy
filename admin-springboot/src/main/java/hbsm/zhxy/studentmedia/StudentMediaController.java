@@ -31,12 +31,12 @@ public class StudentMediaController {
     }
 
     @GetMapping("/detail/{id}")
-    StudentMedia detail(@PathVariable String id) {
+    StudentMedia detail(@PathVariable Long id) {
         return studentMediaService.getStudentMediaById(id);
     }
 
     @GetMapping("/search")
-    List<StudentMedia> search(@RequestParam("studentId") String studentId) {
+    List<StudentMedia> search(@RequestParam("studentId") Long studentId) {
         return studentMediaService.getMediaByStudentId(studentId);
     }
 
@@ -47,22 +47,22 @@ public class StudentMediaController {
 
     @PostMapping("/upload")
     void upload(@RequestParam("file") MultipartFile[] file,
-            @RequestParam("studentId") String studentId) {
+            @RequestParam("studentId") Long studentId) {
         studentMediaService.uploadMedia(file, studentId);
     }
 
     @PutMapping("/update/{id}")
-    StudentMedia update(@RequestBody StudentMedia newStudentDetail, @PathVariable String id) {
+    StudentMedia update(@RequestBody StudentMedia newStudentDetail, @PathVariable Long id) {
         return studentMediaService.updateStudentMedia(newStudentDetail, id);
     }
 
     @DeleteMapping("/delete/byStudentId/{studentId}")
-    void deleteByStudentId(@PathVariable String studentId) {
+    void deleteByStudentId(@PathVariable Long studentId) {
         studentMediaService.deleteByStudentId(studentId);
     }
 
     @DeleteMapping("/delete/byId/{id}")
-    void deleteOneStudent(@PathVariable String id) {
+    void deleteOneStudent(@PathVariable Long id) {
         studentMediaService.deleteFileById(id);
     }
 

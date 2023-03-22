@@ -1,25 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button } from "@mui/material";
+import React from "react";
+import { Box, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../components/progress/Loading";
-import DepartmentTable from "./DepartmentTable";
-import { departmentList } from "../../api/department";
+import { departmentDeleteAll, departmentList } from "../../api/department";
+import { useSelector } from "react-redux";
+import CusDataGrid from "../../components/table/CusDataGrid";
 
 export default function DepartmentList() {
-  const { data, status } = useQuery("departmentList", departmentList);
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("create");
-  };
-  const [rows, setRows] = useState(data);
-  useEffect(() => {
+  const username = useSelector((state) => state.login.username);
+  const { data, status } = useQuery("departmentList", departmentList);
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(() => {
     setRows(data);
   }, [data]);
-  if (status === "loading") return <Loading />;
+  const handleDeleteAll = () => {
+    departmentDeleteAll();
+    setRows([]);
+  };
+  const columns = [
+    {
+      field: "name",
+      headerName: "名称",
+      width: 150,
+      renderCell: (params) => (
+        <Typography
+          onClick={() => {
+            navigate(`/${username}/department/${params.id}`);
+          }}
+        >
+          {params.value}
+        </Typography>
+      ),
+    },
+    {
+      field: "manager",
+      headerName: "管理者",
+      width: 150,
+    },
+    {
+      field: "budget",
+      headerName: "部门预算",
+      width: 200,
+    },
+  ];
   return (
     <Box>
-      <DepartmentTable data={rows} setData={setRows} />
+      <CusDataGrid
+        columns={columns}
+        rows={rows}
+        handleDeleteAll={handleDeleteAll}
+      />
     </Box>
   );
 }

@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class StudentMedia {
     @Id
-    private String id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

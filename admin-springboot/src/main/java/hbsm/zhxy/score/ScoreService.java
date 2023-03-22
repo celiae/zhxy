@@ -18,7 +18,7 @@ public class ScoreService {
     return repository.findAll();
   }
 
-  Score getScoreById(String studentId, String lessonId) {
+  Score getScoreById(Long studentId, Long lessonId) {
     return repository.findByStudentIdAndLessonId(
         studentId, lessonId);
   }
@@ -34,7 +34,7 @@ public class ScoreService {
     return repository.save(studentLesson);
   }
 
-  Score deleteScoreById(String studentId, String lessonId) {
+  Score deleteScoreById(Long studentId, Long lessonId) {
     Score deletingScore = getScoreById(studentId, lessonId);
     repository.deleteByStudentIdAndLessonId(studentId, lessonId);
     return deletingScore;

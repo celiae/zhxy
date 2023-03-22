@@ -18,7 +18,7 @@ public class StudentDetailService {
     return repository.findAll();
   }
 
-  StudentDetail getStudentDetailById(String id) {
+  StudentDetail getStudentDetailById(Long id) {
     return repository.findById(id).orElseThrow(() -> new StudentDetailNotFoundException());
   }
 
@@ -26,7 +26,7 @@ public class StudentDetailService {
     return repository.save(newStudentDetail);
   }
 
-  StudentDetail updateStudentDetail(StudentDetail newStudentDetail, String id) {
+  StudentDetail updateStudentDetail(StudentDetail newStudentDetail, Long id) {
     return repository.findById(id)
         .map(StudentDetail -> {
           StudentDetail.setStudent(newStudentDetail.getStudent());
@@ -50,13 +50,13 @@ public class StudentDetailService {
         });
   }
 
-  StudentDetail deleteStudentDetailById(String id) {
+  public StudentDetail deleteStudentDetailById(Long id) {
     StudentDetail deletingStudentDetail = getStudentDetailById(id);
     repository.deleteById(id);
     return deletingStudentDetail;
   }
 
-  List<StudentDetail> deleteAllStudentDetail() {
+  public List<StudentDetail> deleteAllStudentDetail() {
     List<StudentDetail> deletingAllStudentDetail = allStudentDetail();
     repository.deleteAll();
     return deletingAllStudentDetail;

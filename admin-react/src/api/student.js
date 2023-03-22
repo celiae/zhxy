@@ -14,14 +14,15 @@ export async function studentOne(id) {
   const res = await fetch(`${API_STUDENT}/detail/${id}`);
   return res.json();
 }
-export async function studentCreateOne(data, uuid) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = uuid;
+export async function studentSearch(searchString) {
+  const res = await fetch(`${API_STUDENT}/search${searchString}`);
+  return res.json();
+}
+export async function studentCreateOne(data) {
   const res = await fetch(`${API_STUDENT}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

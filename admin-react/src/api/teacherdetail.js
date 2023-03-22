@@ -17,14 +17,11 @@ export async function teacherDetailGetNameById(id) {
   const res = await fetch(`${API_TEACHERDETAIL}/getNameById?id=${id}`);
   return res.text();
 }
-export async function teacherDetailCreateOne(data, uuid) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = uuid;
+export async function teacherDetailCreateOne(data) {
   const res = await fetch(`${API_TEACHERDETAIL}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

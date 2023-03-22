@@ -15,13 +15,10 @@ export async function labDetail(id) {
   return res.json();
 }
 export async function labCreateOne(data) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = getUUID();
   const res = await fetch(`${API_LAB}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

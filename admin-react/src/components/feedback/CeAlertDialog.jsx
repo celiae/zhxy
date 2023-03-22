@@ -12,6 +12,10 @@ import {
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+/**
+ * @param alertDialog
+ * @param {open,title,dialogContentText,buttonDisagree,buttonAgree}
+ */
 export default function CeAlertDialog({
   alertDialog,
   setAlertDialog,
@@ -19,6 +23,10 @@ export default function CeAlertDialog({
 }) {
   const handleClose = () => {
     setAlertDialog({ ...alertDialog, open: false });
+  };
+  const handleAgree = () => {
+    handleClose();
+    handleSubmit();
   };
   return (
     <Dialog
@@ -35,8 +43,12 @@ export default function CeAlertDialog({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{alertDialog.buttonDisagree}</Button>
-        <Button onClick={handleSubmit}>{alertDialog.buttonAgree}</Button>
+        <Button variant="contained" onClick={handleClose}>
+          {alertDialog.buttonDisagree}
+        </Button>
+        <Button variant="outlined" onClick={handleAgree}>
+          {alertDialog.buttonAgree}
+        </Button>
       </DialogActions>
     </Dialog>
   );

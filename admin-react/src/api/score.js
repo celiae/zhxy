@@ -16,12 +16,10 @@ export async function scoreGetNameByIds(studentId, lessonId) {
   return res.json();
 }
 export async function scoreCreateOne(data) {
-  let obj = {};
-  Object.assign(obj, data);
   const res = await fetch(`${API_SCORE}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

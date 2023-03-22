@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import jakarta.transaction.Transactional;
 
-public interface StudentMediaRepository extends JpaRepository<StudentMedia, String> {
-  Optional<List<StudentMedia>> findStudentMediaByStudentId(String studentId);
+public interface StudentMediaRepository extends JpaRepository<StudentMedia, Long> {
+  Optional<List<StudentMedia>> findStudentMediaByStudentId(Long studentId);
 
   @Transactional
-  void deleteAllByStudentId(String studentId);
+  void deleteAllByStudentId(Long studentId);
 }

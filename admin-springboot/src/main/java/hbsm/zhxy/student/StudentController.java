@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,8 +30,14 @@ public class StudentController {
     }
 
     @GetMapping("/detail/{id}")
-    Student detail(@PathVariable String id) {
+    Student detail(@PathVariable Long id) {
         return studentService.getStudentById(id);
+    }
+
+    @GetMapping("/search/stuname")
+    List<Student> search(@RequestParam String firstname,
+            @RequestParam String lastname) {
+        return studentService.getStudentByName(firstname, lastname);
     }
 
     @PostMapping("/createOne")
@@ -39,12 +46,12 @@ public class StudentController {
     }
 
     @PutMapping("/update/{id}")
-    Student update(@RequestBody Student newStudent, @PathVariable String id) {
+    Student update(@RequestBody Student newStudent, @PathVariable Long id) {
         return studentService.updateStudent(newStudent, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    Student deleteOneStudent(@PathVariable String id) {
+    Student deleteOneStudent(@PathVariable Long id) {
         return studentService.deleteStudentById(id);
     }
 

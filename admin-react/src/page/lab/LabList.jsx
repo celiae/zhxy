@@ -1,21 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import React from "react";
+import { Typography } from "@mui/material";
 import { useQuery } from "react-query";
-import Loading from "../../components/progress/Loading";
-import { labList } from "../../api/lab";
-import LabTable from "./LabTable";
-import RouteButton from "../../components/button/RouteButton";
+import { labDeleteAll, labList } from "../../api/lab";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CusDataGrid from "../../components/table/CusDataGrid";
 
 export default function LabList() {
+  const navigate = useNavigate();
+  const username = useSelector((state) => state.login.username);
   const { data, status } = useQuery("labList", labList);
-  const [rows, setRows] = useState(data);
-  useEffect(() => {
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(() => {
     setRows(data);
   }, [data]);
-  if (status === "loading") return <Loading />;
+  const handleDeleteAll = () => {
+    labDeleteAll();
+    setRows([]);
+  };
+  const columns = [
+    {
+      field: "name",
+      headerName: "名称",
+      width: 150,
+      renderCell: (params) => (
+        <Typography
+          onClick={() => {
+            navigate(`/${username}/lab/${params.id}`);
+          }}
+        >
+          {params.value}
+        </Typography>
+      ),
+    },
+    {
+      field: "projectCost",
+      headerName: "项目资金",
+      width: 150,
+    },
+    {
+      field: "location",
+      headerName: "地点",
+      width: 200,
+    },
+  ];
   return (
-    <Box>
-      <LabTable data={rows} setData={setRows} />
-    </Box>
+    <CusDataGrid
+      columns={columns}
+      rows={rows}
+      handleDeleteAll={handleDeleteAll}
+    />
   );
 }

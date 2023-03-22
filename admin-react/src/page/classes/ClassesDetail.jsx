@@ -36,9 +36,6 @@ export default function ClassesDetail() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <Stack direction={"row"} spacing={1}>
-              <Button onClick={handleBack} variant="outlined">
-                返回
-              </Button>
               <Button onClick={handleClick} variant="outlined">
                 <BorderColorIcon />
                 更改

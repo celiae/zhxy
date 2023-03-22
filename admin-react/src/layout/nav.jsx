@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import { ImLab } from "react-icons/im";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import * as ROUTE from "../constant/routes";
 
 const getAllNav = (user) => {
@@ -46,6 +47,11 @@ const getAllNav = (user) => {
       name: "统计",
       href: `/${user.username}${ROUTE.CHART}`,
       icon: <FaRegChartBar />,
+    },
+    {
+      name: "发布考试",
+      href: `/${user.username}${ROUTE.EXAM}`,
+      icon: <DriveFileRenameOutlineIcon />,
     },
   ];
   return nav;

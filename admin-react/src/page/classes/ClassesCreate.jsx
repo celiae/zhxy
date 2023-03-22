@@ -24,9 +24,6 @@ export default function ClassesCreate() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Button onClick={handleBack} variant="outlined" color="primary">
-          返回
-        </Button>
         <Button onClick={handleSubmit} variant="contained" color="primary">
           提交
         </Button>

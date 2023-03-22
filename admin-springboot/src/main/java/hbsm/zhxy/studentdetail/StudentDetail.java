@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class StudentDetail {
     @Id
-    private String id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "id")

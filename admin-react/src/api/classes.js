@@ -19,13 +19,10 @@ export async function classesDetail(id) {
   return res.json();
 }
 export async function classesCreateOne(data) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = getUUID();
   const res = await fetch(`${API_CLASSES}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

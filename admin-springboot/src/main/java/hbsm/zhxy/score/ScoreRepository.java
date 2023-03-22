@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import jakarta.transaction.Transactional;
 
-public interface ScoreRepository extends JpaRepository<Score, String> {
-  Score findByStudentIdAndLessonId(String studentId, String lessonId);
+public interface ScoreRepository extends JpaRepository<Score, Long> {
+  Score findByStudentIdAndLessonId(Long studentId, Long lessonId);
 
   @Transactional
-  void deleteByStudentIdAndLessonId(String studentId, String lessonId);
+  void deleteByStudentIdAndLessonId(Long studentId, Long lessonId);
 }

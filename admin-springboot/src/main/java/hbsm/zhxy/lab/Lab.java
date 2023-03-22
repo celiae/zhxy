@@ -1,6 +1,8 @@
 package hbsm.zhxy.lab;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -9,11 +11,10 @@ import lombok.Data;
 public class Lab {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String description;
-    private int failedNum;
-    private int successNum;
     private int deviceCondition;
     private Float deviceCost;
     private Float projectCost;

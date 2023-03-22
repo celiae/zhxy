@@ -1,25 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button } from "@mui/material";
+import React from "react";
+import { Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../components/progress/Loading";
-import ClassesTable from "./ClassesTable";
-import { classesList, studentNumInclasses } from "../../api/classes";
+import { classesDeleteAll, classesList } from "../../api/classes";
+import { useSelector } from "react-redux";
+import CusDataGrid from "../../components/table/CusDataGrid";
 
 export default function ClassesList() {
-  const { data, status } = useQuery("classesList", classesList);
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("create");
-  };
-  const [rows, setRows] = useState(data);
-  useEffect(() => {
+  const username = useSelector((state) => state.login.username);
+  const { data, status } = useQuery("classesList", classesList);
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(() => {
     setRows(data);
   }, [data]);
-  if (status === "loading") return <Loading />;
+  const handleDeleteAll = () => {
+    classesDeleteAll();
+    setRows([]);
+  };
+  const columns = [
+    {
+      field: "name",
+      headerName: "班级",
+      width: 150,
+      renderCell: (params) => (
+        <Typography
+          onClick={() => {
+            navigate(`/${username}/classes/${params.id}`);
+          }}
+        >
+          {params.value}
+        </Typography>
+      ),
+    },
+    {
+      field: "grade",
+      headerName: "年级",
+      width: 150,
+    },
+    {
+      field: "speciality",
+      headerName: "专业",
+      width: 200,
+    },
+  ];
   return (
-    <Box>
-      <ClassesTable data={rows} setData={setRows} />
-    </Box>
+    <CusDataGrid
+      columns={columns}
+      rows={rows}
+      handleDeleteAll={handleDeleteAll}
+    />
   );
 }

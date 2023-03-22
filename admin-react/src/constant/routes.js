@@ -8,4 +8,5 @@ export const CLASSES = "/classes";
 export const LAB = "/lab";
 export const DEPARTMENT = "/department";
 export const CHART = "/chart";
+export const EXAM = "/exam";
 export const PERSONAL = "/personal";

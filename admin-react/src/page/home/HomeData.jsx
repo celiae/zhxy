@@ -4,9 +4,7 @@ import React from "react";
 export default function HomeData({ children }) {
   return (
     <Card>
-      <CardActionArea>
-        <CardContent>{children}</CardContent>
-      </CardActionArea>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 }

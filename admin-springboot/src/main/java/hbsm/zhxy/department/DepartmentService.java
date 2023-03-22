@@ -18,7 +18,7 @@ public class DepartmentService {
     return repository.findAllExceptNoDepartment();
   }
 
-  Department getDepartmentById(String id) {
+  Department getDepartmentById(Long id) {
     return repository.findById(id).orElseThrow(() -> new DepartmentNotFoundException());
   }
 
@@ -26,7 +26,7 @@ public class DepartmentService {
     return repository.save(newDepartment);
   }
 
-  Department updateDepartment(Department newDepartment, String id) {
+  Department updateDepartment(Department newDepartment, Long id) {
     return repository.findById(id)
         .map(Department -> {
           Department.setName(newDepartment.getName());
@@ -43,7 +43,7 @@ public class DepartmentService {
         });
   }
 
-  Department deleteDepartmentById(String id) {
+  Department deleteDepartmentById(Long id) {
     Department deletingDepartment = getDepartmentById(id);
     repository.deleteById(id);
     return deletingDepartment;

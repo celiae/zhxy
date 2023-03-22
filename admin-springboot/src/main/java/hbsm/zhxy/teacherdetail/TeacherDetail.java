@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class TeacherDetail {
     @Id
-    private String id;
+    private Long id;
     private String gender;
     private String entryDate;
     private String email;

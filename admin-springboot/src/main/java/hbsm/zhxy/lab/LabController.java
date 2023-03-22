@@ -29,7 +29,7 @@ public class LabController {
     }
 
     @GetMapping("/detail/{id}")
-    Lab detail(@PathVariable String id) {
+    Lab detail(@PathVariable Long id) {
         return labService.getLabById(id);
     }
 
@@ -39,12 +39,12 @@ public class LabController {
     }
 
     @PutMapping("/update/{id}")
-    Lab update(@RequestBody Lab newLab, @PathVariable String id) {
+    Lab update(@RequestBody Lab newLab, @PathVariable Long id) {
         return labService.updateLab(newLab, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    Lab deleteOneLab(@PathVariable String id) {
+    Lab deleteOneLab(@PathVariable Long id) {
         return labService.deleteLabById(id);
     }
 

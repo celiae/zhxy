@@ -15,13 +15,10 @@ export async function departmentDetail(id) {
   return res.json();
 }
 export async function departmentCreateOne(data) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = getUUID();
   const res = await fetch(`${API_DEPARTMENT}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

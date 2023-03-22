@@ -15,10 +15,10 @@ export async function studentOneDetail(id) {
   const res = await fetch(`${API_STUDENTDETAIL}/detail/${id}`);
   return res.json();
 }
-export async function studentDetailCreateOne(data, uuid) {
+export async function studentDetailCreateOne(data, id) {
   let obj = {};
   Object.assign(obj, data);
-  obj.id = uuid;
+  obj.id = id;
   const res = await fetch(`${API_STUDENTDETAIL}/createOne`, {
     headers: jsonHeaders,
     method: "POST",

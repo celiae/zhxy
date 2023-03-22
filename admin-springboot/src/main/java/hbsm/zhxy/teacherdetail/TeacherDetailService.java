@@ -18,7 +18,7 @@ public class TeacherDetailService {
     return repository.findAll();
   }
 
-  TeacherDetail getTeacherDetailById(String id) {
+  TeacherDetail getTeacherDetailById(Long id) {
     return repository.findById(id).orElseThrow(() -> new TeacherDetailNotFoundException());
   }
 
@@ -26,7 +26,7 @@ public class TeacherDetailService {
     return repository.save(newTeacherDetail);
   }
 
-  TeacherDetail updateTeacherDetail(TeacherDetail newTeacherDetail, String id) {
+  TeacherDetail updateTeacherDetail(TeacherDetail newTeacherDetail, Long id) {
     return repository.findById(id)
         .map(Teacher -> {
           Teacher.setGender(newTeacherDetail.getGender());
@@ -50,13 +50,13 @@ public class TeacherDetailService {
         });
   }
 
-  TeacherDetail deleteTeacherDetailById(String id) {
+  TeacherDetail deleteTeacherDetailById(Long id) {
     TeacherDetail deletingTeacherDetail = getTeacherDetailById(id);
     repository.deleteById(id);
     return deletingTeacherDetail;
   }
 
-  List<TeacherDetail> deleteAllTeacherDetail() {
+  public List<TeacherDetail> deleteAllTeacherDetail() {
     List<TeacherDetail> deletingAllTeacherDetail = allTeacherDetail();
     repository.deleteAll();
     return deletingAllTeacherDetail;

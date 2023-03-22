@@ -5,10 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hbsm.zhxy.lesson.LessonService;
+import hbsm.zhxy.teacherdetail.TeacherDetailService;
+
 @Service
 public class TeacherService {
   @Autowired
   private TeacherRepository repository;
+  @Autowired
+  private TeacherDetailService teacherDetailService;
+  @Autowired
+  private LessonService lessonService;
 
   long totalTeacher() {
     return repository.count();
@@ -18,11 +25,11 @@ public class TeacherService {
     return repository.findAll();
   }
 
-  Teacher getTeacherById(String id) {
+  Teacher getTeacherById(Long id) {
     return repository.findById(id).orElseThrow(() -> new TeacherNotFoundException());
   }
 
-  String getFullnameById(String id) {
+  String getFullnameById(Long id) {
     Teacher teacher = repository.findById(id).orElseThrow(() -> new TeacherNotFoundException());
     String fullName = teacher.getFirstname().concat(teacher.getLastname());
     return fullName;
@@ -40,7 +47,7 @@ public class TeacherService {
     return repository.save(newTeacher);
   }
 
-  Teacher updateTeacher(Teacher newTeacher, String id) {
+  Teacher updateTeacher(Teacher newTeacher, Long id) {
     return repository.findById(id)
         .map(Teacher -> {
           Teacher.setLab(newTeacher.getLab());
@@ -57,7 +64,7 @@ public class TeacherService {
         });
   }
 
-  Teacher deleteTeacherById(String id) {
+  Teacher deleteTeacherById(Long id) {
     Teacher deletingTeacher = getTeacherById(id);
     repository.deleteById(id);
     return deletingTeacher;
@@ -65,6 +72,8 @@ public class TeacherService {
 
   List<Teacher> deleteAllTeacher() {
     List<Teacher> deletingAllTeacher = allTeacher();
+    teacherDetailService.deleteAllTeacherDetail();
+    lessonService.deleteAllLesson();
     repository.deleteAll();
     return deletingAllTeacher;
   }

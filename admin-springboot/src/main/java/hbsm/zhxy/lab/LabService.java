@@ -18,7 +18,7 @@ public class LabService {
     return repository.findAllExceptNoLab();
   }
 
-  Lab getLabById(String id) {
+  Lab getLabById(Long id) {
     return repository.findById(id).orElseThrow(() -> new LabNotFoundException());
   }
 
@@ -26,13 +26,11 @@ public class LabService {
     return repository.save(newLab);
   }
 
-  Lab updateLab(Lab newLab, String id) {
+  Lab updateLab(Lab newLab, Long id) {
     return repository.findById(id)
         .map(Lab -> {
           Lab.setName(newLab.getName());
           Lab.setDescription(newLab.getDescription());
-          Lab.setFailedNum(newLab.getFailedNum());
-          Lab.setSuccessNum(newLab.getSuccessNum());
           Lab.setDeviceCondition(newLab.getDeviceCondition());
           Lab.setDeviceCost(newLab.getDeviceCost());
           Lab.setProjectCost(newLab.getProjectCost());
@@ -45,7 +43,7 @@ public class LabService {
         });
   }
 
-  Lab deleteLabById(String id) {
+  Lab deleteLabById(Long id) {
     Lab deletingLab = getLabById(id);
     repository.deleteById(id);
     return deletingLab;

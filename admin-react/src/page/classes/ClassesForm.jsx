@@ -35,16 +35,6 @@ export default function ClassesForm({ form, setForm }) {
               size="small"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <TextField
-              value={form.stuNum}
-              onChange={(e) => {
-                setForm({ ...form, stuNum: e.target.value });
-              }}
-              label="学生人数"
-              size="small"
-            />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               value={form.description}

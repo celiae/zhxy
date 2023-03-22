@@ -3,6 +3,8 @@ package hbsm.zhxy.teacher;
 import hbsm.zhxy.department.Department;
 import hbsm.zhxy.lab.Lab;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +14,8 @@ import lombok.Data;
 @Data
 public class Teacher {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "lab_id")
     private Lab lab;

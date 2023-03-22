@@ -1,6 +1,8 @@
 package hbsm.zhxy.admin;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -8,7 +10,8 @@ import lombok.Data;
 @Data
 public class Admin {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String avatar;
     private String username;
     private String password;

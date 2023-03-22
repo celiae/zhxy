@@ -1,9 +1,22 @@
 import React from "react";
-import { Autocomplete, Avatar, Grid, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Avatar,
+  FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Slider,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useQuery } from "react-query";
 import { labList } from "../../api/lab";
 import Loading from "../../components/progress/Loading";
 import { departmentList } from "../../api/department";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function TeacherForm({
   teacherBrief,
@@ -13,7 +26,11 @@ export default function TeacherForm({
 }) {
   const [lab, setLab] = React.useState(null);
   const [department, setDepartment] = React.useState(null);
-
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   let allLab = [];
   const lab_list = useQuery("labList", labList);
 
@@ -139,15 +156,27 @@ export default function TeacherForm({
       </Grid>
 
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
-          value={teacherBrief.password}
-          onChange={(e) => {
-            setTeacherBrief({ ...teacherBrief, password: e.target.value });
-          }}
-          label="密码"
-          size="small"
-          type={"password"}
-        />
+        <FormControl variant="outlined">
+          <InputLabel>密码</InputLabel>
+          <OutlinedInput
+            type={showPassword ? "text" : "password"}
+            value={teacherBrief.password}
+            onChange={(e) => {
+              setTeacherBrief({ ...teacherBrief, password: e.target.value });
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField
@@ -232,7 +261,8 @@ export default function TeacherForm({
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>教学质量 {teacherDetail.teachingQuality}</Typography>
+        <Slider
           value={teacherDetail.teachingQuality}
           onChange={(e) => {
             setTeacherDetail({
@@ -240,24 +270,25 @@ export default function TeacherForm({
               teachingQuality: e.target.value,
             });
           }}
-          label="教学质量"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>教研水平 {teacherDetail.research}</Typography>
+        <Slider
           value={teacherDetail.research}
           onChange={(e) => {
-            setTeacherDetail({ ...teacherDetail, research: e.target.value });
+            setTeacherDetail({
+              ...teacherDetail,
+              research: e.target.value,
+            });
           }}
-          label="教研水平"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>政治思想 {teacherDetail.politicalIdeology}</Typography>
+        <Slider
           value={teacherDetail.politicalIdeology}
           onChange={(e) => {
             setTeacherDetail({
@@ -265,42 +296,46 @@ export default function TeacherForm({
               politicalIdeology: e.target.value,
             });
           }}
-          label="政治思想"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>动手能力 {teacherDetail.practical}</Typography>
+        <Slider
           value={teacherDetail.practical}
           onChange={(e) => {
-            setTeacherDetail({ ...teacherDetail, practical: e.target.value });
+            setTeacherDetail({
+              ...teacherDetail,
+              practical: e.target.value,
+            });
           }}
-          label="动手能力"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>纪律 {teacherDetail.discipline}</Typography>
+        <Slider
           value={teacherDetail.discipline}
           onChange={(e) => {
-            setTeacherDetail({ ...teacherDetail, discipline: e.target.value });
+            setTeacherDetail({
+              ...teacherDetail,
+              discipline: e.target.value,
+            });
           }}
-          label="纪律"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <TextField
+        <Typography>评价 {teacherDetail.comment}</Typography>
+        <Slider
           value={teacherDetail.comment}
           onChange={(e) => {
-            setTeacherDetail({ ...teacherDetail, comment: e.target.value });
+            setTeacherDetail({
+              ...teacherDetail,
+              comment: e.target.value,
+            });
           }}
-          label="评价"
-          size="small"
-          type={"number"}
+          valueLabelDisplay="auto"
         />
       </Grid>
       <Grid item xs={12}>

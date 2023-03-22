@@ -25,14 +25,11 @@ export async function teacherEntryDate() {
   const res = await fetch(`${API_TEACHER}/teacherEntry`);
   return res.json();
 }
-export async function teacherCreateOne(data, uuid) {
-  let obj = {};
-  Object.assign(obj, data);
-  obj.id = uuid;
+export async function teacherCreateOne(data) {
   const res = await fetch(`${API_TEACHER}/createOne`, {
     headers: jsonHeaders,
     method: "POST",
-    body: JSON.stringify(obj),
+    body: JSON.stringify(data),
   });
   return res.json();
 }

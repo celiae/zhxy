@@ -14,13 +14,13 @@ import {
 import { Stack } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import RouteButton from "../../components/button/RouteButton";
-import SubmitButton from "../../components/button/SubmitButton";
-import SimpleAlert from "../../components/feedback/SimpleAlert";
-import Outter from "../../components/login/Outter";
-import { API_ADMIN } from "../../constant/api";
-import { getDateTime } from "../../util/useDate";
-import getUUID from "../../util/useUUID";
+import RouteButton from "../components/button/RouteButton";
+import SubmitButton from "../components/button/SubmitButton";
+import SimpleAlert from "../components/feedback/SimpleAlert";
+import Outter from "../components/login/Outter";
+import { API_ADMIN } from "../constant/api";
+import { getDateTime } from "../util/useDate";
+import getUUID from "../util/useUUID";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
 export default function Signup() {

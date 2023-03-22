@@ -31,11 +31,11 @@ public class StudentMediaService {
     return studentMediaRepository.findAll();
   }
 
-  public StudentMedia getStudentMediaById(String id) {
+  public StudentMedia getStudentMediaById(Long id) {
     return studentMediaRepository.findById(id).orElseThrow(() -> new StudentMediaNotFoundException());
   }
 
-  public List<StudentMedia> getMediaByStudentId(String studentId) {
+  public List<StudentMedia> getMediaByStudentId(Long studentId) {
     return studentMediaRepository.findStudentMediaByStudentId(studentId)
         .orElseThrow(() -> new StudentMediaNotFoundException());
   }
@@ -44,12 +44,12 @@ public class StudentMediaService {
     return studentMediaRepository.save(newStudentDetail);
   }
 
-  public void uploadMedia(MultipartFile[] file, String studentId) {
+  public void uploadMedia(MultipartFile[] file, Long studentId) {
     Student student = studentRepository.findById(studentId).orElse(null);
     saveMediaWithStudent(file, student);
   }
 
-  public StudentMedia updateStudentMedia(StudentMedia newStudentDetail, String id) {
+  public StudentMedia updateStudentMedia(StudentMedia newStudentDetail, Long id) {
     return studentMediaRepository.findById(id)
         .map(StudentDetail -> {
           StudentDetail.setStudent(newStudentDetail.getStudent());
@@ -80,7 +80,6 @@ public class StudentMediaService {
 
       fileService.storeFile(files[i], absFilePath);
       StudentMedia newStudentMedia = new StudentMedia();
-      newStudentMedia.setId(uuid);
       newStudentMedia.setStudent(student);
       newStudentMedia.setFilename(files[i].getOriginalFilename());
       newStudentMedia.setPath(absFilePath.toString());
@@ -89,7 +88,7 @@ public class StudentMediaService {
     }
   }
 
-  public void deleteByStudentId(String studentId) {
+  public void deleteByStudentId(Long studentId) {
     List<StudentMedia> deletingAllMedia = studentMediaRepository.findStudentMediaByStudentId(studentId)
         .orElseThrow(() -> new StudentMediaNotFoundException());
     for (int i = 0; i < deletingAllMedia.size(); i++) {
@@ -99,7 +98,7 @@ public class StudentMediaService {
     studentMediaRepository.deleteAllByStudentId(studentId);
   }
 
-  public void deleteFileById(String id) {
+  public void deleteFileById(Long id) {
     StudentMedia deletingMedia = studentMediaRepository.findById(id)
         .orElseThrow(() -> new StudentMediaNotFoundException());
     String path = deletingMedia.getPath();

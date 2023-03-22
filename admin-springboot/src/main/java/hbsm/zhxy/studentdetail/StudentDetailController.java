@@ -29,7 +29,7 @@ public class StudentDetailController {
     }
 
     @GetMapping("/detail/{id}")
-    StudentDetail detail(@PathVariable String id) {
+    StudentDetail detail(@PathVariable Long id) {
         return studentDetailService.getStudentDetailById(id);
     }
 
@@ -39,12 +39,12 @@ public class StudentDetailController {
     }
 
     @PutMapping("/update/{id}")
-    StudentDetail update(@RequestBody StudentDetail newStudentDetail, @PathVariable String id) {
+    StudentDetail update(@RequestBody StudentDetail newStudentDetail, @PathVariable Long id) {
         return studentDetailService.updateStudentDetail(newStudentDetail, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    StudentDetail deleteOneStudent(@PathVariable String id) {
+    StudentDetail deleteOneStudent(@PathVariable Long id) {
         return studentDetailService.deleteStudentDetailById(id);
     }
 
