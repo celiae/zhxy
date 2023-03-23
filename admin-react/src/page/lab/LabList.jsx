@@ -34,14 +34,24 @@ export default function LabList() {
       ),
     },
     {
+      field: "location",
+      headerName: "地点",
+      width: 200,
+    },
+    {
       field: "projectCost",
       headerName: "项目资金",
       width: 150,
     },
     {
-      field: "location",
-      headerName: "地点",
-      width: 200,
+      field: "deviceCost",
+      headerName: "设备资金",
+      width: 150,
+    },
+    {
+      field: "workload",
+      headerName: "工作量指数",
+      width: 150,
     },
   ];
   return (

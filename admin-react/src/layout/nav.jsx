@@ -19,6 +19,11 @@ const getAllNav = (user) => {
       icon: <FaUserGraduate />,
     },
     {
+      name: "学生考试成绩",
+      href: `/${user.username}${ROUTE.SCORE}`,
+      icon: <FaUserGraduate />,
+    },
+    {
       name: "教师",
       href: `/${user.username}${ROUTE.TEACHER}`,
       icon: <FaChalkboardTeacher />,
@@ -34,6 +39,11 @@ const getAllNav = (user) => {
       icon: <BsTable />,
     },
     {
+      name: "教室",
+      href: `/${user.username}${ROUTE.CLASSROOM}`,
+      icon: <ImLab />,
+    },
+    {
       name: "实验室",
       href: `/${user.username}${ROUTE.LAB}`,
       icon: <ImLab />,
@@ -44,14 +54,14 @@ const getAllNav = (user) => {
       icon: <LocationCityIcon />,
     },
     {
+      name: "考试",
+      href: `/${user.username}${ROUTE.EXAM}`,
+      icon: <DriveFileRenameOutlineIcon />,
+    },
+    {
       name: "统计",
       href: `/${user.username}${ROUTE.CHART}`,
       icon: <FaRegChartBar />,
-    },
-    {
-      name: "发布考试",
-      href: `/${user.username}${ROUTE.EXAM}`,
-      icon: <DriveFileRenameOutlineIcon />,
     },
   ];
   return nav;

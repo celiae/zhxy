@@ -158,18 +158,13 @@ export default function StudentDetail() {
                   </Typography>
                 )}
               </Grid>
+              <Grid item xs={12}>
+                <TitleValue
+                  title={"简介"}
+                  value={studentDetail.data.description}
+                />
+              </Grid>
             </Grid>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader title="简介" subheader="简洁的文字介绍" />
-          <CardContent>
-            <Typography variant="h6">
-              {studentDetail.data.description}
-            </Typography>
           </CardContent>
         </Card>
       </Grid>

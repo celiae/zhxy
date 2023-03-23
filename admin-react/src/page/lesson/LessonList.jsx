@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CusDataGrid from "../../components/table/CusDataGrid";
 import { Typography } from "@mui/material";
+function getTeacherName(params) {
+  return params.row.teacher.firstname + " " + params.row.teacher.lastname;
+}
 export default function LessonList() {
   const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
@@ -33,6 +36,12 @@ export default function LessonList() {
       ),
     },
     {
+      field: "teacher",
+      headerName: "课任老师",
+      width: 150,
+      valueGetter: getTeacherName,
+    },
+    {
       field: "type",
       headerName: "类型",
       width: 150,
@@ -42,7 +51,13 @@ export default function LessonList() {
       headerName: "学时",
       width: 200,
     },
+    {
+      field: "level",
+      headerName: "难度指数",
+      width: 200,
+    },
   ];
+  console.log(data);
   return (
     <CusDataGrid
       columns={columns}

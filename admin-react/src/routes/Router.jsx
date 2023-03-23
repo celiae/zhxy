@@ -14,6 +14,7 @@ import setting from "./setting";
 import student from "./student";
 import teacher from "./teacher";
 import exam from "./exam";
+import score from "./score";
 
 const initailRouter = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const initailRouter = createBrowserRouter([
           },
           teacher,
           student,
+          score,
           classes,
           lesson,
           lab,

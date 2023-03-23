@@ -29,8 +29,11 @@ public class LessonService {
   Lesson updateLesson(Lesson newLesson, Long id) {
     return repository.findById(id)
         .map(Lesson -> {
-          Lesson.setName(newLesson.getName());
           Lesson.setTeacher(newLesson.getTeacher());
+          Lesson.setName(newLesson.getName());
+          Lesson.setType(newLesson.getType());
+          Lesson.setHours(newLesson.getHours());
+          Lesson.setLevel(newLesson.getLevel());
           return repository.save(Lesson);
         }).orElseGet(() -> {
           newLesson.setId(id);

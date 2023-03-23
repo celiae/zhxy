@@ -43,6 +43,11 @@ export default function ClassesList() {
       headerName: "专业",
       width: 200,
     },
+    {
+      field: "description",
+      headerName: "简述",
+      width: 400,
+    },
   ];
   return (
     <CusDataGrid

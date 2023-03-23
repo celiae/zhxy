@@ -8,7 +8,7 @@ import {
   AreaChart,
 } from "recharts";
 
-export default function ChartArea({ data }) {
+export default function ChartArea({ data, XdataKey, dataKey }) {
   return (
     <AreaChart
       width={1000}
@@ -31,21 +31,21 @@ export default function ChartArea({ data }) {
           <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
         </linearGradient>
       </defs>
-      <XAxis dataKey="entryDate" />
+      <XAxis dataKey={XdataKey} />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
       <Area
         type="monotone"
-        dataKey="salary"
-        stroke="#03a9f4"
+        dataKey={dataKey[0]}
+        stroke="#8884d8"
         fillOpacity={1}
         fill="url(#colorUv)"
       />
       <Area
         type="monotone"
-        dataKey="reward"
-        stroke="#ffb74d"
+        dataKey={dataKey[1]}
+        stroke="#82ca9d"
         fillOpacity={1}
         fill="url(#colorPv)"
       />

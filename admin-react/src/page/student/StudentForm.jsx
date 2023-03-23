@@ -4,7 +4,6 @@ import {
   TextField,
   Avatar,
   Autocomplete,
-  Box,
   Slider,
   Typography,
   FormControl,
@@ -138,7 +137,7 @@ export default function StudentForm({
           <DatePicker
             value={dayjs(studentDetail.birthDate)}
             onChange={(newValue) => {
-              console.log(dayjs(studentDetail.birthDate).format());
+              console.log(studentDetail.birthDate);
               setStudentDetail({
                 ...studentDetail,
                 birthDate: newValue,

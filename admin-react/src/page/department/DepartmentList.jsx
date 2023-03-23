@@ -43,6 +43,16 @@ export default function DepartmentList() {
       headerName: "部门预算",
       width: 200,
     },
+    {
+      field: "createTime",
+      headerName: "成立时间",
+      width: 200,
+    },
+    {
+      field: "description",
+      headerName: "介绍",
+      width: 250,
+    },
   ];
   return (
     <Box>

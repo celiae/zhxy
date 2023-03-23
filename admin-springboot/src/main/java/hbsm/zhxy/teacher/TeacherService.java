@@ -44,7 +44,9 @@ public class TeacherService {
   }
 
   Teacher createTeacher(Teacher newTeacher) {
-    return repository.save(newTeacher);
+    repository.save(newTeacher);
+    repository.flush();
+    return newTeacher;
   }
 
   Teacher updateTeacher(Teacher newTeacher, Long id) {

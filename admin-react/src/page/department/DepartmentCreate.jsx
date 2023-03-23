@@ -3,17 +3,14 @@ import { useNavigate } from "react-router-dom";
 import DepartmentForm from "./DepartmentForm";
 import { randomDepartment } from "../../lib/random/department";
 import { departmentCreateOne } from "../../api/department";
-import { Button, Card, CardContent, Grid, Stack } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 
 export default function DepartmentCreate() {
   const navigate = useNavigate();
   const [form, setForm] = React.useState(randomDepartment);
-  const handleBack = () => {
-    navigate(-1, { replace: true });
-  };
   const handleSubmit = () => {
     departmentCreateOne(form);
-    handleBack();
+    navigate(-1, { replace: true });
   };
   return (
     <Grid container spacing={2}>

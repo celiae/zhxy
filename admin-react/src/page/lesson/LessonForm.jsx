@@ -9,6 +9,7 @@ import {
   FormControl,
   Card,
   CardContent,
+  Rating,
 } from "@mui/material";
 import { teacherList } from "../../api/teacher";
 import Loading from "../../components/progress/Loading";
@@ -101,6 +102,14 @@ export default function LessonForm({ form, setForm }) {
               label="学时"
               size="small"
               type={"number"}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Rating
+              value={form.level}
+              onChange={(event, newValue) => {
+                setForm({ ...form, level: newValue });
+              }}
             />
           </Grid>
         </Grid>

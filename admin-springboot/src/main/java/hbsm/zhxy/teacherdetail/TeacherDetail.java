@@ -1,7 +1,10 @@
 package hbsm.zhxy.teacherdetail;
 
+import hbsm.zhxy.teacher.Teacher;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Entity
@@ -9,6 +12,11 @@ import lombok.Data;
 public class TeacherDetail {
     @Id
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Teacher teacher;
+
     private String gender;
     private String entryDate;
     private String email;

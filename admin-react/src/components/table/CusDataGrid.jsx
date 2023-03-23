@@ -41,27 +41,31 @@ export default function CusDataGrid({ columns, rows, handleDeleteAll }) {
           </Button>
         </Stack>
       </Grid>
-      <Card>
-        <CardContent sx={{ overflow: "auto" }}>
-          <Grid item>
-            <Box sx={{ height: 450, width: "100%" }}>
-              <DataGrid
-                localeText={zhCN.components.MuiDataGrid.defaultProps.localeText}
-                apiRef={apiRef}
-                loading={rows ? false : true}
-                rows={rows ? rows : []}
-                columns={columns}
-                checkboxSelection
-                disableRowSelectionOnClick
-                slots={{
-                  loadingOverlay: LinearProgress,
-                  toolbar: GridToolbar,
-                }}
-              />
-            </Box>
-          </Grid>
-        </CardContent>
-      </Card>
+      <Grid item xs={12}>
+        <Card>
+          <CardContent sx={{ overflow: "auto" }}>
+            <Grid item>
+              <Box sx={{ height: 650, width: "100%" }}>
+                <DataGrid
+                  localeText={
+                    zhCN.components.MuiDataGrid.defaultProps.localeText
+                  }
+                  apiRef={apiRef}
+                  loading={rows ? false : true}
+                  rows={rows ? rows : []}
+                  columns={columns}
+                  checkboxSelection
+                  disableRowSelectionOnClick
+                  slots={{
+                    loadingOverlay: LinearProgress,
+                    toolbar: GridToolbar,
+                  }}
+                />
+              </Box>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
     </Grid>
   );
 }

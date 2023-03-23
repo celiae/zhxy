@@ -8,7 +8,6 @@ import { labNumber } from "../../api/lab";
 import { departmentNumber } from "../../api/department";
 import HomeData from "./HomeData";
 import ChartArea from "../../components/chart/ChartArea";
-import RouteButton from "../../components/button/RouteButton";
 export default function Home() {
   const studentNum = useQuery("studentNumber", studentNumber);
   const teacherNum = useQuery("teacherNumber", teacherNumber);
@@ -62,14 +61,16 @@ export default function Home() {
           </Typography>
         </HomeData>
       </Grid>
-      <Grid item xs={6} md={4} lg={3}>
-        <RouteButton path={"table"} msg={"所有表"} />
-      </Grid>
+      <Grid item xs={6} md={4} lg={3}></Grid>
       <Grid item xs={12}>
         <Card>
           <CardContent sx={{ overflow: "auto" }}>
             <Typography variant="body1">教师入职时薪资与奖金</Typography>
-            <ChartArea data={teacherEntryChart} />
+            <ChartArea
+              data={teacherEntryChart}
+              XdataKey="entryDate"
+              dataKey={["salary", "reward"]}
+            />
           </CardContent>
         </Card>
       </Grid>

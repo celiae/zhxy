@@ -3,8 +3,10 @@ import LessonForm from "./LessonForm";
 import { lesson } from "../../constant/initial";
 import { lessonCreateOne } from "../../api/lesson";
 import { Button, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function LessonCreate() {
+  const navigate = useNavigate();
   const [form, setForm] = React.useState(lesson);
   const handleSubmit = () => {
     lessonCreateOne(form);

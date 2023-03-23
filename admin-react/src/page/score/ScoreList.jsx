@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
 import { useQuery } from "react-query";
 import Loading from "../../components/progress/Loading";
-import ScoreTable from "./ScoreTable";
 import { scoreList } from "../../api/score";
-import RouteButton from "../../components/button/RouteButton";
+import CusDataGrid from "../../components/table/CusDataGrid";
 
 export default function ScoreList() {
   const { data, status } = useQuery("scoreList", scoreList);
@@ -14,9 +12,10 @@ export default function ScoreList() {
   }, [data]);
   if (status === "loading") return <Loading />;
   return (
-    <Box>
-      <ScoreTable data={rows} setData={setRows} />
-      <RouteButton color={"secondary"} msg="添加" path={"create"} />
-    </Box>
+    <CusDataGrid
+      columns={columns}
+      rows={rows}
+      handleDeleteAll={handleDeleteAll}
+    />
   );
 }

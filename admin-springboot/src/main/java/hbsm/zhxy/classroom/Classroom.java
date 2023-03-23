@@ -1,6 +1,6 @@
-package hbsm.zhxy.lesson;
+package hbsm.zhxy.classroom;
 
-import hbsm.zhxy.teacher.Teacher;
+import hbsm.zhxy.department.Department;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,17 +11,18 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Lesson {
+public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    @JoinColumn(name = "department_id")
+    private Department department;
 
-    private String name;
+    private String roomNumber;
+    private String location;
     private String type;
-    private int hours;
-    private int level;
+    private Integer seats;
+    private Boolean active;
 }
