@@ -7,6 +7,10 @@ import Loading from "../../components/progress/Loading";
 const chartData = (name, value) => {
   return { name: name, value: value };
 };
+const pie = {
+  width: 460,
+  height: 300,
+};
 export default function ChartLab() {
   const lab = useQuery("labList", labList);
   const labDevCostChar = [];
@@ -20,7 +24,12 @@ export default function ChartLab() {
         <Card>
           <CardHeader title="实验室资金占比" subheader="单位：元" />
           <CardContent>
-            <ChartPie data={lab.data} dataKey={"projectCost"} />
+            <ChartPie
+              data={lab.data}
+              dataKey={"projectCost"}
+              width={pie.width}
+              height={pie.height}
+            />
           </CardContent>
         </Card>
       </Grid>
@@ -28,15 +37,12 @@ export default function ChartLab() {
         <Card>
           <CardHeader title="实验室设备预算占比" subheader="单位：元" />
           <CardContent>
-            <ChartPie data={labDevCostChar} dataKey={"value"} />
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12} md={8} lg={6}>
-        <Card>
-          <CardHeader title="实验室设备预算占比" subheader="单位：元" />
-          <CardContent>
-            <ChartPie data={labDevCostChar} dataKey={"value"} />
+            <ChartPie
+              data={labDevCostChar}
+              dataKey={"value"}
+              width={pie.width}
+              height={pie.height}
+            />
           </CardContent>
         </Card>
       </Grid>

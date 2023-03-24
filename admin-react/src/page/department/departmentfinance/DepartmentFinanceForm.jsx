@@ -1,9 +1,6 @@
 import { Grid, TextField } from "@mui/material";
-import { DatePicker, LocalizationProvider, zhCN } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from "dayjs";
 import React from "react";
-import { getDateTime } from "../../../util/useDate";
+import ConDatePicker from "../../../components/form/ConDatePicker";
 
 export default function DepartmentFinanceForm({ form, setForm }) {
   return (
@@ -31,23 +28,7 @@ export default function DepartmentFinanceForm({ form, setForm }) {
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <LocalizationProvider
-          dateAdapter={AdapterDayjs}
-          localeText={
-            zhCN.components.MuiLocalizationProvider.defaultProps.localeText
-          }
-        >
-          <DatePicker
-            value={dayjs(form.date)}
-            onChange={(newValue) => {
-              setForm({
-                ...form,
-                date: getDateTime(newValue),
-              });
-            }}
-            label="时间"
-          />
-        </LocalizationProvider>
+        <ConDatePicker label={"时间"} form={form} setForm={setForm} />
       </Grid>
       <Grid item xs={12}>
         <TextField

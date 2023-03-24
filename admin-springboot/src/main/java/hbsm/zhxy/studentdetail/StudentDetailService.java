@@ -22,6 +22,14 @@ public class StudentDetailService {
     return repository.findById(id).orElseThrow(() -> new StudentDetailNotFoundException());
   }
 
+  List<StudentDetail> getTop3StudyStudent() {
+    return repository.findTop3StudyStudent();
+  }
+
+  List<StudentDetail> getTop3CompetitionStudent() {
+    return repository.findTop3CompetitionStudent();
+  }
+
   StudentDetail createStudentDetail(StudentDetail newStudentDetail) {
     return repository.save(newStudentDetail);
   }

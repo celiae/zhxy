@@ -8,7 +8,6 @@ export default function ExamCreate() {
   const navigate = useNavigate();
   const [form, setForm] = React.useState({});
   const handleSubmit = async () => {
-    console.log(form);
     // await examCreateOne(form);
     navigate(-1);
   };

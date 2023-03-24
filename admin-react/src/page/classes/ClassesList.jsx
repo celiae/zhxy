@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { classesDeleteAll, classesList } from "../../api/classes";
 import { useSelector } from "react-redux";
-import CusDataGrid from "../../components/table/CusDataGrid";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
 
 export default function ClassesList() {
   const navigate = useNavigate();

@@ -3,7 +3,6 @@ import {
   Grid,
   TextField,
   Avatar,
-  Autocomplete,
   Slider,
   Typography,
   FormControl,
@@ -12,42 +11,15 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import { labList } from "../../api/lab";
-import Loading from "../../components/progress/Loading";
-import { useQuery } from "react-query";
-import { classesList } from "../../api/classes";
-import { LocalizationProvider, zhCN } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
+import SelectClasses from "../../components/form/SelectClasses";
+import SelectLab from "../../components/form/SelectLab";
+import ConDatePicker from "../../components/form/ConDatePicker";
 export default function StudentForm({
   student,
   setStudent,
   studentDetail,
   setStudentDetail,
 }) {
-  const [value_lab, setValueLab] = React.useState(null);
-  const [value_classes, setValueClasses] = React.useState(null);
-
-  let allLab = [];
-  let allClasses = [];
-  const lab = useQuery("labList", labList);
-  const classes = useQuery("classesList", classesList);
-
-  if (lab.status === "loading" || classes.status === "loading")
-    return <Loading />;
-  lab.data.forEach((element) => {
-    allLab.push({
-      id: element.id,
-      name: element.name,
-    });
-  });
-  classes.data.forEach((element) => {
-    allClasses.push({
-      id: element.id,
-      name: element.name,
-    });
-  });
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -89,63 +61,14 @@ export default function StudentForm({
         </FormControl>
       </Grid>
       <Grid item xs={12}>
-        <Autocomplete
-          sx={{ width: 300 }}
-          disablePortal
-          options={allClasses}
-          renderOption={(props, option) => (
-            <li {...props} key={option.id}>
-              {option.name}
-            </li>
-          )}
-          getOptionLabel={(option) => {
-            if (typeof option === "string") {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          value={value_classes}
-          onChange={(event, newValue) => {
-            if (typeof newValue === "string") {
-              setValueClasses({
-                name: newValue,
-              });
-            } else if (newValue && newValue.inputValue) {
-              setValueClasses({
-                name: newValue.inputValue,
-              });
-            } else {
-              setValueClasses(newValue);
-            }
-            setStudent({ ...student, classes: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField {...params} size="small" label="班级" />
-          )}
-        />
+        <SelectClasses form={student} setForm={setStudent} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <LocalizationProvider
-          dateAdapter={AdapterDayjs}
-          localeText={
-            zhCN.components.MuiLocalizationProvider.defaultProps.localeText
-          }
-        >
-          <DatePicker
-            value={dayjs(studentDetail.birthDate)}
-            onChange={(newValue) => {
-              console.log(studentDetail.birthDate);
-              setStudentDetail({
-                ...studentDetail,
-                birthDate: newValue,
-              });
-            }}
-            label="出生日期"
-          />
-        </LocalizationProvider>
+        <ConDatePicker
+          label={"出生日期"}
+          form={studentDetail}
+          setForm={setStudentDetail}
+        />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField
@@ -159,43 +82,7 @@ export default function StudentForm({
         />
       </Grid>
       <Grid item xs={12}>
-        <Autocomplete
-          sx={{ width: 300 }}
-          disablePortal
-          options={allLab}
-          renderOption={(props, option) => (
-            <li {...props} key={option.id}>
-              {option.name}
-            </li>
-          )}
-          getOptionLabel={(option) => {
-            if (typeof option === "string") {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          value={value_lab}
-          onChange={(event, newValue) => {
-            if (typeof newValue === "string") {
-              setValueLab({
-                name: newValue,
-              });
-            } else if (newValue && newValue.inputValue) {
-              setValueLab({
-                name: newValue.inputValue,
-              });
-            } else {
-              setValueLab(newValue);
-            }
-            setStudent({ ...student, lab: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField {...params} size="small" label="实验室" />
-          )}
-        />
+        <SelectLab form={student} setForm={setStudent} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField

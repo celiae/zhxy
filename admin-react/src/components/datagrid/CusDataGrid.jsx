@@ -8,8 +8,8 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import RouteButton from "../../components/button/RouteButton";
-import CeAlertDialog from "../../components/feedback/CeAlertDialog";
+import RouteButton from "../button/RouteButton";
+import CeAlertDialog from "../feedback/CeAlertDialog";
 import { DataGrid, GridToolbar, useGridApiRef, zhCN } from "@mui/x-data-grid";
 
 export default function CusDataGrid({ columns, rows, handleDeleteAll }) {

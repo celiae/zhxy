@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { lessonDeleteAll, lessonList } from "../../api/lesson";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import CusDataGrid from "../../components/table/CusDataGrid";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
 import { Typography } from "@mui/material";
 function getTeacherName(params) {
   return params.row.teacher.firstname + " " + params.row.teacher.lastname;
@@ -57,7 +57,6 @@ export default function LessonList() {
       width: 200,
     },
   ];
-  console.log(data);
   return (
     <CusDataGrid
       columns={columns}

@@ -33,6 +33,16 @@ public class StudentDetailController {
         return studentDetailService.getStudentDetailById(id);
     }
 
+    @GetMapping("/goodStudy")
+    List<StudentDetail> goodStudy() {
+        return studentDetailService.getTop3StudyStudent();
+    }
+
+    @GetMapping("/goodCompetition")
+    List<StudentDetail> goodCompetition() {
+        return studentDetailService.getTop3CompetitionStudent();
+    }
+
     @PostMapping("/createOne")
     StudentDetail createOne(@RequestBody StudentDetail newStudentDetail) {
         return studentDetailService.createStudentDetail(newStudentDetail);

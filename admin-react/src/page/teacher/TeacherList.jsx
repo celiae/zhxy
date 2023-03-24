@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { teacherDeleteAll, teacherList } from "../../api/teacher";
 import { useSelector } from "react-redux";
-import CusDataGrid from "../../components/table/CusDataGrid";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
 import { teacherDetailList } from "../../api/teacherdetail";
 function getFullNameAvatar(params) {
   return {
@@ -110,7 +110,6 @@ export default function TeacherList() {
       valueGetter: getReward,
     },
   ];
-  console.log(data);
   return (
     <CusDataGrid
       columns={columns}

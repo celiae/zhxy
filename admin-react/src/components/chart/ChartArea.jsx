@@ -8,11 +8,11 @@ import {
   AreaChart,
 } from "recharts";
 
-export default function ChartArea({ data, XdataKey, dataKey }) {
+export default function ChartArea({ data, XdataKey, dataKey, width, height }) {
   return (
     <AreaChart
-      width={1000}
-      height={400}
+      width={width}
+      height={height}
       data={data}
       margin={{
         top: 10,

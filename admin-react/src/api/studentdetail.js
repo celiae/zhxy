@@ -15,6 +15,14 @@ export async function studentOneDetail(id) {
   const res = await fetch(`${API_STUDENTDETAIL}/detail/${id}`);
   return res.json();
 }
+export async function studentStudyTop3() {
+  const res = await fetch(`${API_STUDENTDETAIL}/goodStudy`);
+  return res.json();
+}
+export async function studentCompetitionTop3() {
+  const res = await fetch(`${API_STUDENTDETAIL}/goodCompetition`);
+  return res.json();
+}
 export async function studentDetailCreateOne(data, id) {
   let obj = {};
   Object.assign(obj, data);

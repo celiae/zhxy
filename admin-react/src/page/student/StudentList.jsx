@@ -1,11 +1,16 @@
 import React from "react";
-import { Avatar, IconButton, Stack, Typography } from "@mui/material";
+import { Avatar, IconButton, Stack, Typography, Grid } from "@mui/material";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { studentDeleteAll } from "../../api/student";
-import CusDataGrid from "../../components/table/CusDataGrid";
-import { studentDetailList } from "../../api/studentdetail";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
+import {
+  studentCompetitionTop3,
+  studentDetailList,
+  studentStudyTop3,
+} from "../../api/studentdetail";
+import TopStudent from "./TopStudent";
 function getFullNameAvatar(params) {
   return {
     fullname: `${params.row.student.firstname || ""} ${
@@ -39,6 +44,11 @@ export default function StudentList() {
   const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
   const { data, status } = useQuery("studentDetailList", studentDetailList);
+  const goodStudy = useQuery("studentStudyTop3", studentStudyTop3);
+  const goodCompetition = useQuery(
+    "studentCompetitionTop3",
+    studentCompetitionTop3
+  );
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
     setRows(data);
@@ -51,7 +61,7 @@ export default function StudentList() {
     {
       field: "fullname",
       headerName: "姓名",
-      width: 150,
+      width: 180,
       valueGetter: getFullNameAvatar,
       renderCell: (params) => (
         <Stack spacing={1} direction={"row"} alignItems="center">
@@ -104,10 +114,28 @@ export default function StudentList() {
     },
   ];
   return (
-    <CusDataGrid
-      columns={columns}
-      rows={rows}
-      handleDeleteAll={handleDeleteAll}
-    />
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6} lg={4}>
+        <TopStudent
+          title={"学习力前三学生"}
+          data={goodStudy.data}
+          status={goodStudy.status}
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <TopStudent
+          title={"竞赛前三学生"}
+          data={goodCompetition.data}
+          status={goodCompetition.status}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <CusDataGrid
+          columns={columns}
+          rows={rows}
+          handleDeleteAll={handleDeleteAll}
+        />
+      </Grid>
+    </Grid>
   );
 }

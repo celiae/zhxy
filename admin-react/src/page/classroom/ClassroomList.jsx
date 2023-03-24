@@ -1,32 +1,32 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { departmentDeleteAll, departmentList } from "../../api/department";
+import { classroomDeleteAll, classroomList } from "../../api/classroom";
 import { useSelector } from "react-redux";
 import CusDataGrid from "../../components/datagrid/CusDataGrid";
 
-export default function DepartmentList() {
+export default function ClassroomList() {
   const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
-  const { data, status } = useQuery("departmentList", departmentList);
+  const { data, status } = useQuery("classroomList", classroomList);
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
     setRows(data);
   }, [data]);
   const handleDeleteAll = () => {
-    departmentDeleteAll();
+    classroomDeleteAll();
     setRows([]);
   };
   const columns = [
     {
       field: "name",
-      headerName: "名称",
+      headerName: "班级",
       width: 150,
       renderCell: (params) => (
         <Typography
           onClick={() => {
-            navigate(`/${username}/department/${params.id}`);
+            navigate(`/${username}/classroom/${params.id}`);
           }}
         >
           {params.value}
@@ -34,33 +34,26 @@ export default function DepartmentList() {
       ),
     },
     {
-      field: "manager",
-      headerName: "管理者",
+      field: "grade",
+      headerName: "年级",
       width: 150,
     },
     {
-      field: "budget",
-      headerName: "部门预算",
-      width: 200,
-    },
-    {
-      field: "createTime",
-      headerName: "成立时间",
+      field: "speciality",
+      headerName: "专业",
       width: 200,
     },
     {
       field: "description",
-      headerName: "介绍",
-      width: 250,
+      headerName: "简述",
+      width: 400,
     },
   ];
   return (
-    <Box>
-      <CusDataGrid
-        columns={columns}
-        rows={rows}
-        handleDeleteAll={handleDeleteAll}
-      />
-    </Box>
+    <CusDataGrid
+      columns={columns}
+      rows={rows}
+      handleDeleteAll={handleDeleteAll}
+    />
   );
 }

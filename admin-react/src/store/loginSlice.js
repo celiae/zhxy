@@ -10,8 +10,13 @@ export const loginSlice = createSlice({
     createDate: "",
     lastLogin: "",
     contribution: 0,
+    themeMode: localStorage.getItem("themeMode") || "light",
   },
   reducers: {
+    setDarkMode: (state, action) => {
+      state.themeMode = action.payload;
+      localStorage.setItem("themeMode", action.payload);
+    },
     setSystem: (state, action) => {
       state.system = action.payload;
       localStorage.setItem("system", "zhxy");
@@ -50,6 +55,7 @@ export const loginSlice = createSlice({
 });
 
 export const {
+  setDarkMode,
   setSystem,
   setUsername,
   setLogin,

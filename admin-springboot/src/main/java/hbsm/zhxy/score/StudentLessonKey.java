@@ -11,7 +11,7 @@ public class StudentLessonKey implements Serializable {
   @Column(name = "student_id")
   Long studentId;
 
-  @Column(name = "lesson_id")
-  Long lessonId;
+  @Column(name = "exam_id")
+  Long examId;
 
 }

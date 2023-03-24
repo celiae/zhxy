@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FormControlLabel, Switch } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setMode } from "@/store/themeSlice";
+import { setDarkMode } from "../../store/loginSlice";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -53,20 +53,21 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function MuiSwitch() {
   const dispatch = useDispatch();
-  const mode = useSelector((state) => state.theme.mode);
-  const showMode = mode === "light" ? "光明" : "暗黑";
+  const themeMode =
+    useSelector((state) => state.login.themeMode) === "dark" ? true : false;
+  const showMode = themeMode ? "暗黑" : "光明";
   return (
     <div>
       <FormControlLabel
         label={`${showMode}模式`}
         onChange={(e) => {
           if (e.target.checked) {
-            dispatch(setMode("dark"));
+            dispatch(setDarkMode("dark"));
           } else {
-            dispatch(setMode("light"));
+            dispatch(setDarkMode("light"));
           }
         }}
-        checked={mode === "light" ? false : true}
+        checked={themeMode}
         control={<MaterialUISwitch sx={{ m: 1 }} />}
       />
     </div>

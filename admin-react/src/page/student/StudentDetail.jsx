@@ -93,7 +93,7 @@ export default function StudentDetail() {
           <CardHeader title="概要" subheader="" />
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <Typography variant="caption">班级</Typography>
                 {studentBrief.data.classes && (
                   <Typography variant="h6">
@@ -101,10 +101,10 @@ export default function StudentDetail() {
                   </Typography>
                 )}
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"性别"} value={studentDetail.data.gender} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"电话"} value={studentDetail.data.phone} />
               </Grid>
             </Grid>
@@ -116,37 +116,37 @@ export default function StudentDetail() {
           <CardHeader title="基本信息" subheader="详细" />
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"年龄"} value={age} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue
                   title={"出生日期"}
                   value={studentDetail.data.birthDate}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"年级"} value={studentDetail.data.grade} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue
                   title={"最近登录时间"}
                   value={studentDetail.data.lastLogin}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"邮箱"} value={studentDetail.data.email} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"微信"} value={studentDetail.data.wechat} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <TitleValue title={"QQ"} value={studentDetail.data.qq} />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={3}>
                 <Typography variant="caption">参与实验室</Typography>
                 {studentBrief.data.lab && (
-                  <Typography variant="h6">
+                  <Typography variant="h12">
                     <Link
                       onClick={() => {
                         gotoLab(studentBrief.data.lab.id);

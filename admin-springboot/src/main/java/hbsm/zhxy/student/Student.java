@@ -3,8 +3,8 @@ package hbsm.zhxy.student;
 import java.util.List;
 
 import hbsm.zhxy.classes.Classes;
+import hbsm.zhxy.exam.Exam;
 import hbsm.zhxy.lab.Lab;
-import hbsm.zhxy.lesson.Lesson;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,8 +31,8 @@ public class Student {
     private Classes classes;
 
     @ManyToMany
-    @JoinTable(name = "score", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "lesson_id"))
-    private List<Lesson> lessonList;
+    @JoinTable(name = "score", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "exam_id"))
+    private List<Exam> examList;
 
     private String avatar;
     private String firstname;

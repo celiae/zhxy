@@ -1,6 +1,6 @@
 package hbsm.zhxy.score;
 
-import hbsm.zhxy.lesson.Lesson;
+import hbsm.zhxy.exam.Exam;
 import hbsm.zhxy.student.Student;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -22,9 +22,9 @@ public class Score {
     private Student student;
 
     @ManyToOne
-    @MapsId("lessonId")
-    @JoinColumn(name = "lesson_id")
-    private Lesson lesson;
+    @MapsId("examId")
+    @JoinColumn(name = "exam_id")
+    private Exam exam;
 
     private Float score;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import {
   Grid,
   TextField,
-  Autocomplete,
   Select,
   MenuItem,
   InputLabel,
@@ -10,21 +9,10 @@ import {
   Card,
   CardContent,
   Rating,
+  Typography,
 } from "@mui/material";
-import { teacherList } from "../../api/teacher";
-import Loading from "../../components/progress/Loading";
-import { useQuery } from "react-query";
+import SelectTeacher from "../../components/form/SelectTeacher";
 export default function LessonForm({ form, setForm }) {
-  const [value, setValue] = React.useState(null);
-  let allTeacher = [];
-  const { data, status } = useQuery("teacherList", teacherList);
-  if (status === "loading") return <Loading />;
-  data.forEach((element) => {
-    allTeacher.push({
-      id: element.id,
-      name: element.firstname + element.lastname,
-    });
-  });
   return (
     <Card>
       <CardContent>
@@ -40,43 +28,7 @@ export default function LessonForm({ form, setForm }) {
             />
           </Grid>
           <Grid item xs={12}>
-            <Autocomplete
-              sx={{ width: 300 }}
-              disablePortal
-              options={allTeacher}
-              renderOption={(props, option) => (
-                <li {...props} key={option.id}>
-                  {option.name}
-                </li>
-              )}
-              getOptionLabel={(option) => {
-                if (typeof option === "string") {
-                  return option;
-                }
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-                return option.name;
-              }}
-              value={value}
-              onChange={(event, newValue) => {
-                if (typeof newValue === "string") {
-                  setValue({
-                    name: newValue,
-                  });
-                } else if (newValue && newValue.inputValue) {
-                  setValue({
-                    name: newValue.inputValue,
-                  });
-                } else {
-                  setValue(newValue);
-                }
-                setForm({ ...form, teacher: { id: newValue.id } });
-              }}
-              renderInput={(params) => (
-                <TextField {...params} size="small" label="任课教师" />
-              )}
-            />
+            <SelectTeacher form={form} setForm={setForm} />
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth size="small">
@@ -105,6 +57,7 @@ export default function LessonForm({ form, setForm }) {
             />
           </Grid>
           <Grid item xs={12}>
+            <Typography>难度指数</Typography>
             <Rating
               value={form.level}
               onChange={(event, newValue) => {

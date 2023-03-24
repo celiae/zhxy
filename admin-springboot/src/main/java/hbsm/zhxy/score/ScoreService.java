@@ -18,9 +18,9 @@ public class ScoreService {
     return repository.findAll();
   }
 
-  Score getScoreById(Long studentId, Long lessonId) {
-    return repository.findByStudentIdAndLessonId(
-        studentId, lessonId);
+  Score getScoreById(Long studentId, Long examId) {
+    return repository.findByStudentIdAndExamId(
+        studentId, examId);
   }
 
   Score createScore(Score newScore) {
@@ -28,15 +28,15 @@ public class ScoreService {
   }
 
   Score updateScore(Score newScore) {
-    Score studentLesson = getScoreById(newScore.getStudent().getId(),
-        newScore.getLesson().getId());
-    studentLesson.setScore(newScore.getScore());
-    return repository.save(studentLesson);
+    Score studentExam = getScoreById(newScore.getStudent().getId(),
+        newScore.getExam().getId());
+    studentExam.setScore(newScore.getScore());
+    return repository.save(studentExam);
   }
 
-  Score deleteScoreById(Long studentId, Long lessonId) {
-    Score deletingScore = getScoreById(studentId, lessonId);
-    repository.deleteByStudentIdAndLessonId(studentId, lessonId);
+  Score deleteScoreById(Long studentId, Long examId) {
+    Score deletingScore = getScoreById(studentId, examId);
+    repository.deleteByStudentIdAndExamId(studentId, examId);
     return deletingScore;
   }
 

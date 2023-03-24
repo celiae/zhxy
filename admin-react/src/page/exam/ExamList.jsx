@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { studentDeleteAll } from "../../api/student";
-import CusDataGrid from "../../components/table/CusDataGrid";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
 import { examList } from "../../api/exam";
 import RouteButton from "../../components/button/RouteButton";
 function getTeacherName(params) {

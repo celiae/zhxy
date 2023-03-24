@@ -13,11 +13,11 @@ import {
   TableRow,
 } from "@mui/material";
 import { getComparator, stableSort } from "../../util/tableUtils";
-import EnhancedTableHead from "../../components/table/EnhancedTableHead";
-import EnhancedTableToolbar from "../../components/table/EndnacedToolbar";
+import EnhancedTableHead from "../../components/datagrid/EnhancedTableHead";
+import EnhancedTableToolbar from "../../components/datagrid/EndnacedToolbar";
 import { useSelector } from "react-redux";
 import FormDialog from "../../components/feedback/FormDialog";
-import CustomPagination from "../../components/table/CustomPagination";
+import CustomPagination from "../../components/datagrid/CustomPagination";
 import { scoreHeadCells } from "../../constant/hc_score";
 import Loading from "../../components/progress/Loading";
 import { departmentDelete } from "../../api/department";

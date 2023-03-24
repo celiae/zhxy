@@ -57,7 +57,6 @@ export default function DepartmentDetail() {
   if (status === "loading" || department_finance.status === "loading")
     return <Loading />;
   department_finance.data.sort((a, b) => new Date(a.date) - new Date(b.date));
-  console.log(department_finance.data);
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>

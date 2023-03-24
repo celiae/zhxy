@@ -1,16 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import Loading from "../../components/progress/Loading";
-import { scoreList } from "../../api/score";
-import CusDataGrid from "../../components/table/CusDataGrid";
-
+import { scoreDeleteAll, scoreList } from "../../api/score";
+import CusDataGrid from "../../components/datagrid/CusDataGrid";
+function getFullname(params) {
+  return params.row.student.firstname + " " + params.row.student.lastname;
+}
+function getLessonName(params) {
+  return params.row.lesson.name;
+}
 export default function ScoreList() {
   const { data, status } = useQuery("scoreList", scoreList);
-  const [rows, setRows] = useState(data);
-  useEffect(() => {
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(() => {
     setRows(data);
   }, [data]);
-  if (status === "loading") return <Loading />;
+  const handleDeleteAll = () => {
+    scoreDeleteAll();
+    setRows([]);
+  };
+  const columns = [
+    {
+      field: "fullname",
+      headerName: "学生名",
+      width: 150,
+      valueGetter: getFullname,
+    },
+    {
+      field: "lesson",
+      headerName: "科目",
+      width: 150,
+      valueGetter: getLessonName,
+    },
+    {
+      field: "score",
+      headerName: "分数",
+      width: 150,
+    },
+  ];
   return (
     <CusDataGrid
       columns={columns}

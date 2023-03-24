@@ -70,6 +70,8 @@ export default function Home() {
               data={teacherEntryChart}
               XdataKey="entryDate"
               dataKey={["salary", "reward"]}
+              width={500}
+              height={400}
             />
           </CardContent>
         </Card>

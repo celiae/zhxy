@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import MuiSwitch from "../../components/button/MuiSwitch";
 
 export default function Settings() {
   return (
-    <div>Settings</div>
-  )
+    <div>
+      <MuiSwitch />
+    </div>
+  );
 }

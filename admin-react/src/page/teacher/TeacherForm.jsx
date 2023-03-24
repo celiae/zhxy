@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Autocomplete,
   Avatar,
   FormControl,
   Grid,
@@ -12,11 +11,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { labList } from "../../api/lab";
-import Loading from "../../components/progress/Loading";
-import { departmentList } from "../../api/department";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import SelectLab from "../../components/form/SelectLab";
+import SelectDepartment from "../../components/form/SelectDepartment";
 
 export default function TeacherForm({
   teacherBrief,
@@ -24,115 +21,21 @@ export default function TeacherForm({
   teacherDetail,
   setTeacherDetail,
 }) {
-  const [lab, setLab] = React.useState(null);
-  const [department, setDepartment] = React.useState(null);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  let allLab = [];
-  const lab_list = useQuery("labList", labList);
-
-  let allDepartment = [];
-  const department_list = useQuery("departmentList", departmentList);
-
-  if (lab_list.status === "loading" || department_list.status === "loading")
-    return <Loading />;
-  lab_list.data.forEach((element) => {
-    allLab.push({
-      id: element.id,
-      name: element.name,
-    });
-  });
-  department_list.data.forEach((element) => {
-    allDepartment.push({
-      id: element.id,
-      name: element.name,
-    });
-  });
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Avatar src={teacherBrief.avatar} />
       </Grid>
       <Grid item xs={12}>
-        <Autocomplete
-          sx={{ width: 300 }}
-          disablePortal
-          options={allLab}
-          renderOption={(props, option) => (
-            <li {...props} key={option.id}>
-              {option.name}
-            </li>
-          )}
-          getOptionLabel={(option) => {
-            if (typeof option === "string") {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          value={lab}
-          onChange={(event, newValue) => {
-            if (typeof newValue === "string") {
-              setLab({
-                name: newValue,
-              });
-            } else if (newValue && newValue.inputValue) {
-              setLab({
-                name: newValue.inputValue,
-              });
-            } else {
-              setLab(newValue);
-            }
-            setTeacherBrief({ ...teacherBrief, lab: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField {...params} size="small" label="实验室" />
-          )}
-        />
+        <SelectLab form={teacherBrief} setForm={setTeacherBrief} />
       </Grid>
       <Grid item xs={12}>
-        <Autocomplete
-          sx={{ width: 300 }}
-          disablePortal
-          options={allDepartment}
-          renderOption={(props, option) => (
-            <li {...props} key={option.id}>
-              {option.name}
-            </li>
-          )}
-          getOptionLabel={(option) => {
-            if (typeof option === "string") {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          value={department}
-          onChange={(event, newValue) => {
-            if (typeof newValue === "string") {
-              setDepartment({
-                name: newValue,
-              });
-            } else if (newValue && newValue.inputValue) {
-              setDepartment({
-                name: newValue.inputValue,
-              });
-            } else {
-              setDepartment(newValue);
-            }
-            setTeacherBrief({ ...teacherBrief, department: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField {...params} size="small" label="部门" />
-          )}
-        />
+        <SelectDepartment form={teacherBrief} setForm={setTeacherBrief} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TextField

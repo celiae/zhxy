@@ -8,6 +8,8 @@ import {
 import { ImLab } from "react-icons/im";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import ScoreboardIcon from "@mui/icons-material/Scoreboard";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 import * as ROUTE from "../constant/routes";
 
 const getAllNav = (user) => {
@@ -21,7 +23,7 @@ const getAllNav = (user) => {
     {
       name: "学生考试成绩",
       href: `/${user.username}${ROUTE.SCORE}`,
-      icon: <FaUserGraduate />,
+      icon: <ScoreboardIcon />,
     },
     {
       name: "教师",
@@ -41,7 +43,7 @@ const getAllNav = (user) => {
     {
       name: "教室",
       href: `/${user.username}${ROUTE.CLASSROOM}`,
-      icon: <ImLab />,
+      icon: <ApartmentIcon />,
     },
     {
       name: "实验室",
@@ -59,7 +61,7 @@ const getAllNav = (user) => {
       icon: <DriveFileRenameOutlineIcon />,
     },
     {
-      name: "统计",
+      name: "统计汇总",
       href: `/${user.username}${ROUTE.CHART}`,
       icon: <FaRegChartBar />,
     },

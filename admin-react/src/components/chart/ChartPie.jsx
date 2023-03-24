@@ -1,9 +1,9 @@
 import React from "react";
 import { Pie, PieChart } from "recharts";
 
-export default function ChartPie({ data, dataKey }) {
+export default function ChartPie({ data, dataKey, width, height }) {
   return (
-    <PieChart width={480} height={300}>
+    <PieChart width={width} height={height}>
       <Pie
         data={data}
         dataKey={dataKey}
@@ -33,7 +33,7 @@ export default function ChartPie({ data, dataKey }) {
             <text
               x={x}
               y={y}
-              fill="#8884d8"
+              fill="#2979ff"
               textAnchor={x > cx ? "start" : "end"}
               dominantBaseline="central"
             >
