@@ -117,14 +117,14 @@ export default function StudentList() {
     <Grid container spacing={2}>
       <Grid item xs={12} md={6} lg={4}>
         <TopStudent
-          title={"学习力前三学生"}
+          title={"学习力学生"}
           data={goodStudy.data}
           status={goodStudy.status}
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <TopStudent
-          title={"竞赛前三学生"}
+          title={"竞赛学生"}
           data={goodCompetition.data}
           status={goodCompetition.status}
         />

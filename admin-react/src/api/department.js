@@ -1,5 +1,4 @@
 import { API_DEPARTMENT } from "../constant/api";
-import getUUID from "../util/useUUID";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
 export async function departmentNumber() {

@@ -1,5 +1,4 @@
 import { API_LAB } from "../constant/api";
-import getUUID from "../util/useUUID";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
 export async function labNumber() {

@@ -77,10 +77,10 @@ function ResponsiveDrawer(props) {
               </Grid>
               <Grid item>
                 <Stack direction={"row"} alignItems="center" spacing={1}>
-                  <SearchDialog />
+                  {/* <SearchDialog />
                   <BarMail />
                   <BarNotice />
-                  <BarTrans />
+                  <BarTrans /> */}
                   <BarAvatar />
                 </Stack>
               </Grid>

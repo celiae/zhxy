@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import hbsm.zhxy.apartment.Apartment;
+import hbsm.zhxy.apartment.ApartmentRepository;
 import hbsm.zhxy.file.FileService;
-import hbsm.zhxy.student.Student;
-import hbsm.zhxy.student.StudentRepository;
 
 @Service
 public class StudentMediaService {
   private final Path rootLocation = Paths.get("../docker/nginx/uploads");
   @Autowired
-  private StudentRepository studentRepository;
+  private ApartmentRepository studentRepository;
   @Autowired
   private StudentMediaRepository studentMediaRepository;
   @Autowired
@@ -45,7 +45,7 @@ public class StudentMediaService {
   }
 
   public void uploadMedia(MultipartFile[] file, Long studentId) {
-    Student student = studentRepository.findById(studentId).orElse(null);
+    Apartment student = studentRepository.findById(studentId).orElse(null);
     saveMediaWithStudent(file, student);
   }
 
@@ -63,7 +63,7 @@ public class StudentMediaService {
         });
   }
 
-  public void saveMediaWithStudent(MultipartFile[] files, Student student) {
+  public void saveMediaWithStudent(MultipartFile[] files, Apartment student) {
     if (files.length <= 0) {
       System.out.println("空文件");
       return;

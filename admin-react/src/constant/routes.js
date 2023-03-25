@@ -1,6 +1,8 @@
 export const LANDING = "/";
 export const SIGN_UP = "/signup";
 export const SIGN_IN = "/signin";
+export const APARTMENT = "/apartment";
+export const REPAIR = "/repair";
 export const STUDENT = "/student";
 export const SCORE = "/score";
 export const TEACHER = "/teacher";

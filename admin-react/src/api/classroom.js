@@ -1,6 +1,11 @@
 import { API_CLASSROOM } from "../constant/api";
 let jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
+export async function classroomNumber() {
+  const res = await fetch(`${API_CLASSROOM}/number`);
+  return res.json();
+}
+
 export async function classroomList() {
   const res = await fetch(`${API_CLASSROOM}/all`);
   return res.json();

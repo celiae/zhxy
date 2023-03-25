@@ -16,6 +16,8 @@ import teacher from "./teacher";
 import exam from "./exam";
 import score from "./score";
 import classroom from "./classroom";
+import apartment from "./apartment";
+import repair from "./repair";
 
 const initailRouter = createBrowserRouter([
   {
@@ -38,6 +40,8 @@ const initailRouter = createBrowserRouter([
             index: true,
             element: <Home />,
           },
+          apartment,
+          repair,
           teacher,
           student,
           classroom,

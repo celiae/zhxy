@@ -44,10 +44,10 @@ export default function CeAlertDialog({
       </DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={handleClose}>
-          {alertDialog.buttonDisagree}
+          {alertDialog.buttonDisagree || "取消"}
         </Button>
         <Button variant="outlined" onClick={handleAgree}>
-          {alertDialog.buttonAgree}
+          {alertDialog.buttonAgree || "确定"}
         </Button>
       </DialogActions>
     </Dialog>

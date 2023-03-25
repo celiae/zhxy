@@ -10,11 +10,23 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import BusinessIcon from "@mui/icons-material/Business";
 import * as ROUTE from "../constant/routes";
 
 const getAllNav = (user) => {
   const nav = [
     { name: "首页", href: `/${user.username}`, icon: <SiHomebridge /> },
+    {
+      name: "公寓",
+      href: `/${user.username}${ROUTE.APARTMENT}`,
+      icon: <BusinessIcon />,
+    },
+    {
+      name: "维修",
+      href: `/${user.username}${ROUTE.REPAIR}`,
+      icon: <ConstructionIcon />,
+    },
     {
       name: "学生",
       href: `/${user.username}${ROUTE.STUDENT}`,

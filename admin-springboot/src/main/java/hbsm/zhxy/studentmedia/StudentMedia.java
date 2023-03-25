@@ -1,6 +1,6 @@
 package hbsm.zhxy.studentmedia;
 
-import hbsm.zhxy.student.Student;
+import hbsm.zhxy.apartment.Apartment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -15,7 +15,7 @@ public class StudentMedia {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Student student;
+    private Apartment student;
 
     private String filename;
     private String path;

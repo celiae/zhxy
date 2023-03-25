@@ -2,6 +2,7 @@ package hbsm.zhxy.student;
 
 import java.util.List;
 
+import hbsm.zhxy.apartment.Apartment;
 import hbsm.zhxy.classes.Classes;
 import hbsm.zhxy.exam.Exam;
 import hbsm.zhxy.lab.Lab;
@@ -25,6 +26,10 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "lab_id")
     private Lab lab;
+
+    @ManyToOne
+    @JoinColumn(name = "apartment_id")
+    private Apartment apartment;
 
     @ManyToOne
     @JoinColumn(name = "classes_id")
