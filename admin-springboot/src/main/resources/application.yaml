@@ -1,8 +1,13 @@
 spring:
   jpa:
-    show-sql: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
     open-in-view: true
-    properties.hibernate.enable_lazy_load_no_trans: true
+    properties:
+      hibernate:
+        format_sql: true
+        globally_quoted_identifiers: true
   datasource:
     url: jdbc:mysql://172.17.0.2:3306/zhxy
     username: root

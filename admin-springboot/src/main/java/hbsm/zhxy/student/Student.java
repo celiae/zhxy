@@ -35,9 +35,10 @@ public class Student {
     @JoinColumn(name = "classes_id")
     private Classes classes;
 
-    @ManyToMany
-    @JoinTable(name = "score", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "exam_id"))
-    private List<Exam> examList;
+    // @ManyToMany
+    // @JoinTable(name = "score", joinColumns = @JoinColumn(name = "student_id"),
+    // inverseJoinColumns = @JoinColumn(name = "exam_id"))
+    // private List<Exam> examList;
 
     private String avatar;
     private String firstname;

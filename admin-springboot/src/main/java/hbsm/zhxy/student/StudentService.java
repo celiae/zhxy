@@ -46,7 +46,7 @@ public class StudentService {
     return repository.findById(id)
         .map(Student -> {
           Student.setLab(newStudent.getLab());
-          Student.setExamList(newStudent.getExamList());
+          // Student.setExamList(newStudent.getExamList());
           Student.setAvatar(newStudent.getAvatar());
           Student.setFirstname(newStudent.getFirstname());
           Student.setLastname(newStudent.getLastname());

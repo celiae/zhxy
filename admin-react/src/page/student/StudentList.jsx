@@ -44,11 +44,11 @@ export default function StudentList() {
   const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
   const { data, status } = useQuery("studentDetailList", studentDetailList);
-  const goodStudy = useQuery("studentStudyTop3", studentStudyTop3);
-  const goodCompetition = useQuery(
-    "studentCompetitionTop3",
-    studentCompetitionTop3
-  );
+  // const goodStudy = useQuery("studentStudyTop3", studentStudyTop3);
+  // const goodCompetition = useQuery(
+  //   "studentCompetitionTop3",
+  //   studentCompetitionTop3
+  // );
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
     setRows(data);
@@ -76,12 +76,12 @@ export default function StudentList() {
         </Stack>
       ),
     },
-    {
-      field: "classes",
-      headerName: "班级",
-      width: 150,
-      valueGetter: getclassesName,
-    },
+    // {
+    //   field: "classes",
+    //   headerName: "班级",
+    //   width: 150,
+    //   valueGetter: getclassesName,
+    // },
     {
       field: "lastLogin",
       headerName: "最近登录",
@@ -115,7 +115,7 @@ export default function StudentList() {
   ];
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={6} lg={4}>
+      {/* <Grid item xs={12} md={6} lg={4}>
         <TopStudent
           title={"学习力学生"}
           data={goodStudy.data}
@@ -128,7 +128,7 @@ export default function StudentList() {
           data={goodCompetition.data}
           status={goodCompetition.status}
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <CusDataGrid
           columns={columns}

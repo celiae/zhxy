@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { repairDeleteAll, repairList } from "../../api/repair";
 import { useSelector } from "react-redux";
 import CusDataGrid from "../../components/datagrid/CusDataGrid";
-
+function getClassroom(params) {
+  return params.row.classroom.name;
+}
 export default function RepairList() {
   const navigate = useNavigate();
   const username = useSelector((state) => state.login.username);
@@ -19,30 +21,6 @@ export default function RepairList() {
     setRows([]);
   };
   const columns = [
-    {
-      field: "name",
-      headerName: "班级",
-      width: 150,
-      renderCell: (params) => (
-        <Typography
-          onClick={() => {
-            navigate(`/${username}/repair/${params.id}`);
-          }}
-        >
-          {params.value}
-        </Typography>
-      ),
-    },
-    {
-      field: "grade",
-      headerName: "年级",
-      width: 150,
-    },
-    {
-      field: "speciality",
-      headerName: "专业",
-      width: 200,
-    },
     {
       field: "description",
       headerName: "简述",

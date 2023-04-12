@@ -33,7 +33,6 @@ export default function Signup() {
     msg: "",
   });
   const [form, setForm] = React.useState({
-    id: getUUID(),
     avatar: "",
     username: "",
     password: "",

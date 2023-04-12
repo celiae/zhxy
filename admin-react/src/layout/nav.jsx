@@ -32,11 +32,11 @@ const getAllNav = (user) => {
       href: `/${user.username}${ROUTE.STUDENT}`,
       icon: <FaUserGraduate />,
     },
-    {
-      name: "学生考试成绩",
-      href: `/${user.username}${ROUTE.SCORE}`,
-      icon: <ScoreboardIcon />,
-    },
+    // {
+    //   name: "学生考试成绩",
+    //   href: `/${user.username}${ROUTE.SCORE}`,
+    //   icon: <ScoreboardIcon />,
+    // },
     {
       name: "教师",
       href: `/${user.username}${ROUTE.TEACHER}`,

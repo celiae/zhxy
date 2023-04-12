@@ -20,8 +20,8 @@ export default function ClassroomList() {
   };
   const columns = [
     {
-      field: "name",
-      headerName: "班级",
+      field: "location",
+      headerName: "didian",
       width: 150,
       renderCell: (params) => (
         <Typography
@@ -34,7 +34,7 @@ export default function ClassroomList() {
       ),
     },
     {
-      field: "grade",
+      field: "roomNumber",
       headerName: "年级",
       width: 150,
     },
@@ -49,6 +49,7 @@ export default function ClassroomList() {
       width: 400,
     },
   ];
+  console.log(rows);
   return (
     <CusDataGrid
       columns={columns}
